@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% set active_tab = "eda" %}
+{% block title %}EDA · MatchScope Analytics{% endblock %}
+{% block content %}
+<section class="page-intro"><p class="eyebrow">Exploratory Data Analysis</p><h1>What does the data reveal?</h1><p>Key features of all recorded World Cup matches.</p></section>
+<section class="stat-strip"><div class="stat-cell"><span class="stat-value">{{ summary.date_range[0] }}</span><span class="stat-label">First Match Date</span></div><div class="stat-cell"><span class="stat-value">{{ summary.date_range[1] }}</span><span class="stat-label">Last Match Date</span></div><div class="stat-cell"><span class="stat-value">{{ summary.n_matches }}</span><span class="stat-label">Total Games</span></div><div class="stat-cell"><span class="stat-value">{{ summary.result_breakdown.get('draw', 0) }}</span><span class="stat-label">Total Draws</span></div></section>
+<section><h2 class="section-title">Unusual scoring matches</h2>{% if outliers %}<div class="table-wrap"><table><thead><tr><th>Date</th><th>Home Team</th><th>Away Team</th><th>Total Goals</th></tr></thead><tbody>{% for row in outliers %}<tr><td>{{ row.date }}</td><td>{{ row.home_team }}</td><td>{{ row.away_team }}</td><td>{{ row.total_goals }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state">No statistical outliers were detected.</div>{% endif %}</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+year,date,stage,stadium,city,home_team,away_team,home_score,away_score,result
+2022,11/20/2022,Group,Al Bayt Stadium,Al Khor,Qatar,Ecuador,0,2,Ecuador
+2022,11/21/2022,Group,Khalifa International Stadium,Doha,England,Iran,6,2,England
+2022,11/21/2022,Group,Ahmad Bin Ali Stadium,Al Rayyan,Senegal,Netherlands,0,2,Netherlands
+2022,11/21/2022,Group,Al Rayyan Stadium,Al Rayyan,USA,Wales,1,1,Draw
+2022,11/22/2022,Group,Lusail Stadium,Lusail,Argentina,Saudi Arabia,1,2,Saudi Arabia
+2022,11/22/2022,Group,Education City Stadium,Al Rayyan,Mexico,Poland,0,0,Draw
+2022,11/22/2022,Group,Al Janoub Stadium,Al Wakrah,Denmark,Tunisia,0,0,Draw
+2022,11/22/2022,Group,Al Bayt Stadium,Al Khor,France,Australia,4,1,France
+2022,11/23/2022,Group,Khalifa International Stadium,Doha,Germany,Japan,1,2,Japan
+2022,11/23/2022,Group,Al Thumama Stadium,Doha,Spain,Costa Rica,7,0,Spain
+2022,11/23/2022,Group,Al Janoub Stadium,Al Wakrah,Morocco,Croatia,0,0,Draw
+2022,11/23/2022,Group,Ahmad Bin Ali Stadium,Al Rayyan,Belgium,Canada,1,0,Belgium
+2022,11/24/2022,Group,Lusail Stadium,Lusail,Switzerland,Cameroon,1,0,Switzerland
+2022,11/24/2022,Group,Al Thumama Stadium,Doha,Uruguay,South Korea,0,0,Draw
+2022,11/24/2022,Group,974 Stadium,Doha,Portugal,Ghana,3,2,Portugal
+2022,11/24/2022,Group,Education City Stadium,Al Rayyan,Brazil,Serbia,2,0,Brazil
+2022,11/25/2022,Group,974 Stadium,Doha,Wales,Iran,0,2,Iran
+2022,11/25/2022,Group,Al Bayt Stadium,Al Khor,Qatar,Senegal,0,3,Senegal
+2022,11/25/2022,Group,Al Thumama Stadium,Doha,Netherlands,Ecuador,1,1,Draw
+2022,11/25/2022,Group,Khalifa International Stadium,Doha,England,USA,0,0,Draw
+2022,11/26/2022,Group,Education City Stadium,Al Rayyan,Poland,Saudi Arabia,2,0,Poland
+2022,11/26/2022,Group,Lusail Stadium,Lusail,Argentina,Mexico,2,0,Argentina
+2022,11/26/2022,Group,Al Janoub Stadium,Al Wakrah,Tunisia,Australia,0,1,Australia
+2022,11/26/2022,Group,Al Bayt Stadium,Al Khor,France,Denmark,2,1,France
+2022,11/27/2022,Group,Ahmad Bin Ali Stadium,Al Rayyan,Japan,Costa Rica,0,1,Costa Rica
+2022,11/27/2022,Group,Al Bayt Stadium,Al Khor,Belgium,Morocco,0,2,Morocco
+2022,11/27/2022,Group,974 Stadium,Doha,Croatia,Canada,4,1,Croatia
+2022,11/27/2022,Group,Al Thumama Stadium,Doha,Spain,Germany,1,1,Draw
+2022,11/28/2022,Group,Al Janoub Stadium,Al Wakrah,Cameroon,Serbia,3,3,Draw
+2022,11/28/2022,Group,Lusail Stadium,Lusail,South Korea,Ghana,2,3,Ghana
+2022,11/28/2022,Group,Education City Stadium,Al Rayyan,Brazil,Switzerland,1,0,Brazil
+2022,11/28/2022,Group,Khalifa International Stadium,Doha,Portugal,Uruguay,2,0,Portugal
+2022,11/29/2022,Group,Khalifa International Stadium,Doha,Netherlands,Qatar,2,0,Netherlands
+2022,11/29/2022,Group,Al Thumama Stadium,Doha,Ecuador,Senegal,1,2,Senegal
+2022,11/29/2022,Group,Ahmad Bin Ali Stadium,Al Rayyan,Wales,England,0,3,England
+2022,11/29/2022,Group,Al Bayt Stadium,Al Khor,Iran,USA,0,1,USA
+2022,11/30/2022,Group,Al Janoub Stadium,Al Wakrah,Australia,Denmark,1,0,Australia
+2022,11/30/2022,Group,974 Stadium,Doha,Tunisia,France,1,0,Tunisia
+2022,11/30/2022,Group,Lusail Stadium,Lusail,Poland,Argentina,0,2,Argentina
+2022,11/30/2022,Group,Education City Stadium,Al Rayyan,Saudi Arabia,Mexico,1,2,Mexico
+2022,12/1/2022,Group,Al Bayt Stadium,Al Khor,Croatia,Belgium,0,0,Draw
+2022,12/1/2022,Group,Khalifa International Stadium,Doha,Canada,Morocco,1,2,Morocco
+2022,12/1/2022,Group,Al Thumama Stadium,Doha,Japan,Spain,2,1,Japan
+2022,12/1/2022,Group,Ahmad Bin Ali Stadium,Al Rayyan,Costa Rica,Germany,2,4,Germany
+2022,12/2/2022,Group,Lusail Stadium,Lusail,South Korea,Portugal,2,1,South Korea
+2022,12/2/2022,Group,Al Janoub Stadium,Al Wakrah,Ghana,Uruguay,0,2,Uruguay
+2022,12/2/2022,Group,Al Bayt Stadium,Al Khor,Cameroon,Brazil,1,0,Cameroon
+2022,12/2/2022,Group,974 Stadium,Doha,Serbia,Switzerland,2,3,Switzerland
+2022,12/3/2022,Round of 16,974 Stadium,Doha,Netherlands,USA,3,1,Netherlands
+2022,12/3/2022,Round of 16,Khalifa International Stadium,Doha,Argentina,Australia,2,1,Argentina
+2022,12/4/2022,Round of 16,Al Bayt Stadium,Al Khor,France,Poland,3,1,France
+2022,12/4/2022,Round of 16,Ahmad Bin Ali Stadium,Al Rayyan,England,Senegal,3,0,England
+2022,12/5/2022,Round of 16,Al Janoub Stadium,Al Wakrah,Japan,Croatia,1,1,Croatia
+2022,12/5/2022,Round of 16,974 Stadium,Doha,Brazil,South Korea,4,1,Brazil
+2022,12/6/2022,Round of 16,Education City Stadium,Al Rayyan,Morocco,Spain,0,0,Morocco
+2022,12/6/2022,Round of 16,Lusail Stadium,Lusail,Portugal,Switzerland,6,1,Portugal
+2022,12/9/2022,Quarter-final,Education City Stadium,Al Rayyan,Croatia,Brazil,1,1,Croatia
+2022,12/9/2022,Quarter-final,Lusail Stadium,Lusail,Netherlands,Argentina,2,2,Argentina
+2022,12/10/2022,Quarter-final,Al Thumama Stadium,Doha,Morocco,Portugal,1,0,Morocco
+2022,12/10/2022,Quarter-final,Al Bayt Stadium,Al Khor,England,France,1,2,France
+2022,12/13/2022,Semi-final,Lusail Stadium,Lusail,Argentina,Croatia,3,0,Argentina
+2022,12/14/2022,Semi-final,Al Bayt Stadium,Al Khor,France,Morocco,2,0,France
+2022,12/17/2022,Third Place Play-off,Khalifa International Stadium,Doha,Croatia,Morocco,2,1,Croatia
+2022,12/18/2022,Final,Lusail Stadium,Lusail,Argentina,France,3,3,Argentina

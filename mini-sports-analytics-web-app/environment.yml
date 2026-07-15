@@ -1,0 +1,11 @@
+name: sports-analytics
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - flask>=2.3
+  - pandas>=2.0
+  - matplotlib>=3.7
+  - seaborn>=0.12
+  - pip

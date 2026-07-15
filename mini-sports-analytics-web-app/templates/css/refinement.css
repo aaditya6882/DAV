@@ -1,0 +1,10 @@
+/* Final type and alignment pass. */
+body, .brand, .tabs a, .header-button, button, input { font-family: "Manrope", Arial, sans-serif; }
+.brand { align-items: center; letter-spacing: -.025em; }.brand small { margin-top: 2px; font-family: "Manrope", Arial, sans-serif; font-weight: 700; }
+.tabs { align-items: center; }.tabs a { font-weight: 700; letter-spacing: -.01em; }
+.page-intro, .about-copy, .visualizations-intro { text-align: left; }.page-intro h1, .home-hero h1, .home-heading h2, .home-context h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
+.page-intro h1 { max-width: 780px; }.page-intro > p:last-child { max-width: 640px; }.eyebrow, .home-kicker { font-family: "Manrope", Arial, sans-serif; font-weight: 800; letter-spacing: .1em; }
+.section-title { text-align: left; font-family: "Manrope", Arial, sans-serif; font-weight: 800; }.stat-cell { text-align: left; }.stat-value { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }.stat-label { text-align: left; }
+.plot-card-body, .home-note { text-align: left; }.plot-card-body h2, .visualizations-panel h2 { font-family: "Manrope", Arial, sans-serif; font-weight: 800; }.standings-table th:not(:nth-child(2)), .standings-table td:not(:nth-child(2)) { text-align: center; }.standings-table th:nth-child(2), .standings-table td:nth-child(2) { text-align: left; }
+.site-footer { text-align: left; }.site-footer h2 { font-family: "Manrope", Arial, sans-serif; font-weight: 800; }.footer-brand { text-align: left; }
+@media (max-width: 760px) { .site-header { align-items: center; }.home-heading, .home-context { text-align: left; }.home-heading h2 { font-size: clamp(2rem, 10vw, 3rem); } }

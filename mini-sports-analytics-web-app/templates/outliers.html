@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set active_tab = "outliers" %}
+{% block title %}Outliers · World Cup 2022{% endblock %}
+
+{% block content %}
+<section>
+  <h2 class="section-title">Unusual High/Low Scoring Matches</h2>
+  <p style="color: var(--chalk-dim); max-width: 640px;">
+    Detected using the IQR method on total goals per match — matches
+    whose combined score falls well outside the typical range.
+  </p>
+
+  {% if outliers %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Home Team</th><th>Away Team</th><th>Total Goals</th></tr>
+      </thead>
+      <tbody>
+        {% for row in outliers %}
+        <tr>
+          <td>{{ row.date }}</td>
+          <td>{{ row.home_team }}</td>
+          <td>{{ row.away_team }}</td>
+          <td>{{ row.total_goals }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">No statistical outliers detected in this dataset.</div>
+  {% endif %}
+</section>
+{% endblock %}

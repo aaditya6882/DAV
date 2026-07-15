@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% set active_tab = "preprocessing" %} {% block title
+%}Preprocessing | World Cup 2022{% endblock %} {% block content %}
+<section class="page-intro">
+  <p class="eyebrow">Preprocessing</p>
+  <h1>Preparing the data<br />for analysis.</h1>
+  <p>
+    The raw match file is checked, cleaned, and enriched before it is used in
+    the dashboard.
+  </p>
+</section>
+
+<section class="stat-strip">
+  <div class="stat-cell">
+    <span class="stat-value">{{ raw_rows }}</span
+    ><span class="stat-label">Raw rows loaded</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-value">{{ cleaned_rows }}</span
+    ><span class="stat-label">Rows ready for analysis</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-value">{{ raw_columns|length }}</span
+    ><span class="stat-label">Raw columns</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-value">{{ cleaned_columns|length }}</span
+    ><span class="stat-label">Cleaned columns</span>
+  </div>
+</section>
+
+<section class="column-summary">
+  <div>
+    <h2 class="section-title">Raw columns</h2>
+    <p>{{ raw_columns|join(', ') }}</p>
+  </div>
+  <div>
+    <h2 class="section-title">Analysis-ready columns</h2>
+    <p>{{ cleaned_columns|join(', ') }}</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% set active_tab = "visualizations" %} {% block title
+%}Visualizations · MatchScope Analytics{% endblock %} {% block extra_head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('main.template_css', filename='visualizations.css') }}"
+/>
+{% endblock %} {% block content %}
+<section class="visualizations-page">
+  <div class="visualizations-hero">
+    <div class="page-intro visualizations-intro">
+      <p class="eyebrow">Visualizations</p>
+      <h1>Read the tournament<br />at a glance.</h1>
+      <p>
+        Five views of the 2022 World Cup: scoring, results, stadiums, and the
+        cities that hosted them.
+      </p>
+      <div class="visualizations-actions">
+        <a class="visualization-button primary" href="#plot-1">View charts</a>
+        <a
+          class="visualization-button secondary"
+          href="{{ url_for('main.statistics_page') }}"
+          >Open statistics</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <section class="plot-grid">
+    {% for plot in plots %}
+    <article class="plot-card" id="plot-{{ loop.index }}">
+      <img
+        src="{{ url_for('static', filename=plot.url) }}"
+        alt="{{ plot.title }}"
+      />
+      <div class="plot-card-body">
+        <p class="plot-index">0{{ loop.index }}</p>
+        <h2>{{ plot.title }}</h2>
+        <p>{{ plot.caption }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+</section>
+{% endblock %}

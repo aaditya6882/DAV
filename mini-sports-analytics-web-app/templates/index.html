@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% set active_tab = "index" %} {% block title %}Home |
+World Cup 2022{% endblock %} {% block content %}
+<section class="home-hero">
+  <div>
+    <p class="home-kicker">FIFA World Cup 2022</p>
+    <h1>A closer look <br />at the matches that mattered.</h1>
+    <p class="home-lede">
+      This dashboard turns 64 World Cup fixtures into a simple place to explore
+      results, goals, teams, and venues.
+    </p>
+    <div class="home-actions">
+      <a class="home-primary" href="{{ url_for('main.visualizations') }}"
+        >View visualizations <span>&rarr;</span></a
+      >
+      <a class="home-secondary" href="{{ url_for('main.statistics_page') }}"
+        >Browse team statistics</a
+      >
+    </div>
+  </div>
+  <aside class="home-note">
+    <p>Dataset snapshot</p>
+    <dl>
+      <div>
+        <dt>{{ summary.n_matches }}</dt>
+        <dd>matches played</dd>
+      </div>
+      <div>
+        <dt>{{ summary.n_teams }}</dt>
+        <dd>national teams</dd>
+      </div>
+      <div>
+        <dt>{{ summary.total_goals_scored }}</dt>
+        <dd>goals scored</dd>
+      </div>
+      <div>
+        <dt>{{ summary.avg_goals_per_match }}</dt>
+        <dd>goals per match</dd>
+      </div>
+    </dl>
+    <small>From the opening match to the final in Qatar.</small>
+  </aside>
+</section>
+
+<section class="home-section">
+  <div class="home-heading">
+    <p class="home-kicker">Start exploring</p>
+    <h2>Choose the question you want to answer.</h2>
+  </div>
+  <div class="home-links">
+    <a href="{{ url_for('main.visualizations') }}"
+      ><span>01</span>
+      <h3>See the patterns</h3>
+      <p>
+        Read scoring, results, stadium use, and host-city distribution through
+        charts.
+      </p>
+      <b>Open visualizations &rarr;</b></a
+    >
+    <a href="{{ url_for('main.eda_page') }}"
+      ><span>02</span>
+      <h3>Inspect the data</h3>
+      <p>
+        Review match outcomes, date coverage, and unusually high-scoring games.
+      </p>
+      <b>Open EDA &rarr;</b></a
+    >
+    <a href="{{ url_for('main.statistics_page') }}"
+      ><span>03</span>
+      <h3>Compare teams</h3>
+      <p>Check points, wins, goals for, goals against, and goal difference.</p>
+      <b>Open statistics &rarr;</b></a
+    >
+  </div>
+</section>
+
+<section class="home-context">
+  <div>
+    <p class="home-kicker">About this project</p>
+    <h2>Built to make sports data easier to read.</h2>
+  </div>
+  <p>
+    The application cleans the raw match file, calculates core football metrics,
+    and presents the results with Flask, Pandas, Matplotlib, and Seaborn. It is
+    designed as a practical analytics project rather than a prediction tool.
+  </p>
+</section>
+{% endblock %}

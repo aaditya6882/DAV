@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% set active_tab = "statistics" %}
+{% block title %}Statistics · MatchScope Analytics{% endblock %}
+{% block content %}
+<section class="page-intro"><p class="eyebrow">Statistics</p><h1>Team performance, ranked.</h1><p>Points use the standard football system: three for a win and one for a draw.</p></section>
+<section><h2 class="section-title">Team standings</h2><div class="table-wrap"><table class="standings-table"><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody>{% for row in team_stats %}<tr><td>{{ loop.index }}</td><td>{{ row.team }}</td><td>{{ row.played }}</td><td>{{ row.wins }}</td><td>{{ row.draws }}</td><td>{{ row.losses }}</td><td>{{ row.goals_for }}</td><td>{{ row.goals_against }}</td><td>{{ row.goal_difference }}</td><td>{{ row.points }}</td></tr>{% endfor %}</tbody></table></div></section>
+<section><h2 class="section-title">Year summary</h2><div class="table-wrap"><table><thead><tr><th>Year</th><th>Matches</th><th>Total Goals</th><th>Goals / Match</th><th>Stages</th><th>Stadiums</th><th>Cities</th></tr></thead><tbody>{% for row in year_stats %}<tr><td>{{ row.year }}</td><td>{{ row.matches }}</td><td>{{ row.total_goals }}</td><td>{{ row.avg_goals_per_match }}</td><td>{{ row.stages }}</td><td>{{ row.stadiums }}</td><td>{{ row.cities }}</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}

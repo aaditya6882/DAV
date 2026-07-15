@@ -1,0 +1,9 @@
+/* Loaded last so text stays consistent across every page. */
+body { font-family: "Source Sans 3", Arial, sans-serif; font-size: 18px; line-height: 1.6; }
+.brand, .tabs a, .header-button, .pill, .site-footer h2, button { font-family: "Source Sans 3", Arial, sans-serif; }
+.brand { font-size: 1.05rem; }.brand small { font-size: .68rem; }.tabs a { font-size: .88rem; }.header-button { font-size: .76rem; }
+.site-footer h2 { font-size: .84rem; }.site-footer p, .site-footer span, .site-footer a { font-size: .78rem; }
+.page-intro h1, .visualizations-intro h1, .hero-copy h1 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; }
+.page-intro p, .plot-card-body p, .table-wrap, .empty-state { font-size: 1rem; }
+.page-intro .eyebrow, .section-intro p { font-size: .9rem; } td { font-size: .94rem; } th { font-family: "Source Sans 3", Arial, sans-serif; font-size: .78rem; }
+@media (max-width: 760px) { body { font-size: 16px; }.tabs a { font-size: .78rem; } }

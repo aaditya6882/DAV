@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}World Cup 2022 {% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='theme.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='site-overrides.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='typography.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='worldcup-theme.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='layout.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('main.template_css', filename='refinement.css') }}"
+    />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{{ url_for('main.index') }}">
+        <span class="brand-logo" aria-hidden="true"
+          ><svg viewBox="0 0 48 48">
+            <path d="M16 8h16v8c0 7-3.2 12.4-8 15-4.8-2.6-8-8-8-15V8Z" />
+            <path
+              d="M16 12H9v3c0 5 3 8 8 8m15-11h7v3c0 5-3 8-8 8M24 31v8m-7 2h14"
+            /></svg
+        ></span>
+        <span>FIFA World Cup 2022 <small>Match Data Analysis</small></span>
+      </a>
+      <nav class="tabs" aria-label="Main navigation">
+        <a
+          href="{{ url_for('main.index') }}"
+          class="{{ 'active' if active_tab == 'index' else '' }}"
+          >Dashboard</a
+        >
+        <a
+          href="{{ url_for('main.preprocessing_page') }}"
+          class="{{ 'active' if active_tab == 'preprocessing' else '' }}"
+          >Preprocessing</a
+        >
+        <a
+          href="{{ url_for('main.eda_page') }}"
+          class="{{ 'active' if active_tab == 'eda' else '' }}"
+          >EDA</a
+        >
+        <a
+          href="{{ url_for('main.statistics_page') }}"
+          class="{{ 'active' if active_tab == 'statistics' else '' }}"
+          >Statistics</a
+        >
+        <a
+          href="{{ url_for('main.visualizations') }}"
+          class="{{ 'active' if active_tab == 'visualizations' else '' }}"
+          >Visualizations</a
+        >
+        <a
+          href="{{ url_for('main.about') }}"
+          class="{{ 'active' if active_tab == 'about' else '' }}"
+          >About</a
+        >
+      </nav>
+      <a class="header-button" href="{{ url_for('main.visualizations') }}"
+        >View<br />Charts</a
+      >
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+      <div>
+        <a class="footer-brand" href="{{ url_for('main.index') }}"
+          >World Cup 2022 <small>Match Data Dashboard</small></a
+        >
+        <p>
+          A practical guide to the data, patterns and stories behind the
+          beautiful game.
+        </p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <a href="{{ url_for('main.preprocessing_page') }}">Preprocessing</a
+        ><a href="{{ url_for('main.eda_page') }}">Data analysis</a
+        ><a href="{{ url_for('main.statistics_page') }}">Statistics</a
+        ><a href="{{ url_for('main.visualizations') }}">Visual stories</a>
+      </div>
+      <div>
+        <h2>Technology</h2>
+        <span>Flask + Python</span><span>Pandas</span><span>Matplotlib</span>
+      </div>
+      <div>
+        <h2>Dataset</h2>
+        <span>FIFA World Cup</span><span>Qatar 2022</span
+        ><span>64 matches</span>
+      </div>
+    </footer>
+  </body>
+</html>
