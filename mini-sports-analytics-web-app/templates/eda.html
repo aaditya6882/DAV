@@ -2,7 +2,76 @@
 {% set active_tab = "eda" %}
 {% block title %}EDA · MatchScope Analytics{% endblock %}
 {% block content %}
-<section class="page-intro"><p class="eyebrow">Exploratory Data Analysis</p><h1>What does the data reveal?</h1><p>Key features of all recorded World Cup matches.</p></section>
-<section class="stat-strip"><div class="stat-cell"><span class="stat-value">{{ summary.date_range[0] }}</span><span class="stat-label">First Match Date</span></div><div class="stat-cell"><span class="stat-value">{{ summary.date_range[1] }}</span><span class="stat-label">Last Match Date</span></div><div class="stat-cell"><span class="stat-value">{{ summary.n_matches }}</span><span class="stat-label">Total Games</span></div><div class="stat-cell"><span class="stat-value">{{ summary.result_breakdown.get('draw', 0) }}</span><span class="stat-label">Total Draws</span></div></section>
-<section><h2 class="section-title">Unusual scoring matches</h2>{% if outliers %}<div class="table-wrap"><table><thead><tr><th>Date</th><th>Home Team</th><th>Away Team</th><th>Total Goals</th></tr></thead><tbody>{% for row in outliers %}<tr><td>{{ row.date }}</td><td>{{ row.home_team }}</td><td>{{ row.away_team }}</td><td>{{ row.total_goals }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state">No statistical outliers were detected.</div>{% endif %}</section>
+<section class="page-intro">
+  <p class="eyebrow">Exploratory Data Analysis</p>
+  <h1>What does the data reveal?</h1>
+  <p>Key features of all recorded World Cup matches and player performances.</p>
+  <div class="jump-links">
+    <a href="#match-dates" class="jump-link">Match Dates</a>
+    <a href="#unusual-matches" class="jump-link">Unusual Matches</a>
+    <a href="#top-scorers" class="jump-link">Top Scorers</a>
+  </div>
+</section>
+
+<section class="stat-strip" id="match-dates">
+  <div class="stat-cell"><span class="stat-value">{{ summary.date_range[0] }}</span><span class="stat-label">First Match Date</span></div>
+  <div class="stat-cell"><span class="stat-value">{{ summary.date_range[1] }}</span><span class="stat-label">Last Match Date</span></div>
+  <div class="stat-cell"><span class="stat-value">{{ summary.n_matches }}</span><span class="stat-label">Total Games</span></div>
+  <div class="stat-cell"><span class="stat-value">{{ summary.result_breakdown.get('draw', 0) }}</span><span class="stat-label">Total Draws</span></div>
+</section>
+
+<section id="unusual-matches">
+  <h2 class="section-title">Unusual scoring matches</h2>
+  {% if outliers %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Home Team</th><th>Away Team</th><th>Total Goals</th></tr>
+      </thead>
+      <tbody>
+        {% for row in outliers %}
+        <tr><td>{{ row.date }}</td><td>{{ row.home_team }}</td><td>{{ row.away_team }}</td><td>{{ row.total_goals }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">No statistical outliers were detected.</div>
+  {% endif %}
+</section>
+
+<section id="top-scorers">
+  <div class="table-header-row">
+    <h2 class="section-title">Top scorers</h2>
+    <div class="table-search-box">
+      <input type="text" id="playerSearch" placeholder="Search player or team..." onkeyup="filterTable('playerSearch', 'playerTable')" aria-label="Search players">
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="standings-table sortable-table" id="playerTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable('playerTable', 0, 'num')"># <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 1, 'str')">Player <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 2, 'str')">Team <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 3, 'num')">Goals <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 4, 'num')">Assists <span class="sort-icon">↕</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in players %}
+        <tr>
+          <td>{{ row.rank }}</td>
+          <td>{{ row.player }}</td>
+          <td>{{ row.team }}</td>
+          <td>{{ row.goals }}</td>
+          <td>{{ row.assists }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No player stats available.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {% endblock %}

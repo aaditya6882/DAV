@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set active_tab = "achievements" %}
+{% block title %}Achievements · MatchScope Analytics{% endblock %}
+{% block content %}
+<section class="page-intro"><p class="eyebrow">Achievements</p><h1>Tournament awards.</h1><p>Argentina lifted the trophy; Messi, Mbappe and Martinez took home the individual honors.</p></section>
+<section>
+  <h2 class="section-title">Team awards</h2>
+  <div class="table-wrap">
+    <table class="standings-table">
+      <thead><tr><th>Award</th><th>Team</th></tr></thead>
+      <tbody>
+        {% for row in team_awards %}
+        <tr><td>{{ row.award }}</td><td>{{ row.team }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<section>
+  <h2 class="section-title">Individual awards</h2>
+  <div class="table-wrap">
+    <table class="standings-table">
+      <thead><tr><th>Award</th><th>Recipient</th><th>Team</th></tr></thead>
+      <tbody>
+        {% for row in individual_awards %}
+        <tr><td>{{ row.award }}</td><td>{{ row.recipient }}</td><td>{{ row.team }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

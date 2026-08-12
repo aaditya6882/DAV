@@ -56,6 +56,57 @@ def load_raw_data(path=None):
     return df
 
 
+def load_groups_data(path=None):
+    """
+    Load final group-stage standings from data/raw/groups.csv.
+
+    Returns
+    -------
+    pandas.DataFrame
+    """
+    if path is None:
+        path = current_app.config["GROUPS_DATA_FILE"]
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Groups data file not found at {path}.")
+
+    return pd.read_csv(path)
+
+
+def load_stats_data(path=None):
+    """
+    Load individual player scoring stats from data/raw/stats.csv.
+
+    Returns
+    -------
+    pandas.DataFrame
+    """
+    if path is None:
+        path = current_app.config["STATS_DATA_FILE"]
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Stats data file not found at {path}.")
+
+    return pd.read_csv(path)
+
+
+def load_achievements_data(path=None):
+    """
+    Load tournament awards from data/raw/achievements.csv.
+
+    Returns
+    -------
+    pandas.DataFrame
+    """
+    if path is None:
+        path = current_app.config["ACHIEVEMENTS_DATA_FILE"]
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Achievements data file not found at {path}.")
+
+    return pd.read_csv(path)
+
+
 def load_processed_data(path=None):
     """
     Load cleaned dataset from data/processed/. Falls back to cleaning

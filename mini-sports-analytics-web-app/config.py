@@ -27,6 +27,10 @@ class Config:
     RAW_DATA_FILE = os.path.join(RAW_DATA_DIR, "matches.csv")
     PROCESSED_DATA_FILE = os.path.join(PROCESSED_DATA_DIR, "matches_clean.csv")
 
+    GROUPS_DATA_FILE = os.path.join(RAW_DATA_DIR, "groups.csv")
+    STATS_DATA_FILE = os.path.join(RAW_DATA_DIR, "stats.csv")
+    ACHIEVEMENTS_DATA_FILE = os.path.join(RAW_DATA_DIR, "achievements.csv")
+
     # --- Static / visualization paths ---
     STATIC_DIR = os.path.join(BASE_DIR, "static")
     PLOTS_DIR = os.path.join(STATIC_DIR, "images", "plots")

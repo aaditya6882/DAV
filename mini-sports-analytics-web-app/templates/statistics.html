@@ -2,7 +2,80 @@
 {% set active_tab = "statistics" %}
 {% block title %}Statistics · MatchScope Analytics{% endblock %}
 {% block content %}
-<section class="page-intro"><p class="eyebrow">Statistics</p><h1>Team performance, ranked.</h1><p>Points use the standard football system: three for a win and one for a draw.</p></section>
-<section><h2 class="section-title">Team standings</h2><div class="table-wrap"><table class="standings-table"><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody>{% for row in team_stats %}<tr><td>{{ loop.index }}</td><td>{{ row.team }}</td><td>{{ row.played }}</td><td>{{ row.wins }}</td><td>{{ row.draws }}</td><td>{{ row.losses }}</td><td>{{ row.goals_for }}</td><td>{{ row.goals_against }}</td><td>{{ row.goal_difference }}</td><td>{{ row.points }}</td></tr>{% endfor %}</tbody></table></div></section>
-<section><h2 class="section-title">Year summary</h2><div class="table-wrap"><table><thead><tr><th>Year</th><th>Matches</th><th>Total Goals</th><th>Goals / Match</th><th>Stages</th><th>Stadiums</th><th>Cities</th></tr></thead><tbody>{% for row in year_stats %}<tr><td>{{ row.year }}</td><td>{{ row.matches }}</td><td>{{ row.total_goals }}</td><td>{{ row.avg_goals_per_match }}</td><td>{{ row.stages }}</td><td>{{ row.stadiums }}</td><td>{{ row.cities }}</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="page-intro">
+  <p class="eyebrow">Statistics</p>
+  <h1>Group standings &amp; summary.</h1>
+  <p>Final standings across all 8 groups (A–H) and overall tournament match summary.</p>
+  <div class="jump-links">
+    <a href="#group-standings" class="jump-link">Group Standings</a>
+    <a href="#year-summary" class="jump-link">Year Summary</a>
+  </div>
+</section>
+
+<section id="group-standings">
+  <div class="table-header-row">
+    <h2 class="section-title">Group stage standings</h2>
+    <div class="table-search-box">
+      <input type="text" id="groupSearch" placeholder="Filter team or group..." onkeyup="filterTable('groupSearch', 'groupsContainer')" aria-label="Filter groups">
+    </div>
+  </div>
+  
+  <div id="groupsContainer">
+    {% for group_name, rows in groups.items() %}
+    <div class="group-block" style="margin-bottom: 28px;">
+      <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 12px; color: var(--blue);">Group {{ group_name }}</h3>
+      <div class="table-wrap">
+        <table class="standings-table sortable-table" id="groupTable-{{ group_name }}">
+          <thead>
+            <tr>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 0, 'num')"># <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 1, 'str')">Team <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 2, 'num')">P <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 3, 'num')">W <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 4, 'num')">D <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 5, 'num')">L <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 6, 'num')">GF <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 7, 'num')">GA <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 8, 'num')">GD <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('groupTable-{{ group_name }}', 9, 'num')">Pts <span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr class="{{ 'advanced' if row.position <= 2 else '' }}">
+              <td>{{ row.position }}</td>
+              <td>{{ row.team }}</td>
+              <td>{{ row.played }}</td>
+              <td>{{ row.won }}</td>
+              <td>{{ row.drawn }}</td>
+              <td>{{ row.lost }}</td>
+              <td>{{ row.goals_for }}</td>
+              <td>{{ row.goals_against }}</td>
+              <td>{{ row.goal_difference }}</td>
+              <td>{{ row.points }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="year-summary">
+  <h2 class="section-title">Year summary</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Year</th><th>Matches</th><th>Total Goals</th><th>Goals / Match</th><th>Stages</th><th>Stadiums</th><th>Cities</th></tr>
+      </thead>
+      <tbody>
+        {% for row in year_stats %}
+        <tr><td>{{ row.year }}</td><td>{{ row.matches }}</td><td>{{ row.total_goals }}</td><td>{{ row.avg_goals_per_match }}</td><td>{{ row.stages }}</td><td>{{ row.stadiums }}</td><td>{{ row.cities }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {% endblock %}

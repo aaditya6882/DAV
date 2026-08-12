@@ -2,5 +2,18 @@
 {% set active_tab = "about" %}
 {% block title %}About · MatchScope Analytics{% endblock %}
 {% block content %}
-<section class="page-intro about-copy"><p class="eyebrow">About the project</p><h1>Football data, made readable.</h1><p>MatchScope is a Flask analytics web app built around the 64 fixtures of the FIFA World Cup 2022.</p><p>It cleans raw match data, derives match outcomes and goal metrics, then presents the results through interactive-ready pages, summary statistics, and visualizations.</p><a class="button-link" href="{{ url_for('main.visualizations') }}">Explore the visualizations</a></section>
+<section class="page-intro about-copy">
+  <p class="eyebrow">About the project</p>
+  <h1>Football data, made readable.</h1>
+  <p>MatchScope is a Flask analytics web app built around the 64 fixtures of the FIFA World Cup 2022.</p>
+  <p>It cleans raw match data, derives match outcomes and goal metrics, then presents the results through interactive-ready pages, summary statistics, and visualizations.</p>
+  <a class="button-link" href="{{ url_for('main.visualizations') }}">Explore the visualizations</a>
+</section>
+
+<section class="about-academic-section">
+  <div class="academic-card">
+    <span class="academic-tag">Academic Project</span>
+    <p>Built by Student as part of the Centre of AI programme at Herald College Kathmandu.</p>
+  </div>
+</section>
 {% endblock %}

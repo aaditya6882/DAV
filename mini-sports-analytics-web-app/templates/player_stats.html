@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set active_tab = "player-stats" %}
+{% block title %}Player Stats · MatchScope Analytics{% endblock %}
+{% block content %}
+<section class="page-intro"><p class="eyebrow">Player Stats</p><h1>Top scorers of the tournament.</h1><p>Kylian Mbappe won the Golden Boot with 8 goals, one ahead of Lionel Messi.</p></section>
+<section>
+  <div class="table-header-row">
+    <h2 class="section-title">Top scorers</h2>
+    <div class="table-search-box">
+      <input type="text" id="playerSearch" placeholder="Search player or team..." onkeyup="filterTable('playerSearch', 'playerTable')" aria-label="Search players">
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="standings-table sortable-table" id="playerTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable('playerTable', 0, 'num')"># <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 1, 'str')">Player <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 2, 'str')">Team <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 3, 'num')">Goals <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('playerTable', 4, 'num')">Assists <span class="sort-icon">↕</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in players %}
+        <tr>
+          <td>{{ row.rank }}</td>
+          <td>{{ row.player }}</td>
+          <td>{{ row.team }}</td>
+          <td>{{ row.goals }}</td>
+          <td>{{ row.assists }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No player stats available.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

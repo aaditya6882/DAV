@@ -1,0 +1,832 @@
+﻿team,player,position,squad_number,appeared,matches_played,matches_started,goals,own_goals,assists
+Argentina,Lionel Messi,forward,10,yes,7,7,7,0,3
+Argentina,Julián Álvarez,forward,9,yes,7,5,4,0,0
+Argentina,Ángel Di María,forward,11,yes,5,4,1,0,0
+Argentina,Alexis Mac Allister,midfielder,20,yes,6,6,1,0,0
+Argentina,Enzo Fernández,midfielder,24,yes,7,5,1,1,0
+Argentina,Nahuel Molina,defender,26,yes,7,6,1,0,0
+Argentina,Franco Armani,goal keeper,1,no,0,0,0,0,0
+Argentina,Juan Foyth,defender,2,yes,1,0,0,0,0
+Argentina,Nicolás Tagliafico,defender,3,yes,6,3,0,0,0
+Argentina,Gonzalo Montiel,defender,4,yes,4,1,0,0,0
+Argentina,Leandro Paredes,midfielder,5,yes,5,2,0,0,0
+Argentina,Germán Pezzella,defender,6,yes,3,0,0,0,0
+Argentina,Rodrigo De Paul,midfielder,7,yes,7,7,0,0,0
+Argentina,Marcos Acuña,midfielder,8,yes,6,4,0,0,0
+Argentina,Gerónimo Rulli,goal keeper,12,no,0,0,0,0,0
+Argentina,Cristian Romero,defender,13,yes,7,6,0,0,0
+Argentina,Exequiel Palacios,midfielder,14,yes,3,0,0,0,0
+Argentina,Ángel Correa,forward,15,yes,1,0,0,0,0
+Argentina,Thiago Almada,midfielder,16,yes,1,0,0,0,0
+Argentina,Papu Gómez,midfielder,17,yes,2,2,0,0,0
+Argentina,Guido Rodríguez,midfielder,18,yes,1,1,0,0,0
+Argentina,Nicolás Otamendi,defender,19,yes,7,7,0,0,0
+Argentina,Paulo Dybala,forward,21,yes,2,0,0,0,0
+Argentina,Lautaro Martínez,forward,22,yes,6,2,0,0,0
+Argentina,Emiliano Martínez,goal keeper,23,yes,7,7,0,0,0
+Argentina,Lisandro Martínez,defender,25,yes,5,2,0,0,0
+Australia,Mathew Leckie,forward,7,yes,4,4,1,0,0
+Australia,Mitchell Duke,forward,15,yes,4,4,1,0,0
+Australia,Craig Goodwin,forward,23,yes,4,3,1,0,0
+Australia,Mathew Ryan,goal keeper,1,yes,4,4,0,0,0
+Australia,Miloš Degenek,defender,2,yes,4,2,0,0,0
+Australia,Nathaniel Atkinson,defender,3,yes,1,1,0,0,0
+Australia,Kye Rowles,defender,4,yes,4,4,0,0,0
+Australia,Fran Karačić,defender,5,yes,2,1,0,0,0
+Australia,Marco Tilio,forward,6,no,0,0,0,0,0
+Australia,Bailey Wright,defender,8,yes,1,0,0,0,0
+Australia,Jamie Maclaren,forward,9,yes,3,0,0,0,0
+Australia,Ajdin Hrustic,midfielder,10,yes,3,0,0,0,0
+Australia,Awer Mabil,forward,11,yes,2,0,0,0,0
+Australia,Andrew Redmayne,goal keeper,12,no,0,0,0,0,0
+Australia,Aaron Mooy,midfielder,13,yes,4,4,0,0,0
+Australia,Riley McGree,midfielder,14,yes,4,4,0,0,0
+Australia,Aziz Behich,defender,16,yes,4,4,0,0,0
+Australia,Cameron Devlin,midfielder,17,no,0,0,0,0,0
+Australia,Danny Vukovic,goal keeper,18,no,0,0,0,0,0
+Australia,Harry Souttar,defender,19,yes,4,4,0,0,0
+Australia,Thomas Deng,defender,20,no,0,0,0,0,0
+Australia,Garang Kuol,forward,21,yes,2,0,0,0,0
+Australia,Jackson Irvine,midfielder,22,yes,4,4,0,0,0
+Australia,Joel King,defender,24,no,0,0,0,0,0
+Australia,Jason Cummings,forward,25,yes,1,0,0,0,0
+Australia,Keanu Baccus,midfielder,26,yes,4,1,0,0,0
+Belgium,Michy Batshuayi,forward,23,yes,2,2,1,0,0
+Belgium,Thibaut Courtois,goal keeper,1,yes,3,3,0,0,0
+Belgium,Toby Alderweireld,defender,2,yes,3,3,0,0,0
+Belgium,Arthur Theate,defender,3,no,0,0,0,0,0
+Belgium,Wout Faes,defender,4,no,0,0,0,0,0
+Belgium,Jan Vertonghen,defender,5,yes,3,3,0,0,0
+Belgium,Axel Witsel,midfielder,6,yes,3,3,0,0,0
+Belgium,Kevin De Bruyne,midfielder,7,yes,3,3,0,0,0
+Belgium,Youri Tielemans,midfielder,8,yes,3,1,0,0,0
+Belgium,Romelu Lukaku,forward,9,yes,2,0,0,0,0
+Belgium,Eden Hazard,forward,10,yes,3,2,0,0,0
+Belgium,Yannick Carrasco,forward,11,yes,2,2,0,0,0
+Belgium,Simon Mignolet,goal keeper,12,no,0,0,0,0,0
+Belgium,Koen Casteels,goal keeper,13,no,0,0,0,0,0
+Belgium,Dries Mertens,forward,14,yes,2,1,0,0,0
+Belgium,Thomas Meunier,midfielder,15,yes,3,2,0,0,0
+Belgium,Thorgan Hazard,midfielder,16,yes,2,1,0,0,0
+Belgium,Leandro Trossard,forward,17,yes,3,1,0,0,0
+Belgium,Amadou Onana,midfielder,18,yes,2,1,0,0,0
+Belgium,Leander Dendoncker,defender,19,yes,2,2,0,0,0
+Belgium,Hans Vanaken,midfielder,20,no,0,0,0,0,0
+Belgium,Timothy Castagne,midfielder,21,yes,3,3,0,0,0
+Belgium,Charles De Ketelaere,forward,22,yes,1,0,0,0,0
+Belgium,Loïs Openda,forward,24,yes,1,0,0,0,0
+Belgium,Jérémy Doku,forward,25,yes,1,0,0,0,0
+Belgium,Zeno Debast,defender,26,no,0,0,0,0,0
+Brazil,Richarlison,forward,9,yes,4,4,3,0,0
+Brazil,Neymar,forward,10,yes,3,3,2,0,1
+Brazil,Casemiro,midfielder,5,yes,4,4,1,0,0
+Brazil,Lucas Paquetá,midfielder,7,yes,4,4,1,0,0
+Brazil,Vinícius Júnior,forward,20,yes,4,4,1,0,0
+Brazil,Alisson,goal keeper,1,yes,4,4,0,0,0
+Brazil,Danilo,defender,2,yes,3,3,0,0,0
+Brazil,Thiago Silva,defender,3,yes,4,4,0,0,0
+Brazil,Marquinhos,defender,4,yes,5,4,0,0,0
+Brazil,Alex Sandro,defender,6,yes,3,2,0,0,0
+Brazil,Fred,midfielder,8,yes,4,2,0,0,0
+Brazil,Raphinha,forward,11,yes,5,4,0,0,0
+Brazil,Weverton,goal keeper,12,yes,1,0,0,0,0
+Brazil,Dani Alves,defender,13,yes,2,1,0,0,0
+Brazil,Éder Militão,defender,14,yes,4,4,0,0,0
+Brazil,Fabinho,midfielder,15,yes,1,1,0,0,0
+Brazil,Alex Telles,defender,16,yes,2,1,0,0,0
+Brazil,Bruno Guimarães,midfielder,17,yes,2,0,0,0,0
+Brazil,Gabriel Jesus,forward,18,yes,3,1,0,0,0
+Brazil,Antony,forward,19,yes,4,1,0,0,0
+Brazil,Rodrygo,forward,21,yes,5,1,0,0,0
+Brazil,Éverton Ribeiro,midfielder,22,yes,1,0,0,0,0
+Brazil,Ederson,goal keeper,23,yes,1,1,0,0,0
+Brazil,Bremer,defender,24,yes,2,1,0,0,0
+Brazil,Pedro,forward,25,yes,2,0,0,0,0
+Brazil,Gabriel Martinelli,forward,26,yes,3,1,0,0,0
+Cameroon,Vincent Aboubakar,forward,10,yes,3,1,2,0,0
+Cameroon,Eric Maxim Choupo-Moting,forward,13,yes,3,3,1,0,0
+Cameroon,Jean-Charles Castelletto,defender,21,yes,2,2,1,0,0
+Cameroon,Simon Ngapandouetnbu,goal keeper,1,no,0,0,0,0,0
+Cameroon,Jerome Ngom Mbekeli,defender,2,yes,1,0,0,0,0
+Cameroon,Nicolas Nkoulou,defender,3,yes,2,2,0,0,0
+Cameroon,Christopher Wooh,defender,4,yes,1,1,0,0,0
+Cameroon,Gaël Ondoua,midfielder,5,yes,2,0,0,0,0
+Cameroon,Moumi Ngamaleu,forward,6,yes,2,1,0,0,0
+Cameroon,Georges-Kévin Nkoudou,midfielder,7,yes,2,0,0,0,0
+Cameroon,André-Frank Zambo Anguissa,midfielder,8,yes,3,3,0,0,0
+Cameroon,Jean-Pierre Nsame,forward,9,no,0,0,0,0,0
+Cameroon,Christian Bassogog,forward,11,yes,1,0,0,0,0
+Cameroon,Karl Toko Ekambi,forward,12,yes,3,2,0,0,0
+Cameroon,Samuel Gouet,midfielder,14,yes,2,1,0,0,0
+Cameroon,Pierre Kunde,midfielder,15,yes,2,2,0,0,0
+Cameroon,Devis Epassy,goal keeper,16,yes,2,2,0,0,0
+Cameroon,Olivier Mbaizo,defender,17,no,0,0,0,0,0
+Cameroon,Martin Hongla,midfielder,18,yes,2,2,0,0,0
+Cameroon,Collins Fai,defender,19,yes,3,3,0,0,0
+Cameroon,Bryan Mbeumo,forward,20,yes,3,3,0,0,0
+Cameroon,Olivier Ntcham,midfielder,22,yes,1,0,0,0,0
+Cameroon,André Onana,goal keeper,23,yes,1,1,0,0,0
+Cameroon,Enzo Ebosse,defender,24,yes,1,1,0,0,0
+Cameroon,Nouhou Tolo,defender,25,yes,3,3,0,0,0
+Cameroon,Souaibou Marou,midfielder,26,no,0,0,0,0,0
+Canada,Alphonso Davies,forward,19,yes,3,3,1,0,0
+Canada,Dayne St. Clair,goal keeper,1,no,0,0,0,0,0
+Canada,Alistair Johnston,defender,2,yes,3,3,0,0,0
+Canada,Sam Adekugbe,defender,3,yes,3,1,0,0,0
+Canada,Kamal Miller,defender,4,yes,3,3,0,0,0
+Canada,Steven Vitória,defender,5,yes,3,3,0,0,0
+Canada,Samuel Piette,midfielder,6,no,0,0,0,0,0
+Canada,Stephen Eustáquio,midfielder,7,yes,2,2,0,0,0
+Canada,Liam Fraser,midfielder,8,no,0,0,0,0,0
+Canada,Lucas Cavallini,forward,9,yes,1,0,0,0,0
+Canada,Junior Hoilett,midfielder,10,yes,3,2,0,0,0
+Canada,Tajon Buchanan,forward,11,yes,3,3,0,0,0
+Canada,Iké Ugbo,forward,12,no,0,0,0,0,0
+Canada,Atiba Hutchinson,midfielder,13,yes,3,2,0,0,0
+Canada,Mark-Anthony Kaye,midfielder,14,yes,1,1,0,0,0
+Canada,Ismaël Koné,midfielder,15,yes,3,0,0,0,0
+Canada,James Pantemis,goal keeper,16,no,0,0,0,0,0
+Canada,Cyle Larin,forward,17,yes,3,2,0,0,0
+Canada,Milan Borjan,goal keeper,18,yes,3,3,0,0,0
+Canada,Jonathan David,forward,20,yes,3,2,0,0,0
+Canada,Jonathan Osorio,midfielder,21,yes,3,1,0,0,0
+Canada,Richie Laryea,defender,22,yes,3,2,0,0,0
+Canada,Liam Millar,midfielder,23,yes,1,0,0,0,0
+Canada,David Wotherspoon,midfielder,24,yes,1,0,0,0,0
+Canada,Derek Cornelius,defender,25,no,0,0,0,0,0
+Canada,Joel Waterman,defender,26,no,0,0,0,0,0
+Costa Rica,Juan Pablo Vargas,defender,3,yes,1,1,1,0,0
+Costa Rica,Keysher Fuller,defender,4,yes,3,3,1,0,0
+Costa Rica,Yeltsin Tejeda,midfielder,17,yes,3,3,1,0,0
+Costa Rica,Keylor Navas,goal keeper,1,yes,3,3,0,0,0
+Costa Rica,Daniel Chacón,midfielder,2,yes,1,0,0,0,0
+Costa Rica,Celso Borges,midfielder,5,yes,3,3,0,0,0
+Costa Rica,Óscar Duarte,defender,6,yes,3,3,0,0,0
+Costa Rica,Anthony Contreras,forward,7,yes,3,2,0,0,0
+Costa Rica,Bryan Oviedo,defender,8,yes,3,3,0,0,0
+Costa Rica,Jewison Bennette,midfielder,9,yes,3,1,0,0,0
+Costa Rica,Bryan Ruiz,midfielder,10,yes,1,0,0,0,0
+Costa Rica,Johan Venegas,forward,11,yes,1,1,0,0,0
+Costa Rica,Joel Campbell,forward,12,yes,3,3,0,0,0
+Costa Rica,Gerson Torres,midfielder,13,yes,1,1,0,0,0
+Costa Rica,Youstin Salas,midfielder,14,yes,2,0,0,0,0
+Costa Rica,Francisco Calvo,defender,15,yes,2,2,0,0,0
+Costa Rica,Carlos Martínez,defender,16,yes,1,1,0,0,0
+Costa Rica,Esteban Alvarado,goal keeper,18,no,0,0,0,0,0
+Costa Rica,Kendall Waston,defender,19,yes,3,2,0,0,0
+Costa Rica,Brandon Aguilera,midfielder,20,yes,3,1,0,0,0
+Costa Rica,Douglas López,midfielder,21,no,0,0,0,0,0
+Costa Rica,Rónald Matarrita,defender,22,yes,2,0,0,0,0
+Costa Rica,Patrick Sequeira,goal keeper,23,no,0,0,0,0,0
+Costa Rica,Roan Wilson,midfielder,24,yes,1,0,0,0,0
+Costa Rica,Anthony Hernández,midfielder,25,no,0,0,0,0,0
+Costa Rica,Álvaro Zamora,midfielder,26,yes,1,0,0,0,0
+Croatia,Andrej Kramarić,forward,9,yes,7,7,2,0,0
+Croatia,Ivan Perišić,forward,4,yes,7,7,1,0,3
+Croatia,Lovro Majer,midfielder,7,yes,7,1,1,0,0
+Croatia,Marko Livaja,forward,14,yes,6,3,1,0,0
+Croatia,Bruno Petković,forward,16,yes,6,1,1,0,0
+Croatia,Mislav Oršić,forward,18,yes,6,1,1,0,0
+Croatia,Joško Gvardiol,defender,20,yes,7,7,1,0,0
+Croatia,Dominik Livaković,goal keeper,1,yes,7,7,0,0,0
+Croatia,Josip Stanišić,defender,2,yes,1,1,0,0,0
+Croatia,Borna Barišić,defender,3,yes,1,1,0,0,0
+Croatia,Martin Erlić,defender,5,no,0,0,0,0,0
+Croatia,Dejan Lovren,defender,6,yes,6,6,0,0,0
+Croatia,Mateo Kovačić,midfielder,8,yes,7,7,0,0,0
+Croatia,Luka Modrić,midfielder,10,yes,7,7,0,0,0
+Croatia,Marcelo Brozović,midfielder,11,yes,6,6,0,0,0
+Croatia,Ivo Grbić,goal keeper,12,no,0,0,0,0,0
+Croatia,Nikola Vlašić,midfielder,13,yes,6,1,0,0,0
+Croatia,Mario Pašalić,midfielder,15,yes,7,2,0,0,0
+Croatia,Ante Budimir,forward,17,yes,2,0,0,0,0
+Croatia,Borna Sosa,defender,19,yes,5,5,0,0,0
+Croatia,Domagoj Vida,defender,21,no,0,0,0,0,0
+Croatia,Josip Juranović,defender,22,yes,6,6,0,0,0
+Croatia,Ivica Ivušić,goal keeper,23,no,0,0,0,0,0
+Croatia,Josip Šutalo,defender,24,yes,1,1,0,0,0
+Croatia,Luka Sučić,midfielder,25,no,0,0,0,0,0
+Croatia,Kristijan Jakić,midfielder,26,yes,1,0,0,0,0
+Denmark,Andreas Christensen,defender,6,yes,3,3,1,0,0
+Denmark,Kasper Schmeichel,goal keeper,1,yes,3,3,0,0,0
+Denmark,Joachim Andersen,defender,2,yes,3,3,0,0,0
+Denmark,Victor Nelsson,defender,3,yes,1,1,0,0,0
+Denmark,Simon Kjær,defender,4,yes,1,1,0,0,0
+Denmark,Joakim Mæhle,defender,5,yes,3,3,0,0,0
+Denmark,Mathias Jensen,midfielder,7,yes,2,1,0,0,0
+Denmark,Thomas Delaney,midfielder,8,yes,1,1,0,0,0
+Denmark,Martin Braithwaite,forward,9,yes,2,1,0,0,0
+Denmark,Christian Eriksen,midfielder,10,yes,3,3,0,0,0
+Denmark,Andreas Skov Olsen,midfielder,11,yes,2,2,0,0,0
+Denmark,Kasper Dolberg,forward,12,yes,3,1,0,0,0
+Denmark,Rasmus Kristensen,defender,13,yes,3,3,0,0,0
+Denmark,Mikkel Damsgaard,midfielder,14,yes,3,1,0,0,0
+Denmark,Christian Nørgaard,midfielder,15,yes,1,0,0,0,0
+Denmark,Oliver Christensen,goal keeper,16,no,0,0,0,0,0
+Denmark,Jens Stryger Larsen,defender,17,no,0,0,0,0,0
+Denmark,Daniel Wass,defender,18,no,0,0,0,0,0
+Denmark,Jonas Wind,forward,19,no,0,0,0,0,0
+Denmark,Yussuf Poulsen,forward,20,no,0,0,0,0,0
+Denmark,Andreas Cornelius,forward,21,yes,3,1,0,0,0
+Denmark,Frederik Rønnow,goal keeper,22,no,0,0,0,0,0
+Denmark,Pierre-Emile Højbjerg,midfielder,23,yes,3,3,0,0,0
+Denmark,Robert Skov,midfielder,24,yes,1,0,0,0,0
+Denmark,Jesper Lindstrøm,midfielder,25,yes,3,2,0,0,0
+Denmark,Alexander Bah,defender,26,yes,2,0,0,0,0
+Ecuador,Enner Valencia,forward,13,yes,3,3,3,0,0
+Ecuador,Moisés Caicedo,midfielder,23,yes,3,3,1,0,0
+Ecuador,Hernán Galíndez,goal keeper,1,yes,3,3,0,0,0
+Ecuador,Félix Torres,defender,2,yes,3,3,0,0,0
+Ecuador,Piero Hincapié,defender,3,yes,3,3,0,0,0
+Ecuador,Robert Arboleda,defender,4,no,0,0,0,0,0
+Ecuador,José Cifuentes,midfielder,5,yes,2,0,0,0,0
+Ecuador,William Pacho,defender,6,no,0,0,0,0,0
+Ecuador,Pervis Estupiñán,defender,7,yes,3,3,0,0,0
+Ecuador,Carlos Gruezo,midfielder,8,yes,1,1,0,0,0
+Ecuador,Ayrton Preciado,midfielder,9,no,0,0,0,0,0
+Ecuador,Romario Ibarra,midfielder,10,yes,2,1,0,0,0
+Ecuador,Michael Estrada,forward,11,yes,3,3,0,0,0
+Ecuador,Moisés Ramírez,goal keeper,12,no,0,0,0,0,0
+Ecuador,Xavier Arreaga,defender,14,no,0,0,0,0,0
+Ecuador,Ángel Mena,midfielder,15,no,0,0,0,0,0
+Ecuador,Jeremy Sarmiento,midfielder,16,yes,3,0,0,0,0
+Ecuador,Ángelo Preciado,defender,17,yes,3,3,0,0,0
+Ecuador,Diego Palacios,defender,18,no,0,0,0,0,0
+Ecuador,Gonzalo Plata,midfielder,19,yes,3,3,0,0,0
+Ecuador,Sebas Méndez,midfielder,20,yes,2,2,0,0,0
+Ecuador,Alan Franco,midfielder,21,yes,2,1,0,0,0
+Ecuador,Alexander Domínguez,goal keeper,22,no,0,0,0,0,0
+Ecuador,Djorkaeff Reasco,forward,24,yes,1,0,0,0,0
+Ecuador,Jackson Porozo,defender,25,yes,2,1,0,0,0
+Ecuador,Kevin Rodríguez,forward,26,yes,2,0,0,0,0
+England,Bukayo Saka,forward,17,yes,4,4,3,0,1
+England,Marcus Rashford,forward,11,yes,5,1,3,0,0
+England,Harry Kane,forward,9,yes,5,5,2,0,3
+England,Jack Grealish,forward,7,yes,5,0,1,0,0
+England,Jordan Henderson,midfielder,8,yes,4,3,1,0,0
+England,Raheem Sterling,forward,10,yes,3,2,1,0,0
+England,Phil Foden,midfielder,20,yes,4,3,1,0,0
+England,Jude Bellingham,midfielder,22,yes,5,5,1,0,0
+England,Jordan Pickford,goal keeper,1,yes,5,5,0,0,0
+England,Kyle Walker,defender,2,yes,3,3,0,0,0
+England,Luke Shaw,defender,3,yes,5,5,0,0,0
+England,Declan Rice,midfielder,4,yes,5,5,0,0,0
+England,John Stones,defender,5,yes,5,5,0,0,0
+England,Harry Maguire,defender,6,yes,5,5,0,0,0
+England,Kieran Trippier,defender,12,yes,3,2,0,0,0
+England,Nick Pope,goal keeper,13,no,0,0,0,0,0
+England,Kalvin Phillips,midfielder,14,yes,2,0,0,0,0
+England,Eric Dier,defender,15,yes,2,0,0,0,0
+England,Conor Coady,defender,16,no,0,0,0,0,0
+England,Trent Alexander-Arnold,defender,18,yes,1,0,0,0,0
+England,Mason Mount,midfielder,19,yes,4,2,0,0,0
+England,Ben White,defender,21,no,0,0,0,0,0
+England,Aaron Ramsdale,goal keeper,23,no,0,0,0,0,0
+England,Callum Wilson,forward,24,yes,2,0,0,0,0
+England,James Maddison,midfielder,25,no,0,0,0,0,0
+England,Conor Gallagher,midfielder,26,no,0,0,0,0,0
+France,Kylian Mbappé,forward,10,yes,7,6,8,0,2
+France,Olivier Giroud,forward,9,yes,6,6,4,0,0
+France,Aurélien Tchouaméni,midfielder,8,yes,7,7,1,0,0
+France,Randal Kolo Muani,forward,12,yes,3,1,1,0,0
+France,Adrien Rabiot,midfielder,14,yes,6,5,1,0,0
+France,Théo Hernandez,defender,22,yes,6,5,1,0,0
+France,Antoine Griezmann,forward,7,yes,7,6,0,0,3
+France,Hugo Lloris,goal keeper,1,yes,6,6,0,0,0
+France,Benjamin Pavard,defender,2,yes,1,1,0,0,0
+France,Axel Disasi,defender,3,yes,3,1,0,0,0
+France,Raphaël Varane,defender,4,yes,6,6,0,0,0
+France,Jules Koundé,defender,5,yes,6,5,0,0,0
+France,Matteo Guendouzi,midfielder,6,yes,1,1,0,0,0
+France,Ousmane Dembélé,forward,11,yes,7,6,0,0,0
+France,Youssouf Fofana,midfielder,13,yes,6,2,0,0,0
+France,Jordan Veretout,midfielder,15,yes,1,1,0,0,0
+France,Steve Mandanda,goal keeper,16,yes,1,1,0,0,0
+France,William Saliba,defender,17,yes,1,0,0,0,0
+France,Dayot Upamecano,defender,18,yes,5,5,0,0,0
+France,Karim Benzema,forward,19,no,0,0,0,0,0
+France,Kingsley Coman,forward,20,yes,6,1,0,0,0
+France,Lucas Hernandez,defender,21,yes,1,1,0,0,0
+France,Alphonse Areola,goal keeper,23,no,0,0,0,0,0
+France,Ibrahima Konaté,defender,24,yes,5,3,0,0,0
+France,Eduardo Camavinga,midfielder,25,yes,2,1,0,0,0
+France,Marcus Thuram,forward,26,yes,5,0,0,0,0
+Germany,Kai Havertz,forward,7,yes,2,1,2,0,0
+Germany,Niclas Füllkrug,forward,9,yes,3,0,2,0,0
+Germany,Serge Gnabry,forward,10,yes,3,3,1,0,0
+Germany,İlkay Gündoğan,midfielder,21,yes,3,3,1,0,0
+Germany,Manuel Neuer,goal keeper,1,yes,3,3,0,0,0
+Germany,Antonio Rüdiger,defender,2,yes,3,3,0,0,0
+Germany,David Raum,defender,3,yes,3,3,0,0,0
+Germany,Matthias Ginter,defender,4,yes,1,0,0,0,0
+Germany,Thilo Kehrer,defender,5,yes,1,1,0,0,0
+Germany,Joshua Kimmich,midfielder,6,yes,3,3,0,0,0
+Germany,Leon Goretzka,midfielder,8,yes,3,2,0,0,0
+Germany,Mario Götze,midfielder,11,yes,2,0,0,0,0
+Germany,Kevin Trapp,goal keeper,12,no,0,0,0,0,0
+Germany,Thomas Müller,midfielder,13,yes,3,3,0,0,0
+Germany,Jamal Musiala,midfielder,14,yes,3,3,0,0,0
+Germany,Niklas Süle,defender,15,yes,3,3,0,0,0
+Germany,Lukas Klostermann,defender,16,yes,2,0,0,0,0
+Germany,Julian Brandt,midfielder,17,no,0,0,0,0,0
+Germany,Jonas Hofmann,midfielder,18,yes,2,0,0,0,0
+Germany,Leroy Sané,midfielder,19,yes,2,1,0,0,0
+Germany,Christian Günter,defender,20,no,0,0,0,0,0
+Germany,Marc-André ter Stegen,goal keeper,22,no,0,0,0,0,0
+Germany,Nico Schlotterbeck,defender,23,yes,2,1,0,0,0
+Germany,Karim Adeyemi,forward,24,no,0,0,0,0,0
+Germany,Armel Bella-Kotchap,defender,25,no,0,0,0,0,0
+Germany,Youssoufa Moukoko,forward,26,yes,1,0,0,0,0
+Ghana,Mohammed Kudus,midfielder,20,yes,3,3,2,0,0
+Ghana,Mohammed Salisu,defender,4,yes,3,3,1,0,0
+Ghana,André Ayew,forward,10,yes,3,3,1,0,0
+Ghana,Osman Bukari,midfielder,11,yes,2,0,1,0,0
+Ghana,Lawrence Ati-Zigi,goal keeper,1,yes,3,3,0,0,0
+Ghana,Tariq Lamptey,defender,2,yes,2,1,0,0,0
+Ghana,Denis Odoi,defender,3,yes,1,0,0,0,0
+Ghana,Thomas Partey,midfielder,5,yes,3,3,0,0,0
+Ghana,Elisha Owusu,midfielder,6,no,0,0,0,0,0
+Ghana,Abdul Fatawu Issahaku,midfielder,7,yes,1,0,0,0,0
+Ghana,Daniel-Kofi Kyereh,midfielder,8,yes,3,0,0,0,0
+Ghana,Jordan Ayew,forward,9,yes,3,2,0,0,0
+Ghana,Ibrahim Danlad,goal keeper,12,no,0,0,0,0,0
+Ghana,Daniel Afriyie,midfielder,13,no,0,0,0,0,0
+Ghana,Gideon Mensah,defender,14,yes,1,1,0,0,0
+Ghana,Joseph Aidoo,defender,15,no,0,0,0,0,0
+Ghana,Abdul Manaf Nurudeen,goal keeper,16,no,0,0,0,0,0
+Ghana,Baba Rahman,defender,17,yes,3,2,0,0,0
+Ghana,Daniel Amartey,defender,18,yes,3,3,0,0,0
+Ghana,Iñaki Williams,forward,19,yes,3,3,0,0,0
+Ghana,Salis Abdul Samed,midfielder,21,yes,3,3,0,0,0
+Ghana,Kamaldeen Sulemana,midfielder,22,yes,2,0,0,0,0
+Ghana,Alexander Djiku,defender,23,yes,2,1,0,0,0
+Ghana,Kamal Sowah,midfielder,24,no,0,0,0,0,0
+Ghana,Antoine Semenyo,forward,25,yes,2,0,0,0,0
+Ghana,Alidu Seidu,defender,26,yes,2,2,0,0,0
+Iran,Mehdi Taremi,forward,9,yes,3,3,2,0,1
+Iran,Rouzbeh Cheshmi,defender,15,yes,2,1,1,0,0
+Iran,Ramin Rezaeian,defender,23,yes,2,2,1,0,0
+Iran,Alireza Beiranvand,goal keeper,1,yes,2,2,0,0,0
+Iran,Sadegh Moharrami,defender,2,yes,1,1,0,0,0
+Iran,Ehsan Hajsafi,defender,3,yes,3,3,0,0,0
+Iran,Shojae Khalilzadeh,defender,4,no,0,0,0,0,0
+Iran,Milad Mohammadi,defender,5,yes,3,3,0,0,0
+Iran,Saeid Ezatolahi,midfielder,6,yes,3,2,0,0,0
+Iran,Alireza Jahanbakhsh,midfielder,7,yes,2,1,0,0,0
+Iran,Morteza Pouraliganji,defender,8,yes,3,3,0,0,0
+Iran,Karim Ansarifard,forward,10,yes,2,0,0,0,0
+Iran,Vahid Amiri,midfielder,11,no,0,0,0,0,0
+Iran,Payam Niazmand,goal keeper,12,no,0,0,0,0,0
+Iran,Hossein Kanaanizadegan,defender,13,yes,1,0,0,0,0
+Iran,Saman Ghoddos,midfielder,14,yes,1,0,0,0,0
+Iran,Mehdi Torabi,midfielder,16,yes,3,0,0,0,0
+Iran,Ali Gholizadeh,midfielder,17,yes,3,2,0,0,0
+Iran,Ali Karimi,midfielder,18,yes,3,1,0,0,0
+Iran,Majid Hosseini,defender,19,yes,3,3,0,0,0
+Iran,Sardar Azmoun,forward,20,yes,3,2,0,0,0
+Iran,Ahmad Nourollahi,midfielder,21,yes,3,3,0,0,0
+Iran,Amir Abedzadeh,goal keeper,22,no,0,0,0,0,0
+Iran,Hossein Hosseini,goal keeper,24,yes,2,1,0,0,0
+Iran,Abolfazl Jalali,defender,25,yes,1,0,0,0,0
+Japan,Ritsu Dōan,midfielder,8,yes,4,2,2,0,0
+Japan,Ao Tanaka,midfielder,17,yes,3,2,1,0,0
+Japan,Takuma Asano,forward,18,yes,4,0,1,0,0
+Japan,Daizen Maeda,forward,25,yes,3,3,1,0,0
+Japan,Eiji Kawashima,goal keeper,1,no,0,0,0,0,0
+Japan,Miki Yamane,defender,2,yes,1,1,0,0,0
+Japan,Shogo Taniguchi,defender,3,yes,2,2,0,0,0
+Japan,Ko Itakura,defender,4,yes,3,3,0,0,0
+Japan,Yuto Nagatomo,defender,5,yes,4,4,0,0,0
+Japan,Wataru Endo,midfielder,6,yes,4,3,0,0,0
+Japan,Gaku Shibasaki,midfielder,7,no,0,0,0,0,0
+Japan,Kaoru Mitoma,midfielder,9,yes,4,0,0,0,0
+Japan,Takumi Minamino,midfielder,10,yes,3,0,0,0,0
+Japan,Takefusa Kubo,midfielder,11,yes,2,2,0,0,0
+Japan,Shūichi Gonda,goal keeper,12,yes,4,4,0,0,0
+Japan,Hidemasa Morita,midfielder,13,yes,3,3,0,0,0
+Japan,Junya Ito,midfielder,14,yes,4,3,0,0,0
+Japan,Daichi Kamada,midfielder,15,yes,4,4,0,0,0
+Japan,Takehiro Tomiyasu,defender,16,yes,3,1,0,0,0
+Japan,Hiroki Sakai,defender,19,yes,2,1,0,0,0
+Japan,Shuto Machino,forward,20,no,0,0,0,0,0
+Japan,Ayase Ueda,forward,21,yes,1,1,0,0,0
+Japan,Maya Yoshida,defender,22,yes,4,4,0,0,0
+Japan,Daniel Schmidt,goal keeper,23,no,0,0,0,0,0
+Japan,Yuki Soma,midfielder,24,yes,1,1,0,0,0
+Japan,Hiroki Ito,defender,26,yes,1,0,0,0,0
+Mexico,Henry Martín,forward,20,yes,2,2,1,0,0
+Mexico,Luis Chávez,midfielder,24,yes,3,3,1,0,0
+Mexico,Alfredo Talavera,goal keeper,1,no,0,0,0,0,0
+Mexico,Néstor Araujo,defender,2,yes,1,1,0,0,0
+Mexico,César Montes,defender,3,yes,3,3,0,0,0
+Mexico,Edson Álvarez,defender,4,yes,2,2,0,0,0
+Mexico,Johan Vásquez,defender,5,no,0,0,0,0,0
+Mexico,Gerardo Arteaga,defender,6,no,0,0,0,0,0
+Mexico,Luis Romo,midfielder,7,no,0,0,0,0,0
+Mexico,Carlos Rodríguez,midfielder,8,yes,2,0,0,0,0
+Mexico,Raúl Jiménez,forward,9,yes,3,0,0,0,0
+Mexico,Alexis Vega,forward,10,yes,3,3,0,0,0
+Mexico,Rogelio Funes Mori,forward,11,yes,1,0,0,0,0
+Mexico,Rodolfo Cota,goal keeper,12,no,0,0,0,0,0
+Mexico,Guillermo Ochoa,goal keeper,13,yes,3,3,0,0,0
+Mexico,Érick Gutiérrez,midfielder,14,yes,1,0,0,0,0
+Mexico,Héctor Moreno,defender,15,yes,3,3,0,0,0
+Mexico,Héctor Herrera,midfielder,16,yes,2,2,0,0,0
+Mexico,Orbelín Pineda,forward,17,yes,1,1,0,0,0
+Mexico,Andrés Guardado,midfielder,18,yes,1,1,0,0,0
+Mexico,Jorge Sánchez,defender,19,yes,2,2,0,0,0
+Mexico,Uriel Antuna,forward,21,yes,3,0,0,0,0
+Mexico,Hirving Lozano,forward,22,yes,3,3,0,0,0
+Mexico,Jesús Gallardo,defender,23,yes,3,3,0,0,0
+Mexico,Roberto Alvarado,forward,25,yes,1,0,0,0,0
+Mexico,Kevin Álvarez,defender,26,yes,2,1,0,0,0
+Morocco,Youssef En-Nesyri,forward,19,yes,7,7,2,0,0
+Morocco,Romain Saïss,defender,6,yes,6,6,1,0,0
+Morocco,Hakim Ziyech,midfielder,7,yes,7,7,1,0,0
+Morocco,Zakaria Aboukhlal,midfielder,14,yes,4,0,1,0,0
+Morocco,Achraf Dari,defender,20,yes,3,2,1,0,0
+Morocco,Yassine Bounou,goal keeper,1,yes,6,6,0,0,0
+Morocco,Achraf Hakimi,defender,2,yes,7,7,0,0,0
+Morocco,Noussair Mazraoui,defender,3,yes,5,5,0,0,0
+Morocco,Sofyan Amrabat,midfielder,4,yes,7,7,0,0,0
+Morocco,Nayef Aguerd,defender,5,yes,4,4,0,1,0
+Morocco,Azzedine Ounahi,midfielder,8,yes,7,6,0,0,0
+Morocco,Abderrazak Hamdallah,forward,9,yes,4,0,0,0,0
+Morocco,Anass Zaroury,midfielder,10,yes,1,0,0,0,0
+Morocco,Abdelhamid Sabiri,forward,11,yes,5,2,0,0,0
+Morocco,Munir Mohamedi,goal keeper,12,yes,1,1,0,0,0
+Morocco,Ilias Chair,midfielder,13,yes,1,0,0,0,0
+Morocco,Selim Amallah,midfielder,15,yes,7,4,0,0,0
+Morocco,Abde Ezzalzouli,forward,16,yes,3,0,0,0,0
+Morocco,Sofiane Boufal,midfielder,17,yes,7,7,0,0,0
+Morocco,Jawad El Yamiq,defender,18,yes,6,3,0,0,0
+Morocco,Walid Cheddira,forward,21,yes,2,0,0,0,0
+Morocco,Ahmed Reda Tagnaouti,goal keeper,22,no,0,0,0,0,0
+Morocco,Bilal El Khannous,midfielder,23,yes,1,1,0,0,0
+Morocco,Badr Benoun,defender,24,yes,3,0,0,0,0
+Morocco,Yahia Attiyat Allah,defender,25,yes,6,2,0,0,0
+Morocco,Yahya Jabrane,midfielder,26,yes,2,0,0,0,0
+Netherlands,Cody Gakpo,forward,8,yes,5,5,3,0,0
+Netherlands,Wout Weghorst,forward,19,yes,4,0,2,0,0
+Netherlands,Memphis Depay,forward,10,yes,5,3,1,0,0
+Netherlands,Davy Klaassen,midfielder,14,yes,4,3,1,0,0
+Netherlands,Daley Blind,defender,17,yes,5,5,1,0,0
+Netherlands,Frenkie de Jong,midfielder,21,yes,5,5,1,0,0
+Netherlands,Denzel Dumfries,defender,22,yes,5,5,1,0,0
+Netherlands,Remko Pasveer,goal keeper,1,no,0,0,0,0,0
+Netherlands,Jurriën Timber,defender,2,yes,4,4,0,0,0
+Netherlands,Matthijs de Ligt,defender,3,yes,2,1,0,0,0
+Netherlands,Virgil van Dijk,defender,4,yes,5,5,0,0,0
+Netherlands,Nathan Aké,defender,5,yes,5,5,0,0,0
+Netherlands,Stefan de Vrij,defender,6,no,0,0,0,0,0
+Netherlands,Steven Bergwijn,forward,7,yes,4,3,0,0,0
+Netherlands,Luuk de Jong,forward,9,yes,1,0,0,0,0
+Netherlands,Steven Berghuis,midfielder,11,yes,4,1,0,0,0
+Netherlands,Noa Lang,forward,12,yes,1,0,0,0,0
+Netherlands,Justin Bijlow,goal keeper,13,no,0,0,0,0,0
+Netherlands,Marten de Roon,midfielder,15,yes,5,3,0,0,0
+Netherlands,Tyrell Malacia,defender,16,no,0,0,0,0,0
+Netherlands,Vincent Janssen,forward,18,yes,2,1,0,0,0
+Netherlands,Teun Koopmeiners,midfielder,20,yes,5,1,0,0,0
+Netherlands,Andries Noppert,goal keeper,23,yes,5,5,0,0,0
+Netherlands,Kenneth Taylor,midfielder,24,yes,1,0,0,0,0
+Netherlands,Xavi Simons,midfielder,25,yes,1,0,0,0,0
+Netherlands,Jeremie Frimpong,defender,26,no,0,0,0,0,0
+Poland,Robert Lewandowski,forward,9,yes,4,4,2,0,1
+Poland,Piotr Zieliński,midfielder,20,yes,4,4,1,0,0
+Poland,Wojciech Szczęsny,goal keeper,1,yes,4,4,0,0,0
+Poland,Matty Cash,defender,2,yes,4,4,0,0,0
+Poland,Artur Jędrzejczyk,defender,3,yes,1,0,0,0,0
+Poland,Mateusz Wieteska,defender,4,no,0,0,0,0,0
+Poland,Jan Bednarek,defender,5,yes,1,0,0,0,0
+Poland,Krystian Bielik,midfielder,6,yes,4,2,0,0,0
+Poland,Arkadiusz Milik,forward,7,yes,3,1,0,0,0
+Poland,Damian Szymański,midfielder,8,yes,1,0,0,0,0
+Poland,Grzegorz Krychowiak,midfielder,10,yes,4,4,0,0,0
+Poland,Kamil Grosicki,midfielder,11,yes,1,0,0,0,0
+Poland,Łukasz Skorupski,goal keeper,12,no,0,0,0,0,0
+Poland,Jakub Kamiński,midfielder,13,yes,4,2,0,0,0
+Poland,Jakub Kiwior,defender,14,yes,4,4,0,0,0
+Poland,Kamil Glik,defender,15,yes,4,4,0,0,0
+Poland,Karol Świderski,forward,16,yes,1,1,0,0,0
+Poland,Szymon Żurkowski,midfielder,17,no,0,0,0,0,0
+Poland,Bartosz Bereszyński,defender,18,yes,4,4,0,0,0
+Poland,Sebastian Szymański,midfielder,19,yes,2,2,0,0,0
+Poland,Nicola Zalewski,midfielder,21,yes,2,1,0,0,0
+Poland,Kamil Grabara,goal keeper,22,no,0,0,0,0,0
+Poland,Krzysztof Piątek,forward,23,yes,2,0,0,0,0
+Poland,Przemysław Frankowski,midfielder,24,yes,4,3,0,0,0
+Poland,Robert Gumny,defender,25,no,0,0,0,0,0
+Poland,Michał Skóraś,midfielder,26,yes,1,0,0,0,0
+Portugal,Gonçalo Ramos,forward,26,yes,4,2,3,0,0
+Portugal,Bruno Fernandes,midfielder,8,yes,4,4,2,0,3
+Portugal,Rafael Leão,forward,15,yes,5,0,2,0,0
+Portugal,Pepe,defender,3,yes,4,4,1,0,0
+Portugal,Raphaël Guerreiro,defender,5,yes,4,3,1,0,0
+Portugal,Cristiano Ronaldo,forward,7,yes,5,3,1,0,0
+Portugal,João Félix,forward,11,yes,4,4,1,0,0
+Portugal,Ricardo Horta,forward,21,yes,3,1,1,0,0
+Portugal,Rui Patrício,goal keeper,1,no,0,0,0,0,0
+Portugal,Diogo Dalot,defender,2,yes,3,3,0,0,0
+Portugal,Rúben Dias,defender,4,yes,4,4,0,0,0
+Portugal,João Palhinha,midfielder,6,yes,3,0,0,0,0
+Portugal,André Silva,forward,9,yes,1,0,0,0,0
+Portugal,Bernardo Silva,forward,10,yes,5,4,0,0,0
+Portugal,José Sá,goal keeper,12,no,0,0,0,0,0
+Portugal,Danilo Pereira,defender,13,yes,1,1,0,0,0
+Portugal,William Carvalho,midfielder,14,yes,4,2,0,0,0
+Portugal,Vitinha,midfielder,16,yes,3,1,0,0,0
+Portugal,João Mário,midfielder,17,yes,2,1,0,0,0
+Portugal,Rúben Neves,midfielder,18,yes,5,4,0,0,0
+Portugal,Nuno Mendes,defender,19,yes,1,1,0,0,0
+Portugal,João Cancelo,defender,20,yes,4,3,0,0,0
+Portugal,Diogo Costa,goal keeper,22,yes,5,5,0,0,0
+Portugal,Matheus Nunes,midfielder,23,yes,2,1,0,0,0
+Portugal,António Silva,defender,24,yes,1,1,0,0,0
+Portugal,Otávio,midfielder,25,yes,3,3,0,0,0
+Qatar,Mohammed Muntari,forward,9,yes,3,0,1,0,0
+Qatar,Saad Al-Sheeb,goal keeper,1,yes,1,1,0,0,0
+Qatar,Ró-Ró,defender,2,yes,3,3,0,0,0
+Qatar,Abdelkarim Hassan,midfielder,3,yes,3,3,0,0,0
+Qatar,Mohammed Waad,defender,4,yes,2,0,0,0,0
+Qatar,Tarek Salman,defender,5,yes,1,0,0,0,0
+Qatar,Abdulaziz Hatem,midfielder,6,yes,3,2,0,0,0
+Qatar,Ahmed Alaaeldin,forward,7,yes,1,0,0,0,0
+Qatar,Ali Assadalla,midfielder,8,yes,1,0,0,0,0
+Qatar,Hassan Al-Haydos,midfielder,10,yes,3,3,0,0,0
+Qatar,Akram Afif,forward,11,yes,3,3,0,0,0
+Qatar,Karim Boudiaf,midfielder,12,yes,3,2,0,0,0
+Qatar,Musab Kheder,defender,13,yes,1,0,0,0,0
+Qatar,Homam Ahmed,defender,14,yes,3,3,0,0,0
+Qatar,Bassam Al-Rawi,defender,15,yes,1,1,0,0,0
+Qatar,Boualem Khoukhi,defender,16,yes,3,3,0,0,0
+Qatar,Ismaeel Mohammad,defender,17,yes,2,2,0,0,0
+Qatar,Khalid Muneer,forward,18,no,0,0,0,0,0
+Qatar,Almoez Ali,forward,19,yes,3,3,0,0,0
+Qatar,Salem Al-Hajri,midfielder,20,no,0,0,0,0,0
+Qatar,Yousef Hassan,goal keeper,21,no,0,0,0,0,0
+Qatar,Meshaal Barsham,goal keeper,22,yes,2,2,0,0,0
+Qatar,Assim Madibo,midfielder,23,yes,2,2,0,0,0
+Qatar,Naif Al-Hadhrami,midfielder,24,no,0,0,0,0,0
+Qatar,Jassem Gaber,midfielder,25,no,0,0,0,0,0
+Qatar,Mostafa Meshaal,midfielder,26,no,0,0,0,0,0
+Saudi Arabia,Salem Al-Dawsari,forward,10,yes,3,3,2,0,0
+Saudi Arabia,Saleh Al-Shehri,forward,11,yes,3,3,1,0,0
+Saudi Arabia,Mohammed Al-Rubaie,goal keeper,1,no,0,0,0,0,0
+Saudi Arabia,Sultan Al-Ghannam,defender,2,yes,3,1,0,0,0
+Saudi Arabia,Abdullah Madu,defender,3,yes,1,0,0,0,0
+Saudi Arabia,Abdulelah Al-Amri,defender,4,yes,3,2,0,0,0
+Saudi Arabia,Ali Al-Bulaihi,defender,5,yes,3,3,0,0,0
+Saudi Arabia,Mohammed Al-Breik,defender,6,yes,2,1,0,0,0
+Saudi Arabia,Salman Al-Faraj,midfielder,7,yes,1,1,0,0,0
+Saudi Arabia,Abdulellah Al-Malki,midfielder,8,yes,2,2,0,0,0
+Saudi Arabia,Firas Al-Buraikan,forward,9,yes,3,3,0,0,0
+Saudi Arabia,Saud Abdulhamid,defender,12,yes,3,3,0,0,0
+Saudi Arabia,Yasser Al-Shahrani,defender,13,yes,1,1,0,0,0
+Saudi Arabia,Abdullah Otayf,midfielder,14,no,0,0,0,0,0
+Saudi Arabia,Ali Al-Hassan,midfielder,15,yes,1,1,0,0,0
+Saudi Arabia,Sami Al-Najei,midfielder,16,yes,1,1,0,0,0
+Saudi Arabia,Hassan Al-Tambakti,defender,17,yes,2,2,0,0,0
+Saudi Arabia,Nawaf Al-Abed,midfielder,18,yes,2,0,0,0,0
+Saudi Arabia,Hattan Bahebri,forward,19,yes,2,0,0,0,0
+Saudi Arabia,Abdulrahman Al-Aboud,forward,20,yes,2,0,0,0,0
+Saudi Arabia,Mohammed Al-Owais,goal keeper,21,yes,3,3,0,0,0
+Saudi Arabia,Nawaf Al-Aqidi,goal keeper,22,no,0,0,0,0,0
+Saudi Arabia,Mohamed Kanno,midfielder,23,yes,3,3,0,0,0
+Saudi Arabia,Nasser Al-Dawsari,midfielder,24,yes,1,0,0,0,0
+Saudi Arabia,Haitham Asiri,forward,25,yes,1,0,0,0,0
+Saudi Arabia,Riyadh Sharahili,midfielder,26,yes,1,0,0,0,0
+Senegal,Kalidou Koulibaly,defender,3,yes,4,4,1,0,0
+Senegal,Boulaye Dia,forward,9,yes,4,4,1,0,0
+Senegal,Ismaïla Sarr,forward,18,yes,4,4,1,0,0
+Senegal,Famara Diédhiou,forward,19,yes,2,1,1,0,0
+Senegal,Bamba Dieng,forward,20,yes,4,0,1,0,0
+Senegal,Seny Dieng,goal keeper,1,no,0,0,0,0,0
+Senegal,Formose Mendy,defender,2,no,0,0,0,0,0
+Senegal,Pape Abou Cissé,defender,4,yes,3,1,0,0,0
+Senegal,Idrissa Gueye,midfielder,5,yes,3,3,0,0,0
+Senegal,Nampalys Mendy,midfielder,6,yes,4,3,0,0,0
+Senegal,Nicolas Jackson,forward,7,yes,1,0,0,0,0
+Senegal,Cheikhou Kouyaté,defender,8,yes,1,1,0,0,0
+Senegal,Moussa N'Diaye,defender,10,no,0,0,0,0,0
+Senegal,Pathé Ciss,midfielder,11,yes,3,2,0,0,0
+Senegal,Fodé Ballo-Touré,defender,12,yes,1,0,0,0,0
+Senegal,Iliman Ndiaye,forward,13,yes,3,2,0,0,0
+Senegal,Ismail Jakobs,defender,14,yes,4,3,0,0,0
+Senegal,Krépin Diatta,midfielder,15,yes,3,3,0,0,0
+Senegal,Édouard Mendy,goal keeper,16,yes,4,4,0,0,0
+Senegal,Pape Matar Sarr,midfielder,17,yes,2,0,0,0,0
+Senegal,Youssouf Sabaly,defender,21,yes,4,4,0,0,0
+Senegal,Abdou Diallo,defender,22,yes,4,4,0,0,0
+Senegal,Alfred Gomis,goal keeper,23,no,0,0,0,0,0
+Senegal,Moustapha Name,defender,24,no,0,0,0,0,0
+Senegal,Mamadou Loum,midfielder,25,no,0,0,0,0,0
+Senegal,Pape Gueye,midfielder,26,yes,3,1,0,0,0
+Serbia,Aleksandar Mitrović,forward,9,yes,3,3,2,0,0
+Serbia,Strahinja Pavlović,defender,2,yes,3,3,1,0,0
+Serbia,Dušan Vlahović,forward,18,yes,2,1,1,0,0
+Serbia,Sergej Milinković-Savić,midfielder,20,yes,3,3,1,0,0
+Serbia,Marko Dmitrović,goal keeper,1,no,0,0,0,0,0
+Serbia,Strahinja Eraković,defender,3,no,0,0,0,0,0
+Serbia,Nikola Milenković,defender,4,yes,3,3,0,0,0
+Serbia,Miloš Veljković,defender,5,yes,3,3,0,0,0
+Serbia,Nemanja Maksimović,midfielder,6,yes,3,1,0,0,0
+Serbia,Nemanja Radonjić,forward,7,yes,3,0,0,0,0
+Serbia,Nemanja Gudelj,midfielder,8,yes,2,1,0,0,0
+Serbia,Dušan Tadić,forward,10,yes,3,3,0,0,0
+Serbia,Luka Jović,forward,11,yes,1,0,0,0,0
+Serbia,Predrag Rajković,goal keeper,12,no,0,0,0,0,0
+Serbia,Stefan Mitrović,defender,13,yes,1,0,0,0,0
+Serbia,Andrija Živković,midfielder,14,yes,3,3,0,0,0
+Serbia,Srđan Babić,defender,15,yes,1,0,0,0,0
+Serbia,Saša Lukić,midfielder,16,yes,3,3,0,0,0
+Serbia,Filip Kostić,midfielder,17,yes,2,2,0,0,0
+Serbia,Uroš Račić,midfielder,19,no,0,0,0,0,0
+Serbia,Filip Đuričić,forward,21,yes,2,0,0,0,0
+Serbia,Darko Lazović,midfielder,22,yes,1,0,0,0,0
+Serbia,Vanja Milinković-Savić,goal keeper,23,yes,3,3,0,0,0
+Serbia,Ivan Ilić,midfielder,24,yes,1,0,0,0,0
+Serbia,Filip Mladenović,defender,25,yes,1,1,0,0,0
+Serbia,Marko Grujić,midfielder,26,yes,1,0,0,0,0
+South Korea,Cho Gue-sung,forward,9,yes,4,3,2,0,0
+South Korea,Paik Seung-ho,midfielder,8,yes,1,0,1,0,0
+South Korea,Hee-chan Hwang,midfielder,11,yes,2,1,1,0,0
+South Korea,Young-gwon Kim,defender,19,yes,4,4,1,0,0
+South Korea,Seung-gyu Kim,goal keeper,1,yes,4,4,0,0,0
+South Korea,Yoon Jong-gyu,defender,2,no,0,0,0,0,0
+South Korea,Kim Jin-su,defender,3,yes,4,4,0,0,0
+South Korea,Kim Min-jae,defender,4,yes,3,3,0,0,0
+South Korea,Woo-young Jung,midfielder,5,yes,4,4,0,0,0
+South Korea,Hwang In-beom,midfielder,6,yes,4,4,0,0,0
+South Korea,Heung-min Son,midfielder,7,yes,4,4,0,0,0
+South Korea,Jae-sung Lee,midfielder,10,yes,3,3,0,0,0
+South Korea,Song Bum-keun,goal keeper,12,no,0,0,0,0,0
+South Korea,Son Jun-ho,midfielder,13,yes,3,0,0,0,0
+South Korea,Chul Hong,defender,14,yes,1,0,0,0,0
+South Korea,Kim Moon-hwan,defender,15,yes,4,4,0,0,0
+South Korea,Hwang Ui-jo,forward,16,yes,4,1,0,0,0
+South Korea,Na Sang-ho,midfielder,17,yes,2,1,0,0,0
+South Korea,Lee Kang-in,midfielder,18,yes,4,1,0,0,0
+South Korea,Kwon Kyung-won,defender,20,yes,2,1,0,0,0
+South Korea,Hyeon-woo Jo,goal keeper,21,no,0,0,0,0,0
+South Korea,Kwon Chang-hoon,midfielder,22,yes,1,1,0,0,0
+South Korea,Kim Tae-hwan,defender,23,no,0,0,0,0,0
+South Korea,Cho Yu-min,defender,24,yes,1,0,0,0,0
+South Korea,Jeong Woo-yeong,midfielder,25,yes,1,1,0,0,0
+South Korea,Song Min-kyu,midfielder,26,no,0,0,0,0,0
+Spain,Álvaro Morata,forward,7,yes,4,1,3,0,0
+Spain,Ferran Torres,forward,11,yes,4,3,2,0,0
+Spain,Gavi,midfielder,9,yes,4,4,1,0,0
+Spain,Marco Asensio,forward,10,yes,4,3,1,0,0
+Spain,Carlos Soler,midfielder,19,yes,2,0,1,0,0
+Spain,Dani Olmo,forward,21,yes,4,4,1,0,0
+Spain,Robert Sánchez,goal keeper,1,no,0,0,0,0,0
+Spain,César Azpilicueta,defender,2,yes,2,2,0,0,0
+Spain,Eric García,defender,3,no,0,0,0,0,0
+Spain,Pau Torres,defender,4,yes,1,1,0,0,0
+Spain,Sergio Busquets,midfielder,5,yes,4,4,0,0,0
+Spain,Marcos Llorente,midfielder,6,yes,1,1,0,0,0
+Spain,Koke,midfielder,8,yes,2,0,0,0,0
+Spain,Nico Williams,forward,12,yes,4,1,0,0,0
+Spain,David Raya,goal keeper,13,no,0,0,0,0,0
+Spain,Alejandro Balde,defender,14,yes,4,1,0,0,0
+Spain,Hugo Guillamón,defender,15,no,0,0,0,0,0
+Spain,Rodri,midfielder,16,yes,4,4,0,0,0
+Spain,Yeremy Pino,forward,17,no,0,0,0,0,0
+Spain,Jordi Alba,defender,18,yes,4,3,0,0,0
+Spain,Dani Carvajal,defender,20,yes,2,1,0,0,0
+Spain,Pablo Sarabia,forward,22,yes,1,0,0,0,0
+Spain,Unai Simón,goal keeper,23,yes,4,4,0,0,0
+Spain,Aymeric Laporte,defender,24,yes,3,3,0,0,0
+Spain,Ansu Fati,forward,25,yes,2,0,0,0,0
+Spain,Pedri,midfielder,26,yes,4,4,0,0,0
+Switzerland,Breel Embolo,forward,7,yes,4,4,2,0,0
+Switzerland,Manuel Akanji,defender,5,yes,4,4,1,0,0
+Switzerland,Remo Freuler,midfielder,8,yes,4,4,1,0,0
+Switzerland,Xherdan Shaqiri,midfielder,23,yes,3,3,1,0,0
+Switzerland,Yann Sommer,goal keeper,1,yes,3,3,0,0,0
+Switzerland,Edimilson Fernandes,defender,2,yes,3,1,0,0,0
+Switzerland,Silvan Widmer,defender,3,yes,3,3,0,0,0
+Switzerland,Nico Elvedi,defender,4,yes,2,2,0,0,0
+Switzerland,Denis Zakaria,midfielder,6,yes,2,0,0,0,0
+Switzerland,Haris Seferovic,forward,9,yes,3,0,0,0,0
+Switzerland,Granit Xhaka,midfielder,10,yes,4,4,0,0,0
+Switzerland,Renato Steffen,defender,11,yes,1,0,0,0,0
+Switzerland,Jonas Omlin,goal keeper,12,no,0,0,0,0,0
+Switzerland,Ricardo Rodríguez,defender,13,yes,4,4,0,0,0
+Switzerland,Michel Aebischer,midfielder,14,yes,1,0,0,0,0
+Switzerland,Djibril Sow,midfielder,15,yes,4,4,0,0,0
+Switzerland,Christian Fassnacht,midfielder,16,yes,1,0,0,0,0
+Switzerland,Ruben Vargas,forward,17,yes,4,4,0,0,0
+Switzerland,Eray Cömert,defender,18,yes,2,0,0,0,0
+Switzerland,Noah Okafor,forward,19,yes,3,0,0,0,0
+Switzerland,Fabian Frei,midfielder,20,yes,2,0,0,0,0
+Switzerland,Gregor Kobel,goal keeper,21,yes,1,1,0,0,0
+Switzerland,Fabian Schär,defender,22,yes,2,2,0,0,0
+Switzerland,Philipp Köhn,goal keeper,24,no,0,0,0,0,0
+Switzerland,Fabian Rieder,midfielder,25,yes,2,1,0,0,0
+Switzerland,Ardon Jashari,midfielder,26,yes,1,0,0,0,0
+Tunisia,Wahbi Khazri,forward,10,yes,2,1,1,0,0
+Tunisia,Aymen Mathlouthi,goal keeper,1,no,0,0,0,0,0
+Tunisia,Bilel Ifa,defender,2,no,0,0,0,0,0
+Tunisia,Montassar Talbi,defender,3,yes,3,3,0,0,0
+Tunisia,Yassine Meriah,defender,4,yes,3,3,0,0,0
+Tunisia,Nader Ghandri,midfielder,5,yes,1,1,0,0,0
+Tunisia,Dylan Bronn,defender,6,yes,2,2,0,0,0
+Tunisia,Youssef Msakni,forward,7,yes,2,2,0,0,0
+Tunisia,Hannibal Mejbri,midfielder,8,yes,1,0,0,0,0
+Tunisia,Issam Jebali,forward,9,yes,3,2,0,0,0
+Tunisia,Taha Yassine Khenissi,forward,11,yes,2,0,0,0,0
+Tunisia,Ali Maâloul,defender,12,yes,1,1,0,0,0
+Tunisia,Ferjani Sassi,midfielder,13,yes,2,0,0,0,0
+Tunisia,Aïssa Laïdouni,midfielder,14,yes,3,3,0,0,0
+Tunisia,Mohamed Ali Ben Romdhane,midfielder,15,yes,1,1,0,0,0
+Tunisia,Aymen Dahmen,goal keeper,16,yes,3,3,0,0,0
+Tunisia,Ellyes Skhiri,midfielder,17,yes,3,3,0,0,0
+Tunisia,Ghailene Chaalali,midfielder,18,yes,1,0,0,0,0
+Tunisia,Seifeddine Jaziri,forward,19,no,0,0,0,0,0
+Tunisia,Mohamed Dräger,defender,20,yes,2,2,0,0,0
+Tunisia,Wajdi Kechrida,defender,21,yes,3,1,0,0,0
+Tunisia,Bechir Ben Saïd,goal keeper,22,no,0,0,0,0,0
+Tunisia,Naïm Sliti,forward,23,yes,2,1,0,0,0
+Tunisia,Ali Abdi,defender,24,yes,3,2,0,0,0
+Tunisia,Anis Ben Slimane,forward,25,yes,2,2,0,0,0
+Tunisia,Mouez Hassen,goal keeper,26,no,0,0,0,0,0
+United States,Christian Pulisic,forward,10,yes,4,4,1,0,0
+United States,Haji Wright,forward,19,yes,4,1,1,0,0
+United States,Timothy Weah,forward,21,yes,4,4,1,0,0
+United States,Matt Turner,goal keeper,1,yes,4,4,0,0,0
+United States,Sergiño Dest,defender,2,yes,4,4,0,0,0
+United States,Walker Zimmerman,defender,3,yes,4,3,0,0,0
+United States,Tyler Adams,midfielder,4,yes,4,4,0,0,0
+United States,Antonee Robinson,defender,5,yes,4,4,0,0,0
+United States,Yunus Musah,midfielder,6,yes,4,4,0,0,0
+United States,Giovanni Reyna,forward,7,yes,2,0,0,0,0
+United States,Weston McKennie,midfielder,8,yes,4,4,0,0,0
+United States,Jesús Ferreira,forward,9,yes,1,1,0,0,0
+United States,Brenden Aaronson,forward,11,yes,4,0,0,0,0
+United States,Ethan Horvath,goal keeper,12,no,0,0,0,0,0
+United States,Tim Ream,defender,13,yes,4,4,0,0,0
+United States,Luca de la Torre,midfielder,14,no,0,0,0,0,0
+United States,Aaron Long,defender,15,no,0,0,0,0,0
+United States,Jordan Morris,forward,16,yes,2,0,0,0,0
+United States,Cristian Roldan,midfielder,17,no,0,0,0,0,0
+United States,Shaq Moore,defender,18,yes,2,0,0,0,0
+United States,Cameron Carter-Vickers,defender,20,yes,1,1,0,0,0
+United States,DeAndre Yedlin,defender,22,yes,2,0,0,0,0
+United States,Kellyn Acosta,midfielder,23,yes,2,0,0,0,0
+United States,Josh Sargent,forward,24,yes,3,2,0,0,0
+United States,Sean Johnson,goal keeper,25,no,0,0,0,0,0
+United States,Joe Scally,defender,26,no,0,0,0,0,0
+Uruguay,Giorgian De Arrascaeta,midfielder,10,yes,2,1,2,0,0
+Uruguay,Fernando Muslera,goal keeper,1,no,0,0,0,0,0
+Uruguay,José Giménez,defender,2,yes,3,3,0,0,0
+Uruguay,Diego Godín,defender,3,yes,2,2,0,0,0
+Uruguay,Ronald Araújo,defender,4,no,0,0,0,0,0
+Uruguay,Matías Vecino,midfielder,5,yes,3,2,0,0,0
+Uruguay,Rodrigo Bentancur,midfielder,6,yes,3,3,0,0,0
+Uruguay,Nicolás de la Cruz,midfielder,7,yes,2,0,0,0,0
+Uruguay,Facundo Pellistri,forward,8,yes,3,2,0,0,0
+Uruguay,Luis Suárez,forward,9,yes,3,2,0,0,0
+Uruguay,Darwin Núñez,forward,11,yes,3,3,0,0,0
+Uruguay,Sebastián Sosa,goal keeper,12,no,0,0,0,0,0
+Uruguay,Guillermo Varela,defender,13,yes,3,2,0,0,0
+Uruguay,Lucas Torreira,midfielder,14,no,0,0,0,0,0
+Uruguay,Federico Valverde,midfielder,15,yes,3,3,0,0,0
+Uruguay,Mathías Olivera,defender,16,yes,3,3,0,0,0
+Uruguay,Matías Viña,defender,17,yes,2,0,0,0,0
+Uruguay,Maxi Gómez,forward,18,yes,2,0,0,0,0
+Uruguay,Sebastián Coates,defender,19,yes,2,2,0,0,0
+Uruguay,Facundo Torres,forward,20,no,0,0,0,0,0
+Uruguay,Edinson Cavani,forward,21,yes,3,1,0,0,0
+Uruguay,Martín Cáceres,defender,22,yes,1,1,0,0,0
+Uruguay,Sergio Rochet,goal keeper,23,yes,3,3,0,0,0
+Uruguay,Agustín Canobbio,midfielder,24,yes,1,0,0,0,0
+Uruguay,Manuel Ugarte,midfielder,25,no,0,0,0,0,0
+Uruguay,José Luis Rodríguez,defender,26,no,0,0,0,0,0
+Wales,Gareth Bale,forward,11,yes,3,3,1,0,0
+Wales,Wayne Hennessey,goal keeper,1,yes,2,2,0,0,0
+Wales,Chris Gunter,defender,2,no,0,0,0,0,0
+Wales,Neco Williams,defender,3,yes,3,3,0,0,0
+Wales,Ben Davies,defender,4,yes,3,3,0,0,0
+Wales,Chris Mepham,defender,5,yes,3,3,0,0,0
+Wales,Joe Rodon,defender,6,yes,3,3,0,0,0
+Wales,Joe Allen,midfielder,7,yes,2,1,0,0,0
+Wales,Harry Wilson,midfielder,8,yes,3,2,0,0,0
+Wales,Brennan Johnson,forward,9,yes,3,0,0,0,0
+Wales,Aaron Ramsey,midfielder,10,yes,3,3,0,0,0
+Wales,Danny Ward,goal keeper,12,yes,2,1,0,0,0
+Wales,Kieffer Moore,forward,13,yes,3,2,0,0,0
+Wales,Connor Roberts,defender,14,yes,3,2,0,0,0
+Wales,Ethan Ampadu,defender,15,yes,3,3,0,0,0
+Wales,Joe Morrell,midfielder,16,yes,2,0,0,0,0
+Wales,Tom Lockyer,defender,17,no,0,0,0,0,0
+Wales,Jonny Williams,midfielder,18,no,0,0,0,0,0
+Wales,Mark Harris,forward,19,no,0,0,0,0,0
+Wales,Daniel James,forward,20,yes,3,2,0,0,0
+Wales,Adam Davies,goal keeper,21,no,0,0,0,0,0
+Wales,Sorba Thomas,midfielder,22,yes,1,0,0,0,0
+Wales,Dylan Levitt,midfielder,23,no,0,0,0,0,0
+Wales,Ben Cabango,defender,24,no,0,0,0,0,0
+Wales,Rubin Colwill,midfielder,25,yes,1,0,0,0,0
+Wales,Matthew Smith,midfielder,26,no,0,0,0,0,0

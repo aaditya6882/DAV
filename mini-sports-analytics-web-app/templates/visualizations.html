@@ -1,44 +1,465 @@
 {% extends "base.html" %} {% set active_tab = "visualizations" %} {% block title
-%}Visualizations · MatchScope Analytics{% endblock %} {% block extra_head %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('main.template_css', filename='visualizations.css') }}"
-/>
+%}Visualizations · FIFA World Cup 2022{% endblock %} {% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('main.template_css', filename='visualizations.css') }}" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %} {% block content %}
-<section class="visualizations-page">
-  <div class="visualizations-hero">
-    <div class="page-intro visualizations-intro">
-      <p class="eyebrow">Visualizations</p>
-      <h1>Read the tournament<br />at a glance.</h1>
-      <p>
-        Five views of the 2022 World Cup: scoring, results, stadiums, and the
-        cities that hosted them.
+<div class="viz-page">
+  <!-- Hero Banner -->
+  <header class="viz-hero">
+    <div class="viz-hero-inner">
+      <span class="viz-eyebrow">Data Visualizations</span>
+      <h1 class="viz-headline">
+        Nine charts.<br />Four datasets.<br />One tournament.
+      </h1>
+      <p class="viz-subline">
+        Every chart is generated from real 2022 World Cup data — matches, player
+        stats, group standings, and official awards — with explicit labels on
+        every data point.
       </p>
-      <div class="visualizations-actions">
-        <a class="visualization-button primary" href="#plot-1">View charts</a>
-        <a
-          class="visualization-button secondary"
-          href="{{ url_for('main.statistics_page') }}"
-          >Open statistics</a
-        >
+      <div class="viz-hero-actions">
+        <a href="#section-matches" class="viz-btn viz-btn--primary">Browse Charts ↓</a>
+        <a href="{{ url_for('main.statistics_page') }}" class="viz-btn viz-btn--ghost">Team Statistics →</a>
       </div>
     </div>
-  </div>
+    <!-- Dataset summary pills -->
+    <div class="viz-dataset-pills">
+      <span class="viz-pill">matches.csv · 64 matches</span>
+      <span class="viz-pill">stats.csv · player goals &amp; assists</span>
+      <span class="viz-pill">groups.csv · group standings</span>
+      <span class="viz-pill">achievements.csv · official awards</span>
+    </div>
+  </header>
 
-  <section class="plot-grid">
-    {% for plot in plots %}
-    <article class="plot-card" id="plot-{{ loop.index }}">
-      <img
-        src="{{ url_for('static', filename=plot.url) }}"
-        alt="{{ plot.title }}"
-      />
-      <div class="plot-card-body">
-        <p class="plot-index">0{{ loop.index }}</p>
-        <h2>{{ plot.title }}</h2>
-        <p>{{ plot.caption }}</p>
-      </div>
-    </article>
-    {% endfor %}
+  <!-- ── SECTION 1: Matches ─────────────────────────── -->
+  <section class="viz-section" id="section-matches">
+    <div class="viz-section-header">
+      <span class="viz-section-tag">matches.csv</span>
+      <h2>Match Analysis</h2>
+      <p>
+        Scoring patterns, results breakdown, and tournament flow from all 64
+        fixtures.
+      </p>
+    </div>
+    <div class="viz-grid viz-grid--3col">
+      {% set match_charts = [plots[0], plots[1], plots[2]] %} {% for plot in
+      match_charts %}
+      <article class="viz-card" id="plot-{{ loop.index }}">
+        <div class="viz-card-img-wrap">
+          <img src="{{ url_for('static', filename=plot.url) }}" alt="{{ plot.title }}" loading="lazy" />
+          <div class="viz-card-overlay">
+            <a href="{{ url_for('static', filename=plot.url) }}" target="_blank" class="viz-expand-btn"
+              aria-label="Open full size">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="viz-card-body">
+          <span class="viz-card-num">0{{ loop.index }}</span>
+          <h3>{{ plot.title }}</h3>
+          <p>{{ plot.caption }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
   </section>
-</section>
+
+  <!-- ── SECTION 2: Player Stats ────────────────────── -->
+  <section class="viz-section" id="section-players">
+    <div class="viz-section-header">
+      <span class="viz-section-tag">stats.csv</span>
+      <h2>Player Performance</h2>
+      <p>
+        Individual goal scorers from the tournament's official player statistics
+        file.
+      </p>
+    </div>
+    <div class="viz-grid viz-grid--full">
+      <article class="viz-card viz-card--wide" id="plot-4">
+        <div class="viz-card-img-wrap">
+          <img src="{{ url_for('static', filename=plots[3].url) }}" alt="{{ plots[3].title }}" loading="lazy" />
+          <div class="viz-card-overlay">
+            <a href="{{ url_for('static', filename=plots[3].url) }}" target="_blank" class="viz-expand-btn"
+              aria-label="Open full size">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="viz-card-body">
+          <span class="viz-card-num">04</span>
+          <h3>{{ plots[3].title }}</h3>
+          <p>{{ plots[3].caption }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: Group Standings ────────────────── -->
+  <section class="viz-section" id="section-groups">
+    <div class="viz-section-header">
+      <span class="viz-section-tag">groups.csv</span>
+      <h2>Group Stage Standings</h2>
+      <p>
+        Points accumulated by all 32 national teams across Groups A through H.
+      </p>
+    </div>
+    <div class="viz-grid viz-grid--full">
+      <article class="viz-card viz-card--wide" id="plot-5">
+        <div class="viz-card-img-wrap">
+          <img src="{{ url_for('static', filename=plots[4].url) }}" alt="{{ plots[4].title }}" loading="lazy" />
+          <div class="viz-card-overlay">
+            <a href="{{ url_for('static', filename=plots[4].url) }}" target="_blank" class="viz-expand-btn"
+              aria-label="Open full size">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="viz-card-body">
+          <span class="viz-card-num">05</span>
+          <h3>{{ plots[4].title }}</h3>
+          <p>{{ plots[4].caption }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: Awards ──────────────────────────── -->
+  <section class="viz-section" id="section-awards">
+    <div class="viz-section-header">
+      <span class="viz-section-tag">achievements.csv</span>
+      <h2>Official Awards &amp; Honours</h2>
+      <p>
+        Golden Boot, Golden Ball, Golden Glove and every FIFA award from Qatar
+        2022.
+      </p>
+    </div>
+    <div class="viz-grid viz-grid--full">
+      <article class="viz-card viz-card--wide" id="plot-6">
+        <div class="viz-card-img-wrap">
+          <img src="{{ url_for('static', filename=plots[5].url) }}" alt="{{ plots[5].title }}" loading="lazy" />
+          <div class="viz-card-overlay">
+            <a href="{{ url_for('static', filename=plots[5].url) }}" target="_blank" class="viz-expand-btn"
+              aria-label="Open full size">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="viz-card-body">
+          <span class="viz-card-num">06</span>
+          <h3>{{ plots[5].title }}</h3>
+          <p>{{ plots[5].caption }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: Venue & Performance ─────────────── -->
+  <section class="viz-section" id="section-venues">
+    <div class="viz-section-header">
+      <span class="viz-section-tag">matches.csv</span>
+      <h2>Venue &amp; Team Performance</h2>
+      <p>
+        Stadium usage, host city breakdowns, and a goals-scored vs conceded
+        matrix for all 32 teams.
+      </p>
+    </div>
+    <div class="viz-grid viz-grid--3col">
+      {% set venue_charts = [plots[6], plots[7], plots[8]] %} {% for plot in
+      venue_charts %}
+      <article class="viz-card" id="plot-{{ loop.index + 6 }}">
+        <div class="viz-card-img-wrap">
+          <img src="{{ url_for('static', filename=plot.url) }}" alt="{{ plot.title }}" loading="lazy" />
+          <div class="viz-card-overlay">
+            <a href="{{ url_for('static', filename=plot.url) }}" target="_blank" class="viz-expand-btn"
+              aria-label="Open full size">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="viz-card-body">
+          <span class="viz-card-num">0{{ loop.index + 6 }}</span>
+          <h3>{{ plot.title }}</h3>
+          <p>{{ plot.caption }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ── SECTION: Interactive Dashboards (Chart.js) ────────── -->
+  <section class="viz-section" id="section-interactive">
+    <div class="viz-section-header">
+      <span class="viz-section-tag" style="background: #eef4ff; color: #2864e8; border-color: #b8d2ff;">Interactive
+        Analytics</span>
+      <h2>Interactive Tournament Dashboards</h2>
+      <p>
+        Explore goals per team, group standings, top goal scorers, and result breakdowns with live tooltips, legend
+        toggles, and group filtering.
+      </p>
+    </div>
+
+    <!-- Chart Grid 1: Goals per team & Win rates -->
+    <div class="viz-grid viz-grid--3col" style="margin-bottom: 30px;">
+      <article class="viz-card" style="grid-column: span 2;">
+        <div class="viz-card-body" style="border-top: none;">
+          <span class="viz-card-num">INTERACTIVE 01</span>
+          <h3>Total Goals Scored per Team</h3>
+          <p>Hover bars for exact goal count. Sorted from highest to lowest.</p>
+          <div style="position: relative; height: 320px; margin-top: 15px;">
+            <canvas id="goalsPerTeamChart"></canvas>
+          </div>
+        </div>
+      </article>
+
+      <article class="viz-card">
+        <div class="viz-card-body" style="border-top: none;">
+          <span class="viz-card-num">INTERACTIVE 02</span>
+          <h3>Home vs Away Win Breakdown</h3>
+          <p>Match outcome proportions across 64 games. Click legends to toggle segments.</p>
+          <div style="position: relative; height: 320px; margin-top: 15px;">
+            <canvas id="resultsBreakdownChart"></canvas>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Chart Grid 2: Group Standings with Filter & Top Scorers -->
+    <div class="viz-grid viz-grid--3col">
+      <article class="viz-card" style="grid-column: span 2;">
+        <div class="viz-card-body" style="border-top: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="viz-card-num">INTERACTIVE 03</span>
+              <h3 style="margin-bottom: 2px;">Group Stage Standings (Points)</h3>
+              <p style="margin: 0;">Filter points accumulated by teams per group.</p>
+            </div>
+            <div>
+              <select id="groupSelectFilter"
+                style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); font-size: 0.82rem; font-weight: 700; background: #fff; color: var(--blue);">
+                <option value="ALL">All Groups (A–H)</option>
+                <option value="A">Group A</option>
+                <option value="B">Group B</option>
+                <option value="C">Group C</option>
+                <option value="D">Group D</option>
+                <option value="E">Group E</option>
+                <option value="F">Group F</option>
+                <option value="G">Group G</option>
+                <option value="H">Group H</option>
+              </select>
+            </div>
+          </div>
+          <div style="position: relative; height: 320px; margin-top: 15px;">
+            <canvas id="groupStandingsChart"></canvas>
+          </div>
+        </div>
+      </article>
+
+      <article class="viz-card">
+        <div class="viz-card-body" style="border-top: none;">
+          <span class="viz-card-num">INTERACTIVE 04</span>
+          <h3>Top Individual Goal Scorers</h3>
+          <p>Leading scorers from stats.csv. Hover bars to reveal player nation and assists.</p>
+          <div style="position: relative; height: 320px; margin-top: 15px;">
+            <canvas id="topScorersChart"></canvas>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <div class="viz-cta">
+    <div>
+      <h3>Want the raw numbers?</h3>
+      <p>Explore team statistics, EDA summaries, and group-stage tables.</p>
+    </div>
+    <div class="viz-cta-links">
+      <a href="{{ url_for('main.statistics_page') }}" class="viz-btn viz-btn--primary">Team Statistics</a>
+      <a href="{{ url_for('main.eda_page') }}" class="viz-btn viz-btn--ghost">EDA Report</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Colors
+    const maroonColor = '#8a1538';
+    const goldColor = '#bc9855';
+    const tealColor = '#2a9d8f';
+    const orangeColor = '#e76f51';
+
+    // 1. Goals per Team Chart
+    const goalsData = {{ goals_per_team | tojson
+  }};
+  const teamLabels = Object.keys(goalsData);
+  const teamGoals = Object.values(goalsData);
+
+  const ctxGoals = document.getElementById('goalsPerTeamChart').getContext('2d');
+  new Chart(ctxGoals, {
+    type: 'bar',
+    data: {
+      labels: teamLabels,
+      datasets: [{
+        label: 'Total Goals',
+        data: teamGoals,
+        backgroundColor: maroonColor,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.raw} goals scored`
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 } } },
+        y: { beginAtZero: true, ticks: { stepSize: 2 } }
+      }
+    }
+  });
+
+  // 2. Results Breakdown Donut Chart
+  const resultsData = {{ results_data | tojson }};
+  const ctxResults = document.getElementById('resultsBreakdownChart').getContext('2d');
+  new Chart(ctxResults, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(resultsData),
+      datasets: [{
+        data: Object.values(resultsData),
+        backgroundColor: [tealColor, goldColor, orangeColor],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${ctx.raw} matches (${((ctx.raw / 64) * 100).toFixed(1)}%)`
+          }
+        }
+      }
+    }
+  });
+
+  // 3. Group Standings Chart with Dynamic Group Filter
+  const groupRaw = {{ group_data | tojson }};
+
+  function getGroupChartData(selectedGroup) {
+    let labels = [];
+    let points = [];
+    let backgroundColors = [];
+
+    const groupColors = ['#8a1538', '#2a9d8f', '#e76f51', '#bc9855', '#457b9d', '#e9c46a', '#6a0572', '#2b93b3'];
+    let gIdx = 0;
+
+    for (const [grp, teams] of Object.entries(groupRaw)) {
+      if (selectedGroup === 'ALL' || selectedGroup === grp) {
+        teams.forEach(t => {
+          labels.push(`${t.team} (Gr. ${grp})`);
+          points.push(t.points);
+          backgroundColors.push(groupColors[gIdx % groupColors.length]);
+        });
+      }
+      gIdx++;
+    }
+    return { labels, points, backgroundColors };
+  }
+
+  const ctxGroup = document.getElementById('groupStandingsChart').getContext('2d');
+  const initialGroupData = getGroupChartData('ALL');
+
+  const groupChart = new Chart(ctxGroup, {
+    type: 'bar',
+    data: {
+      labels: initialGroupData.labels,
+      datasets: [{
+        label: 'Points',
+        data: initialGroupData.points,
+        backgroundColor: initialGroupData.backgroundColors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.raw} Points`
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { size: 9 }, maxRotation: 90 } },
+        y: { beginAtZero: true, max: 10 }
+      }
+    }
+  });
+
+  document.getElementById('groupSelectFilter').addEventListener('change', function (e) {
+    const newData = getGroupChartData(e.target.value);
+    groupChart.data.labels = newData.labels;
+    groupChart.data.datasets[0].data = newData.points;
+    groupChart.data.datasets[0].backgroundColor = newData.backgroundColors;
+    groupChart.update();
+  });
+
+  // 4. Top Goal Scorers Chart
+  const scorersRaw = {{ top_scorers | tojson }};
+  const top10Scorers = scorersRaw.slice(0, 10).reverse();
+
+  const ctxScorers = document.getElementById('topScorersChart').getContext('2d');
+  new Chart(ctxScorers, {
+    type: 'bar',
+    data: {
+      labels: top10Scorers.map(s => s.player),
+      datasets: [{
+        label: 'Goals',
+        data: top10Scorers.map(s => s.goals),
+        backgroundColor: goldColor,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const player = top10Scorers[ctx.dataIndex];
+              return `${player.goals} Goals (${player.team}) - ${player.assists} Assists`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { stepSize: 1 } }
+      }
+    }
+  });
+  });
+</script>
 {% endblock %}

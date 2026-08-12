@@ -8,3 +8,66 @@ body, .brand, .tabs a, .header-button, button, input { font-family: "Manrope", A
 .plot-card-body, .home-note { text-align: left; }.plot-card-body h2, .visualizations-panel h2 { font-family: "Manrope", Arial, sans-serif; font-weight: 800; }.standings-table th:not(:nth-child(2)), .standings-table td:not(:nth-child(2)) { text-align: center; }.standings-table th:nth-child(2), .standings-table td:nth-child(2) { text-align: left; }
 .site-footer { text-align: left; }.site-footer h2 { font-family: "Manrope", Arial, sans-serif; font-weight: 800; }.footer-brand { text-align: left; }
 @media (max-width: 760px) { .site-header { align-items: center; }.home-heading, .home-context { text-align: left; }.home-heading h2 { font-size: clamp(2rem, 10vw, 3rem); } }
+
+/* Sticky Navbar & Nav links hover/active consistency */
+.site-header { position: sticky; top: 12px; z-index: 100; transition: box-shadow 0.2s ease; }
+.tabs a { transition: color 0.18s ease, border-color 0.18s ease; }
+.tabs a.active, .tabs a:hover { color: var(--blue); border-bottom: 2px solid var(--gold); }
+
+/* Nav Dropdown */
+.nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+.dropdown-trigger { background: transparent; border: none; padding: 21px 0 18px; color: var(--muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; border-bottom: 2px solid transparent; transition: color 0.18s ease, border-color 0.18s ease; }
+.dropdown-trigger:hover, .nav-dropdown.active .dropdown-trigger, .nav-dropdown.open .dropdown-trigger { color: var(--blue); border-bottom-color: var(--gold); }
+.dropdown-trigger .caret { font-size: 0.65rem; transition: transform 0.2s ease; }
+.nav-dropdown.open .dropdown-trigger .caret { transform: rotate(180deg); }
+.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 150px; background: rgba(255, 250, 247, 0.98); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 24px rgba(77, 16, 36, 0.12); backdrop-filter: blur(12px); padding: 8px 0; z-index: 110; margin-top: 4px; }
+.nav-dropdown:hover .dropdown-menu, .nav-dropdown.open .dropdown-menu { display: flex; flex-direction: column; }
+.dropdown-menu a { padding: 8px 16px !important; border-bottom: none !important; font-size: 0.8rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.dropdown-menu a:hover, .dropdown-menu a.active { color: var(--blue) !important; background: rgba(138, 21, 56, 0.06); }
+
+/* Mobile Hamburger Menu Toggle */
+.mobile-nav-toggle { display: none; background: transparent; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 4px; }
+.mobile-nav-toggle span { display: block; width: 22px; height: 2px; background: var(--blue); transition: all 0.2s ease; border-radius: 2px; }
+
+@media (max-width: 820px) {
+  .mobile-nav-toggle { display: flex; margin-left: auto; }
+  .tabs { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255, 250, 247, 0.98); border: 1px solid var(--line); border-radius: 16px; margin-top: 8px; padding: 16px; flex-direction: column; align-items: stretch; gap: 8px; box-shadow: 0 12px 28px rgba(77, 16, 36, 0.15); backdrop-filter: blur(16px); }
+  .tabs.open { display: flex; }
+  .tabs a, .dropdown-trigger { padding: 10px 12px; border-bottom: none; width: 100%; justify-content: space-between; }
+  .dropdown-menu { position: static; box-shadow: none; border: none; background: transparent; padding-left: 16px; margin-top: 0; }
+  .nav-dropdown:hover .dropdown-menu { display: none; }
+  .nav-dropdown.open .dropdown-menu { display: flex; }
+  .header-button { display: none; }
+}
+
+/* Table Search & Sorting Styling */
+.table-header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.table-header-row .section-title { margin-bottom: 0; }
+.table-search-box input { padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; font-size: 0.85rem; background: rgba(255, 255, 257, 0.9); color: var(--ink); outline: none; transition: border-color 0.18s ease, box-shadow 0.18s ease; width: 220px; }
+.table-search-box input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(138, 21, 56, 0.1); }
+.sortable-table th { cursor: pointer; user-select: none; transition: background-color 0.15s ease; }
+.sortable-table th:hover { background: #f3e2e5; }
+.sort-icon { font-size: 0.75rem; opacity: 0.6; margin-left: 4px; }
+
+/* Mobile Table Overflow Protection */
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 600px) {
+  .table-header-row { flex-direction: column; align-items: stretch; }
+  .table-search-box input { width: 100%; }
+}
+
+/* Academic Project Section (About Page) */
+.about-academic-section { width: min(1180px, calc(100% - 56px)); margin: 0 auto 48px; }
+.academic-card { padding: 20px 24px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 250, 247, 0.94); box-shadow: 0 6px 18px rgba(77, 16, 36, 0.04); display: flex; flex-direction: column; gap: 6px; }
+.academic-tag { font-size: 0.68rem; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+.academic-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+/* Footer Attribution Line */
+.footer-attribution { margin-top: 10px; color: var(--gold) !important; font-size: 0.72rem !important; font-weight: 600; line-height: 1.5; }
+
+/* Jump Links Styling for Multi-Section Pages */
+.jump-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.jump-link { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 250, 247, 0.9); color: var(--blue); font-size: 0.78rem; font-weight: 700; transition: all 0.18s ease; }
+.jump-link:hover { border-color: var(--blue); background: rgba(138, 21, 56, 0.08); transform: translateY(-1px); }
+
+

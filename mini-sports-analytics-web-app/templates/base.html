@@ -47,7 +47,7 @@
         ></span>
         <span>FIFA World Cup 2022 <small>Match Data Analysis</small></span>
       </a>
-      <nav class="tabs" aria-label="Main navigation">
+      <nav class="tabs" aria-label="Main navigation" id="mainNav">
         <a
           href="{{ url_for('main.index') }}"
           class="{{ 'active' if active_tab == 'index' else '' }}"
@@ -69,6 +69,11 @@
           >Statistics</a
         >
         <a
+          href="{{ url_for('main.awards') }}"
+          class="{{ 'active' if active_tab == 'awards' else '' }}"
+          >Awards</a
+        >
+        <a
           href="{{ url_for('main.visualizations') }}"
           class="{{ 'active' if active_tab == 'visualizations' else '' }}"
           >Visualizations</a
@@ -82,6 +87,9 @@
       <a class="header-button" href="{{ url_for('main.visualizations') }}"
         >View<br />Charts</a
       >
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
     </header>
     <main>{% block content %}{% endblock %}</main>
     <footer class="site-footer">
@@ -93,13 +101,19 @@
           A practical guide to the data, patterns and stories behind the
           beautiful game.
         </p>
+        <p class="footer-attribution">
+          A student project by Student — Centre of AI, Herald College Kathmandu
+        </p>
       </div>
       <div>
         <h2>Explore</h2>
-        <a href="{{ url_for('main.preprocessing_page') }}">Preprocessing</a
-        ><a href="{{ url_for('main.eda_page') }}">Data analysis</a
-        ><a href="{{ url_for('main.statistics_page') }}">Statistics</a
-        ><a href="{{ url_for('main.visualizations') }}">Visual stories</a>
+        <a href="{{ url_for('main.index') }}">Dashboard</a>
+        <a href="{{ url_for('main.preprocessing_page') }}">Preprocessing</a>
+        <a href="{{ url_for('main.eda_page') }}">EDA</a>
+        <a href="{{ url_for('main.statistics_page') }}">Statistics</a>
+        <a href="{{ url_for('main.awards') }}">Awards</a>
+        <a href="{{ url_for('main.visualizations') }}">Visualizations</a>
+        <a href="{{ url_for('main.about') }}">About</a>
       </div>
       <div>
         <h2>Technology</h2>
@@ -111,5 +125,89 @@
         ><span>64 matches</span>
       </div>
     </footer>
+    <script>
+      // Mobile Nav Toggle
+      const navToggle = document.getElementById('mobileNavToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (navToggle && mainNav) {
+        navToggle.addEventListener('click', function() {
+          mainNav.classList.toggle('open');
+          this.classList.toggle('open');
+        });
+      }
+
+      // Dropdown toggle on click/hover for touch & desktop
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        if (trigger) {
+          trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains('open');
+            dropdowns.forEach(d => d.classList.remove('open'));
+            if (!isOpen) dropdown.classList.add('open');
+          });
+        }
+      });
+      document.addEventListener('click', () => {
+        dropdowns.forEach(d => d.classList.remove('open'));
+      });
+
+      // Client-side Table Search Filter
+      function filterTable(inputId, tableId) {
+        const input = document.getElementById(inputId);
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById(tableId);
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < rows.length; i++) {
+          let textContent = rows[i].textContent || rows[i].innerText;
+          if (textContent.toLowerCase().indexOf(filter) > -1) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+      }
+
+      // Client-side Table Sorting
+      const sortDirections = {};
+      function sortTable(tableId, colIndex, type) {
+        const table = document.getElementById(tableId);
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        const key = tableId + '_' + colIndex;
+        const asc = sortDirections[key] !== true; // toggle ascending
+        sortDirections[key] = asc;
+
+        // Reset all sort icons in header
+        const headers = table.querySelectorAll('th');
+        headers.forEach(h => {
+          const icon = h.querySelector('.sort-icon');
+          if (icon) icon.textContent = '↕';
+        });
+        
+        const currentHeaderIcon = headers[colIndex].querySelector('.sort-icon');
+        if (currentHeaderIcon) {
+          currentHeaderIcon.textContent = asc ? '↑' : '↓';
+        }
+
+        rows.sort((a, b) => {
+          let cellA = a.children[colIndex].textContent.trim();
+          let cellB = b.children[colIndex].textContent.trim();
+
+          if (type === 'num') {
+            let numA = parseFloat(cellA.replace(/[^0-9.-]+/g,"")) || 0;
+            let numB = parseFloat(cellB.replace(/[^0-9.-]+/g,"")) || 0;
+            return asc ? numA - numB : numB - numA;
+          } else {
+            return asc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+          }
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+      }
+    </script>
   </body>
 </html>

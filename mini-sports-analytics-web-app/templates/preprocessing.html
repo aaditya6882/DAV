@@ -38,4 +38,30 @@
     <p>{{ cleaned_columns|join(', ') }}</p>
   </div>
 </section>
+
+<section class="preprocessing-steps-section">
+  <h2 class="section-title">Data Cleaning &amp; Transformation Steps</h2>
+  <div class="process-grid">
+    <article>
+      <span>STEP 01</span>
+      <h3>Data Validation &amp; Type Casting</h3>
+      <p>Parsed match dates into standardized ISO datetime formats, verified team name consistency, and ensured score values are integer numeric types.</p>
+    </article>
+    <article>
+      <span>STEP 02</span>
+      <h3>Missing Value Handling</h3>
+      <p>Checked for nulls across all 64 fixture records, imputing default categories for extra-time scores and penalty shootouts where applicable.</p>
+    </article>
+    <article>
+      <span>STEP 03</span>
+      <h3>Goal Derivations</h3>
+      <p>Computed <code>total_goals</code> (home score + away score) and <code>goal_difference</code> to measure offensive production per match.</p>
+    </article>
+    <article>
+      <span>STEP 04</span>
+      <h3>Outcome Classification</h3>
+      <p>Categorized match results into <code>home_win</code>, <code>away_win</code>, or <code>draw</code> to generate accurate result breakdowns.</p>
+    </article>
+  </div>
+</section>
 {% endblock %}

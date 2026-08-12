@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set active_tab = "groups" %}
+{% block title %}Groups · MatchScope Analytics{% endblock %}
+{% block content %}
+<section class="page-intro"><p class="eyebrow">Group Stage</p><h1>Final group standings.</h1><p>Top two teams from each of the 8 groups advanced to the Round of 16.</p></section>
+{% for group_name, rows in groups.items() %}
+<section>
+  <h2 class="section-title">Group {{ group_name }}</h2>
+  <div class="table-wrap">
+    <table class="standings-table">
+      <thead>
+        <tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr class="{{ 'advanced' if row.position <= 2 else '' }}">
+          <td>{{ row.position }}</td>
+          <td>{{ row.team }}</td>
+          <td>{{ row.played }}</td>
+          <td>{{ row.won }}</td>
+          <td>{{ row.drawn }}</td>
+          <td>{{ row.lost }}</td>
+          <td>{{ row.goals_for }}</td>
+          <td>{{ row.goals_against }}</td>
+          <td>{{ row.goal_difference }}</td>
+          <td>{{ row.points }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
