@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}500 — Server Error | QFIFA{% endblock %}
+{% block content %}
+<div style="min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px 24px;">
+  <div>
+    <div style="font-size:72px;margin-bottom:16px;opacity:.6;">⚠️</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;color:var(--color-primary);">500</h1>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin:8px 0 12px;">Internal Server Error</h2>
+    <p style="color:var(--color-text-muted);margin-bottom:24px;max-width:400px;">Something went wrong on our end. Please try again or return to the dashboard.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ url_for('dashboard.index') }}" class="mq-btn mq-btn--primary">Go to Dashboard</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

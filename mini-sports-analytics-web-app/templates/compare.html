@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% block extra_head %}
+<style>
+.chart-wrap { position:relative; height:300px; }
+.compare-panel { background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;padding:24px; }
+.compare-winner { color:var(--color-primary);font-weight:700; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">⚖️ Compare</h1>
+    <p class="mq-page-header__sub">Compare teams or players side by side</p>
+  </div>
+
+  <!-- Mode Toggle -->
+  <div style="display:flex;gap:8px;margin-bottom:24px;">
+    <a href="{{ url_for('compare.compare') }}?mode=team{% if team_a_name %}&team_a={{ team_a_name | urlencode }}&team_b={{ team_b_name | urlencode }}{% endif %}"
+       class="mq-btn {% if mode == 'team' %}mq-btn--primary{% else %}mq-btn--outline{% endif %}">🛡️ Teams</a>
+    <a href="{{ url_for('compare.compare') }}?mode=player{% if player_a_id %}&player_a={{ player_a_id }}&player_b={{ player_b_id }}{% endif %}"
+       class="mq-btn {% if mode == 'player' %}mq-btn--primary{% else %}mq-btn--outline{% endif %}">👤 Players</a>
+  </div>
+
+  <!-- ===== TEAM COMPARE ===== -->
+  {% if mode == 'team' %}
+  <form method="GET" action="{{ url_for('compare.compare') }}" style="margin-bottom:28px;">
+    <input type="hidden" name="mode" value="team" />
+    <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+      <div style="flex:1;min-width:180px;">
+        <label style="font-size:12px;font-weight:600;color:var(--color-text-muted);display:block;margin-bottom:6px;">TEAM A</label>
+        <select class="mq-select" name="team_a" style="width:100%;">
+          <option value="">Select team…</option>
+          {% for t in all_teams %}
+          <option value="{{ t }}" {% if team_a_name == t %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div style="padding-bottom:8px;font-family:'Space Grotesk',sans-serif;font-weight:800;color:var(--color-text-muted);">VS</div>
+      <div style="flex:1;min-width:180px;">
+        <label style="font-size:12px;font-weight:600;color:var(--color-text-muted);display:block;margin-bottom:6px;">TEAM B</label>
+        <select class="mq-select" name="team_b" style="width:100%;">
+          <option value="">Select team…</option>
+          {% for t in all_teams %}
+          <option value="{{ t }}" {% if team_b_name == t %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="mq-btn mq-btn--primary">Compare</button>
+    </div>
+  </form>
+
+  {% if team_a and team_b %}
+  <!-- Comparison Result -->
+  {% set ta = team_a %}
+  {% set tb = team_b %}
+
+  <!-- Header row -->
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-bottom:20px;">
+    <div class="compare-panel" style="text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:var(--color-primary);">{{ ta.team_name }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">Group {{ ta.group }}</div>
+    </div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--color-text-muted);text-align:center;">VS</div>
+    <div class="compare-panel" style="text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:var(--color-gold);">{{ tb.team_name }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">Group {{ tb.group }}</div>
+    </div>
+  </div>
+
+  <!-- Stat comparison rows -->
+  {% set stat_rows = [
+    ('Matches Played', ta.played, tb.played, False),
+    ('Wins', ta.wins, tb.wins, True),
+    ('Draws', ta.draws, tb.draws, False),
+    ('Losses', ta.losses, tb.losses, False),
+    ('Goals Scored', ta.goals_for, tb.goals_for, True),
+    ('Goals Conceded', ta.goals_against, tb.goals_against, False),
+    ('Goal Difference', ta.goal_difference, tb.goal_difference, True),
+    ('Points', ta.points, tb.points, True),
+    ('Win Rate %', ta.win_rate, tb.win_rate, True),
+  ] %}
+
+  <div class="compare-panel" style="margin-bottom:20px;padding:0;overflow:hidden;">
+    {% for label, va, vb, higher_better in stat_rows %}
+    {% set a_wins = (va > vb and higher_better) or (va < vb and not higher_better) %}
+    {% set b_wins = (vb > va and higher_better) or (vb < va and not higher_better) %}
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--color-border);">
+      <div style="text-align:left;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;{% if a_wins %}color:var(--color-primary);{% else %}color:var(--color-text);{% endif %}">
+        {{ va }}{% if a_wins %} ✓{% endif %}
+      </div>
+      <div style="text-align:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--color-text-muted);">{{ label }}</div>
+      <div style="text-align:right;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;{% if b_wins %}color:var(--color-gold);{% else %}color:var(--color-text);{% endif %}">
+        {% if b_wins %}✓ {% endif %}{{ vb }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Chart -->
+  <div class="mq-chart-card">
+    <div class="mq-chart-card__title">Head to Head Comparison</div>
+    <div class="chart-wrap"><canvas id="chart-compare-teams"></canvas></div>
+  </div>
+  {% elif team_a_name or team_b_name %}
+  <div class="mq-card" style="text-align:center;padding:40px;color:var(--color-text-muted);">
+    Please select both teams to compare.
+  </div>
+  {% endif %}
+
+  <!-- ===== PLAYER COMPARE ===== -->
+  {% elif mode == 'player' %}
+  <form method="GET" action="{{ url_for('compare.compare') }}" style="margin-bottom:28px;">
+    <input type="hidden" name="mode" value="player" />
+    <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <label style="font-size:12px;font-weight:600;color:var(--color-text-muted);display:block;margin-bottom:6px;">PLAYER A</label>
+        <select class="mq-select" name="player_a" style="width:100%;">
+          <option value="">Select player…</option>
+          {% for p in all_players %}
+          <option value="{{ p.player_id }}" {% if player_a_id == p.player_id %}selected{% endif %}>{{ p.player }} ({{ p.team }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div style="padding-bottom:8px;font-family:'Space Grotesk',sans-serif;font-weight:800;color:var(--color-text-muted);">VS</div>
+      <div style="flex:1;min-width:200px;">
+        <label style="font-size:12px;font-weight:600;color:var(--color-text-muted);display:block;margin-bottom:6px;">PLAYER B</label>
+        <select class="mq-select" name="player_b" style="width:100%;">
+          <option value="">Select player…</option>
+          {% for p in all_players %}
+          <option value="{{ p.player_id }}" {% if player_b_id == p.player_id %}selected{% endif %}>{{ p.player }} ({{ p.team }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="mq-btn mq-btn--primary">Compare</button>
+    </div>
+  </form>
+
+  {% if player_a and player_b %}
+  {% set pa = player_a %}
+  {% set pb = player_b %}
+
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-bottom:20px;">
+    <div class="compare-panel" style="text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--color-primary);">{{ pa.player }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">{{ pa.team }} · {{ pa.position | title if pa.position else '—' }}</div>
+    </div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--color-text-muted);text-align:center;">VS</div>
+    <div class="compare-panel" style="text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--color-gold);">{{ pb.player }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">{{ pb.team }} · {{ pb.position | title if pb.position else '—' }}</div>
+    </div>
+  </div>
+
+  {% set p_rows = [
+    ('Appearances', pa.matches_played, pb.matches_played, True),
+    ('Starts', pa.matches_started, pb.matches_started, True),
+    ('Goals', pa.goals, pb.goals, True),
+    ('Assists', pa.assists, pb.assists, True),
+    ('Goal Involvement', pa.goal_involvement, pb.goal_involvement, True),
+    ('Goals Per Match', pa.goals_per_match, pb.goals_per_match, True),
+  ] %}
+
+  <div class="compare-panel" style="margin-bottom:20px;padding:0;overflow:hidden;">
+    {% for label, va, vb, higher_better in p_rows %}
+    {% set a_wins = va > vb %}
+    {% set b_wins = vb > va %}
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--color-border);">
+      <div style="text-align:left;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;{% if a_wins %}color:var(--color-primary);{% endif %}">
+        {{ va }}{% if a_wins %} ✓{% endif %}
+      </div>
+      <div style="text-align:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--color-text-muted);">{{ label }}</div>
+      <div style="text-align:right;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;{% if b_wins %}color:var(--color-gold);{% endif %}">
+        {% if b_wins %}✓ {% endif %}{{ vb }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mq-chart-card">
+    <div class="mq-chart-card__title">Player Comparison</div>
+    <div class="chart-wrap"><canvas id="chart-compare-players"></canvas></div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  {% if mode == 'team' and team_a and team_b %}
+  const labels = ['Wins','Draws','Losses','Goals For','Goals Against','Points'];
+  const dataA  = [{{ team_a.wins }},{{ team_a.draws }},{{ team_a.losses }},{{ team_a.goals_for }},{{ team_a.goals_against }},{{ team_a.points }}];
+  const dataB  = [{{ team_b.wins }},{{ team_b.draws }},{{ team_b.losses }},{{ team_b.goals_for }},{{ team_b.goals_against }},{{ team_b.points }}];
+  mqCompareBar('chart-compare-teams', labels, dataA, dataB, '{{ team_a.team_name }}', '{{ team_b.team_name }}');
+  {% endif %}
+
+  {% if mode == 'player' and player_a and player_b %}
+  const plabels = ['Apps','Starts','Goals','Assists','G+A'];
+  const pdataA  = [{{ player_a.matches_played }},{{ player_a.matches_started }},{{ player_a.goals }},{{ player_a.assists }},{{ player_a.goal_involvement }}];
+  const pdataB  = [{{ player_b.matches_played }},{{ player_b.matches_started }},{{ player_b.goals }},{{ player_b.assists }},{{ player_b.goal_involvement }}];
+  mqCompareBar('chart-compare-players', plabels, pdataA, pdataB, '{{ player_a.player }}', '{{ player_b.player }}');
+  {% endif %}
+});
+</script>
+{% endblock %}

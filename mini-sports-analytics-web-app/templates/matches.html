@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <!-- Page Header -->
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">⚽ Match Centre</h1>
+    <p class="mq-page-header__sub">{{ total }} matches found · FIFA World Cup 2022</p>
+  </div>
+
+  <!-- Filters -->
+  <form method="GET" action="{{ url_for('matches.matches') }}" class="mq-auto-submit">
+    <div class="mq-filter-bar">
+      <!-- Search -->
+      <div class="mq-search-input-wrap" style="min-width:220px;flex:1;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="mq-input" name="q" value="{{ filters.q }}" placeholder="Search teams, venues…" autocomplete="off" />
+      </div>
+
+      <!-- Stage -->
+      <select class="mq-select" name="stage">
+        <option value="all">All Stages</option>
+        {% for s in stages %}
+        <option value="{{ s }}" {% if filters.stage == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+
+      <!-- Team -->
+      <select class="mq-select" name="team">
+        <option value="all">All Teams</option>
+        {% for t in teams %}
+        <option value="{{ t }}" {% if filters.team == t %}selected{% endif %}>{{ t }}</option>
+        {% endfor %}
+      </select>
+
+      <!-- Result -->
+      <select class="mq-select" name="result">
+        <option value="all">All Results</option>
+        <option value="home_win" {% if filters.result == 'home_win' %}selected{% endif %}>Home Wins</option>
+        <option value="away_win" {% if filters.result == 'away_win' %}selected{% endif %}>Away Wins</option>
+        <option value="draw" {% if filters.result == 'draw' %}selected{% endif %}>Draws</option>
+      </select>
+
+      <!-- Sort -->
+      <select class="mq-select" name="sort">
+        <option value="date_asc" {% if filters.sort == 'date_asc' %}selected{% endif %}>Date ↑</option>
+        <option value="date_desc" {% if filters.sort == 'date_desc' %}selected{% endif %}>Date ↓</option>
+        <option value="goals_desc" {% if filters.sort == 'goals_desc' %}selected{% endif %}>Most Goals</option>
+        <option value="goals_asc" {% if filters.sort == 'goals_asc' %}selected{% endif %}>Least Goals</option>
+      </select>
+
+      <!-- View -->
+      <select class="mq-select" name="view">
+        <option value="grouped" {% if filters.view == 'grouped' %}selected{% endif %}>Grouped</option>
+        <option value="list" {% if filters.view == 'list' %}selected{% endif %}>List</option>
+      </select>
+
+      <button type="submit" class="mq-btn mq-btn--primary">Filter</button>
+      <a href="{{ url_for('matches.matches') }}" class="mq-btn mq-btn--outline">Reset</a>
+    </div>
+  </form>
+
+  <!-- Grouped View -->
+  {% if grouped %}
+    {% set stage_icons = {'Group': '🟢', 'Round of 16': '⚔️', 'Quarter Final': '🏅', 'Quarter-final': '🏅', 'Semi Final': '🥈', 'Semi-final': '🥈', 'Third Place': '🥉', 'Third-place Playoff': '🥉', 'Final': '🏆'} %}
+    {% for stage, stage_matches in grouped.items() %}
+    <div class="mq-section">
+      <h2 class="mq-section-title">{{ stage_icons.get(stage, '⚽') }} {{ stage }}</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {% for m in stage_matches %}
+        {% set winner = m.home_team if m.result == 'home_win' else (m.away_team if m.result == 'away_win' else None) %}
+        <a href="{{ url_for('matches.match_detail', match_id=m.match_id) }}" style="text-decoration:none;">
+          <div class="mq-match-card">
+            <span class="mq-match-card__stage">{{ m.stage }}</span>
+            <div class="mq-match-card__teams">
+              <div class="mq-match-card__team {% if m.result == 'home_win' %}text-primary font-bold{% endif %}">{{ m.home_team }}</div>
+              <div class="mq-match-card__score">{{ m.home_score | int }}–{{ m.away_score | int }}</div>
+              <div class="mq-match-card__team mq-match-card__team--away {% if m.result == 'away_win' %}text-primary font-bold{% endif %}">{{ m.away_team }}</div>
+            </div>
+            <div class="mq-match-card__meta">
+              <div>{{ m.date | string | truncate(10, True, '') }}</div>
+              <div style="font-size:11px;">{{ m.city }}</div>
+              <span class="mq-badge {% if m.result == 'draw' %}mq-badge--draw{% elif m.result == 'home_win' %}mq-badge--win{% else %}mq-badge--win{% endif %}">
+                {% if m.result == 'draw' %}Draw{% elif winner %}{{ winner }}{% endif %}
+              </span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+  <!-- List / Search results -->
+  {% elif matches %}
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    {% for m in matches %}
+    {% set winner = m.home_team if m.result == 'home_win' else (m.away_team if m.result == 'away_win' else None) %}
+    <a href="{{ url_for('matches.match_detail', match_id=m.match_id) }}" style="text-decoration:none;">
+      <div class="mq-match-card">
+        <span class="mq-match-card__stage">{{ m.stage }}</span>
+        <div class="mq-match-card__teams">
+          <div class="mq-match-card__team {% if m.result == 'home_win' %}text-primary font-bold{% endif %}">{{ m.home_team }}</div>
+          <div class="mq-match-card__score">{{ m.home_score | int }}–{{ m.away_score | int }}</div>
+          <div class="mq-match-card__team mq-match-card__team--away {% if m.result == 'away_win' %}text-primary font-bold{% endif %}">{{ m.away_team }}</div>
+        </div>
+        <div class="mq-match-card__meta">
+          <div>{{ m.date | string | truncate(10, True, '') }}</div>
+          <div style="font-size:11px;">{{ m.stadium }}</div>
+          <span class="mq-badge {% if m.result == 'draw' %}mq-badge--draw{% else %}mq-badge--win{% endif %}">
+            {% if m.result == 'draw' %}Draw{% elif winner %}{{ winner }} wins{% endif %}
+          </span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="mq-empty">
+    <span class="mq-empty__icon">🏟️</span>
+    <div class="mq-empty__title">No matches found</div>
+    <p>Try adjusting your filters or <a href="{{ url_for('matches.matches') }}" class="text-primary">reset all filters</a>.</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

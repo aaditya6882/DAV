@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">📋 Group Standings</h1>
+    <p class="mq-page-header__sub">FIFA World Cup 2022 — All 8 Groups</p>
+  </div>
+
+  {% if groups %}
+  <div class="mq-grid mq-grid--2" style="gap:24px;">
+    {% for group_name, rows in groups.items() %}
+    <div class="mq-card" style="padding:0;overflow:hidden;">
+      <div style="background:var(--color-primary);padding:12px 18px;display:flex;align-items:center;gap:10px;">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:800;color:#fff;">Group {{ group_name }}</span>
+      </div>
+      <div class="mq-table-wrap" style="border:none;box-shadow:none;border-radius:0;">
+        <table class="mq-table">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Team</th>
+              <th class="num">P</th>
+              <th class="num">W</th>
+              <th class="num">D</th>
+              <th class="num">L</th>
+              <th class="num">GF</th>
+              <th class="num">GA</th>
+              <th class="num">GD</th>
+              <th class="num">Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr {% if loop.index <= 2 %}style="background:rgba(138,21,56,.05);"{% endif %}>
+              <td>
+                {% if loop.index == 1 %}<span style="color:var(--color-gold);font-weight:700;">1</span>
+                {% elif loop.index == 2 %}<span style="color:var(--color-primary);font-weight:600;">2</span>
+                {% else %}<span style="color:var(--color-text-muted);">{{ loop.index }}</span>{% endif %}
+              </td>
+              <td>
+                <a href="{{ url_for('teams.team_detail', team_name=row.team) }}" style="font-weight:{% if loop.index <= 2 %}700{% else %}500{% endif %};color:{% if loop.index <= 2 %}var(--color-primary){% else %}var(--color-text){% endif %};text-decoration:none;">
+                  {{ row.team }}
+                </a>
+                {% if loop.index <= 2 %}
+                <span class="mq-badge mq-badge--primary" style="margin-left:4px;font-size:10px;">R16</span>
+                {% endif %}
+              </td>
+              <td class="num">{{ row.played }}</td>
+              <td class="num text-win">{{ row.won }}</td>
+              <td class="num text-draw">{{ row.drawn }}</td>
+              <td class="num text-loss">{{ row.lost }}</td>
+              <td class="num">{{ row.goals_for }}</td>
+              <td class="num">{{ row.goals_against }}</td>
+              <td class="num {% if row.goal_difference > 0 %}text-win{% elif row.goal_difference < 0 %}text-loss{% endif %}">
+                {% if row.goal_difference > 0 %}+{% endif %}{{ row.goal_difference }}
+              </td>
+              <td class="num"><strong {% if loop.index <= 2 %}class="highlight"{% endif %}>{{ row.points }}</strong></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mq-card" style="margin-top:24px;padding:16px 20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+    <div style="font-size:13px;color:var(--color-text-muted);">
+      <span class="mq-badge mq-badge--primary">R16</span> = Qualified for Round of 16
+      &nbsp;·&nbsp;
+      <span style="background:rgba(138,21,56,.05);padding:2px 6px;border-radius:4px;">Top 2</span> from each group advance
+    </div>
+    <a href="{{ url_for('analytics.analytics') }}" class="mq-btn mq-btn--outline mq-btn--sm" style="margin-left:auto;">View Analytics →</a>
+  </div>
+
+  {% else %}
+  <div class="mq-empty">
+    <span class="mq-empty__icon">📋</span>
+    <div class="mq-empty__title">Standings data unavailable</div>
+    <p style="color:var(--color-text-muted);">Ensure <code>data/raw/groups.csv</code> is present.</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

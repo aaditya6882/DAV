@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">🏅 Tournament Records</h1>
+    <p class="mq-page-header__sub">FIFA World Cup 2022 — All records derived from official match data</p>
+  </div>
+
+  <!-- Champion Banner -->
+  <div style="background:linear-gradient(90deg,#4C1024,#8A1538);border-radius:12px;padding:24px 28px;margin-bottom:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <span style="font-size:40px;">🏆</span>
+    <div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(200,164,93,.8);">World Champion 2022</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;">{{ records.champion }}</div>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:28px;flex-wrap:wrap;">
+      <div style="text-align:center;color:#fff;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;">Top Scorer</div>
+        <div style="font-weight:700;font-size:15px;">{{ records.top_scorer_name }}</div>
+        <div style="color:var(--color-gold);font-weight:800;font-size:22px;">{{ records.top_scorer_goals }} goals</div>
+      </div>
+      <div style="text-align:center;color:#fff;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;">Most Goals (Team)</div>
+        <div style="font-weight:700;font-size:15px;">{{ records.highest_scoring_team_name }}</div>
+        <div style="color:var(--color-gold);font-weight:800;font-size:22px;">{{ records.highest_scoring_team_goals }} goals</div>
+      </div>
+      <div style="text-align:center;color:#fff;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;">Avg Goals/Match</div>
+        <div style="color:var(--color-gold);font-weight:800;font-size:36px;">{{ records.avg_goals_per_match }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Scorers & Assists -->
+  <div class="mq-grid mq-grid--2" style="gap:20px;margin-bottom:32px;">
+    <div>
+      <h2 class="mq-section-title">⚽ Top Scorers</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Player</th><th>Team</th><th class="num">Goals</th><th class="num">Apps</th></tr></thead>
+          <tbody>
+            {% for p in top_scorers %}
+            <tr>
+              <td>{% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}</td>
+              <td><a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a></td>
+              <td style="font-size:13px;color:var(--color-text-muted);">{{ p.team }}</td>
+              <td class="num highlight"><strong>{{ p.goals }}</strong></td>
+              <td class="num">{{ p.matches_played }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mq-section-title">🎯 Top Assists</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Player</th><th>Team</th><th class="num">Assists</th></tr></thead>
+          <tbody>
+            {% for p in top_assists %}
+            <tr>
+              <td>{% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}</td>
+              <td><a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a></td>
+              <td style="font-size:13px;color:var(--color-text-muted);">{{ p.team }}</td>
+              <td class="num highlight"><strong>{{ p.assists }}</strong></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notable Matches -->
+  <div class="mq-grid mq-grid--2" style="gap:20px;margin-bottom:32px;">
+    <div>
+      <h2 class="mq-section-title">🔥 Highest Scoring Matches</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {% for m in top_matches %}
+        <a href="{{ url_for('matches.match_detail', match_id=m.match_id) }}" style="text-decoration:none;">
+          <div class="mq-match-card">
+            <span class="mq-match-card__stage">{{ m.stage }}</span>
+            <div class="mq-match-card__teams">
+              <div class="mq-match-card__team">{{ m.home_team }}</div>
+              <div class="mq-match-card__score">{{ m.home_score | int }}–{{ m.away_score | int }}</div>
+              <div class="mq-match-card__team mq-match-card__team--away">{{ m.away_team }}</div>
+            </div>
+            <div class="mq-match-card__meta">
+              <span class="mq-badge mq-badge--gold">{{ m.total_goals | int }} goals</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mq-section-title">⚡ Biggest Victories</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        {% for m in biggest_wins %}
+        <a href="{{ url_for('matches.match_detail', match_id=m.match_id) }}" style="text-decoration:none;">
+          <div class="mq-match-card">
+            <span class="mq-match-card__stage">{{ m.stage }}</span>
+            <div class="mq-match-card__teams">
+              <div class="mq-match-card__team {% if m.result == 'home_win' %}text-primary font-bold{% endif %}">{{ m.home_team }}</div>
+              <div class="mq-match-card__score">{{ m.home_score | int }}–{{ m.away_score | int }}</div>
+              <div class="mq-match-card__team mq-match-card__team--away {% if m.result == 'away_win' %}text-primary font-bold{% endif %}">{{ m.away_team }}</div>
+            </div>
+            <div class="mq-match-card__meta">
+              <span class="mq-badge mq-badge--primary">Δ{{ m.abs_diff | int }}</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Records -->
+  <div class="mq-grid mq-grid--2" style="gap:20px;margin-bottom:32px;">
+    <div>
+      <h2 class="mq-section-title">🛡️ Most Goals Scored (Teams)</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Team</th><th class="num">Goals</th><th class="num">Matches</th></tr></thead>
+          <tbody>
+            {% for t in team_goals[:10] %}
+            <tr>
+              <td style="color:var(--color-text-muted);">{{ loop.index }}</td>
+              <td><a href="{{ url_for('teams.team_detail', team_name=t.team) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ t.team }}</a></td>
+              <td class="num highlight"><strong>{{ t.goals_for }}</strong></td>
+              <td class="num">{{ t.played }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mq-section-title">🛡️ Best Defense (fewest conceded)</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Team</th><th class="num">Conceded</th><th class="num">Matches</th></tr></thead>
+          <tbody>
+            {% for t in best_defense[:10] %}
+            <tr>
+              <td style="color:var(--color-text-muted);">{{ loop.index }}</td>
+              <td><a href="{{ url_for('teams.team_detail', team_name=t.team) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ t.team }}</a></td>
+              <td class="num highlight"><strong>{{ t.goals_against }}</strong></td>
+              <td class="num">{{ t.played }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Venues -->
+  <h2 class="mq-section-title">🏟️ Most-Used Venues</h2>
+  <div class="mq-table-wrap" style="max-width:600px;">
+    <table class="mq-table">
+      <thead><tr><th>#</th><th>Stadium</th><th class="num">Matches</th></tr></thead>
+      <tbody>
+        {% for v in venues %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ v.stadium }}</td>
+          <td class="num highlight">{{ v.matches }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

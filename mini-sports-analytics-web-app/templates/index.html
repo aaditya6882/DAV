@@ -1,87 +1,317 @@
-{% extends "base.html" %} {% set active_tab = "index" %} {% block title %}Home |
-World Cup 2022{% endblock %} {% block content %}
-<section class="home-hero">
-  <div>
-    <p class="home-kicker">FIFA World Cup 2022</p>
-    <h1>A closer look <br />at the matches that mattered.</h1>
-    <p class="home-lede">
-      This dashboard turns 64 World Cup fixtures into a simple place to explore
-      results, goals, teams, and venues.
-    </p>
-    <div class="home-actions">
-      <a class="home-primary" href="{{ url_for('main.visualizations') }}"
-        >View visualizations <span>&rarr;</span></a
-      >
-      <a class="home-secondary" href="{{ url_for('main.statistics_page') }}"
-        >Browse team statistics</a
-      >
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero -->
+<section class="mq-hero">
+  <div class="mq-hero__content">
+    <p class="mq-hero__eyebrow">FIFA World Cup 2022 · Qatar</p>
+    <h1 class="mq-hero__title" style="display:flex;align-items:center;gap:16px;">
+      QFIFA
+    </h1>
+    <p class="mq-hero__tagline">Turn football data into insights.</p>
+    <div class="mq-hero__actions">
+      <a href="{{ url_for('matches.matches') }}" class="mq-btn mq-btn--gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+        View Matches
+      </a>
+      <a href="{{ url_for('predict.predict_page') }}" class="mq-btn mq-btn--primary">
+        🎯 Predict Match
+      </a>
+      <a href="{{ url_for('analytics.analytics') }}" class="mq-btn" style="background:rgba(255,255,255,.12);color:#fff;">
+        Analytics
+      </a>
+    </div>
+
+    <!-- Hero KPIs -->
+    <div class="mq-hero__kpis">
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.total_matches }}</span>
+        <span class="mq-hero__kpi-label">Matches</span>
+      </div>
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.total_goals }}</span>
+        <span class="mq-hero__kpi-label">Total Goals</span>
+      </div>
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.total_teams }}</span>
+        <span class="mq-hero__kpi-label">Teams</span>
+      </div>
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.total_players }}</span>
+        <span class="mq-hero__kpi-label">Players</span>
+      </div>
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.avg_goals }}</span>
+        <span class="mq-hero__kpi-label">Avg Goals/Match</span>
+      </div>
+      <div class="mq-hero__kpi">
+        <span class="mq-hero__kpi-value">{{ kpi.total_stadiums }}</span>
+        <span class="mq-hero__kpi-label">Venues</span>
+      </div>
     </div>
   </div>
-  <aside class="home-note">
-    <p>Dataset snapshot</p>
-    <dl>
-      <div>
-        <dt>{{ summary.n_matches }}</dt>
-        <dd>matches played</dd>
-      </div>
-      <div>
-        <dt>{{ summary.n_teams }}</dt>
-        <dd>national teams</dd>
-      </div>
-      <div>
-        <dt>{{ summary.total_goals_scored }}</dt>
-        <dd>goals scored</dd>
-      </div>
-      <div>
-        <dt>{{ summary.avg_goals_per_match }}</dt>
-        <dd>goals per match</dd>
-      </div>
-    </dl>
-    <small>From the opening match to the final in Qatar.</small>
-  </aside>
 </section>
 
-<section class="home-section">
-  <div class="home-heading">
-    <p class="home-kicker">Start exploring</p>
-    <h2>Choose the question you want to answer.</h2>
-  </div>
-  <div class="home-links">
-    <a href="{{ url_for('main.visualizations') }}"
-      ><span>01</span>
-      <h3>See the patterns</h3>
-      <p>
-        Read scoring, results, stadium use, and host-city distribution through
-        charts.
-      </p>
-      <b>Open visualizations &rarr;</b></a
-    >
-    <a href="{{ url_for('main.eda_page') }}"
-      ><span>02</span>
-      <h3>Inspect the data</h3>
-      <p>
-        Review match outcomes, date coverage, and unusually high-scoring games.
-      </p>
-      <b>Open EDA &rarr;</b></a
-    >
-    <a href="{{ url_for('main.statistics_page') }}"
-      ><span>03</span>
-      <h3>Compare teams</h3>
-      <p>Check points, wins, goals for, goals against, and goal difference.</p>
-      <b>Open statistics &rarr;</b></a
-    >
-  </div>
-</section>
+<div class="mq-container" style="padding-top:36px;padding-bottom:48px;">
 
-<section class="home-context">
-  <div>
-    <p class="home-kicker">About this project</p>
-    <h2>Built to make sports data easier to read.</h2>
+  <!-- Champion Banner -->
+  {% if records.champion %}
+  <div style="background:linear-gradient(90deg,#4C1024,#8A1538);border-radius:12px;padding:20px 28px;margin-bottom:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <span style="font-size:28px;">🏆</span>
+    <div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(200,164,93,.8);">World Champion</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;color:#fff;">{{ records.champion }}</div>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:28px;flex-wrap:wrap;">
+      <div style="text-align:center;color:#fff;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;">Top Scorer</div>
+        <div style="font-weight:600;font-size:14px;">{{ records.top_scorer_name }}</div>
+        <div style="color:var(--color-gold);font-weight:700;font-size:18px;">{{ records.top_scorer_goals }} goals</div>
+      </div>
+      <div style="text-align:center;color:#fff;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;">Highest Scorer</div>
+        <div style="font-weight:600;font-size:14px;">{{ records.highest_scoring_team_name }}</div>
+        <div style="color:var(--color-gold);font-weight:700;font-size:18px;">{{ records.highest_scoring_team_goals }} goals</div>
+      </div>
+    </div>
   </div>
-  <p>
-    The application cleans the raw match file, calculates core football metrics,
-    and presents the results with Flask, Pandas, Matplotlib, and Seaborn. It is
-    designed as a practical analytics project rather than a prediction tool.
-  </p>
-</section>
+  {% endif %}
+
+  <div class="mq-grid mq-grid--2" style="gap:24px;margin-bottom:40px;">
+
+    <!-- Featured Match -->
+    {% if featured %}
+    <div>
+      <h2 class="mq-section-title">🏟️ The Final</h2>
+      <div class="mq-featured">
+        <div class="mq-featured__label">FIFA World Cup 2022 — {{ featured.stage }}</div>
+        <div class="mq-featured__score">
+          <div class="mq-featured__team">
+            <div class="mq-featured__team-name">{{ featured.home_team }}</div>
+          </div>
+          <div class="mq-featured__scoreline">{{ featured.home_score }}–{{ featured.away_score }}</div>
+          <div class="mq-featured__team">
+            <div class="mq-featured__team-name mq-featured__team-name--away">{{ featured.away_team }}</div>
+          </div>
+        </div>
+        <div class="mq-featured__meta">
+          📅 {{ featured.date }} &nbsp;·&nbsp; 🏟️ {{ featured.venue }}, {{ featured.city }}
+        </div>
+        <div style="margin-top:16px;">
+          <a href="{{ url_for('matches.match_detail', match_id=featured.match_id) }}" class="mq-btn mq-btn--sm" style="background:rgba(255,255,255,.15);color:#fff;">View Details →</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Did You Know -->
+    <div>
+      <h2 class="mq-section-title">💡 Did You Know?</h2>
+      <div class="mq-card mq-fact-card" id="mq-fact-card">
+        <div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--color-gold); margin-bottom:8px;">
+            World Cup Fact
+          </div>
+          {% for fact in facts %}
+          <div class="mq-fact-item {% if loop.first %}active{% endif %}">
+            "{{ fact }}"
+          </div>
+          {% endfor %}
+        </div>
+        <div style="margin-top:20px; display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; gap:6px; align-items:center;" id="fact-dots">
+            {% for fact in facts %}
+            <button class="mq-fact-dot {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}" aria-label="Fact {{ loop.index }}"></button>
+            {% endfor %}
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="mq-fact-nav-btn" id="mq-fact-prev" aria-label="Previous fact">‹</button>
+            <button class="mq-fact-nav-btn" id="mq-fact-next" aria-label="Next fact">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tournament Highlights -->
+  <h2 class="mq-section-title">📊 Tournament Highlights</h2>
+  <div class="mq-grid mq-grid--4" style="margin-bottom:40px;">
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">🏆</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Champion</div>
+        <div class="mq-kpi__value" style="font-size:18px;">{{ records.champion }}</div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">⚽</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Top Scorer</div>
+        <div class="mq-kpi__value" style="font-size:16px;">{{ records.top_scorer_name }}</div>
+        <div class="mq-kpi__sub">{{ records.top_scorer_goals }} goals · {{ records.top_scorer_team }}</div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">🎯</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Highest Scoring Match</div>
+        <div class="mq-kpi__value" style="font-size:16px;">{{ records.highest_scoring_match | truncate(30) }}</div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">🔥</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Biggest Victory</div>
+        <div class="mq-kpi__value" style="font-size:14px;">{{ records.biggest_victory }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIFA World Cup Qatar 2022 Overview Section -->
+  <section class="mq-qatar-overview" style="margin-bottom:48px;">
+    <div style="background: linear-gradient(135deg, rgba(138, 21, 56, 0.08) 0%, rgba(200, 164, 93, 0.08) 100%); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; position: relative; overflow: hidden;">
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px; border-bottom:1px solid var(--color-border); padding-bottom:20px;">
+        <div>
+          <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-gold);">Tournament Story & Legacy</div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; color: var(--color-text); margin: 4px 0 0 0;">
+            🇶🇦 FIFA World Cup Qatar 2022™ Overview
+          </h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <span style="background:var(--color-primary); color:#fff; font-weight:600; padding:6px 14px; border-radius:20px; font-size:13px;">Nov 20 – Dec 18, 2022</span>
+          <span style="background:var(--color-gold); color:#111; font-weight:700; padding:6px 14px; border-radius:20px; font-size:13px;">32 Nations · 64 Matches</span>
+        </div>
+      </div>
+
+      <div class="mq-grid mq-grid--2" style="gap:32px; align-items:start;">
+        <div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:19px; font-weight:700; color:var(--color-text); margin-bottom:12px;">
+            A Historic Tournament in the Middle East
+          </h3>
+          <p style="color:var(--color-text-muted); font-size:15px; line-height:1.7; margin-bottom:16px;">
+            The <strong>2022 FIFA World Cup</strong> in <strong>Qatar</strong> was the 22nd edition of the world's most prestigious football tournament. It made history as the <strong>first FIFA World Cup ever hosted in the Arab World and Middle East</strong>, and the first held in November–December to provide optimal playing temperatures.
+          </p>
+          <p style="color:var(--color-text-muted); font-size:15px; line-height:1.7; margin-bottom:20px;">
+            32 national teams competed across 64 matches in 8 architectural masterpiece stadiums. Qatar 2022 set an all-time tournament record with <strong>172 total goals scored</strong> (avg. 2.69 goals/match), delivering unprecedented excitement to over 3.4 million live spectators and billions of worldwide viewers.
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:14px; margin-top:20px;">
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+              <div style="font-size:22px; font-weight:800; color:var(--color-primary);">172</div>
+              <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; font-weight:700; margin-top:4px;">Record Goals</div>
+            </div>
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+              <div style="font-size:22px; font-weight:800; color:var(--color-gold);">3.4M+</div>
+              <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; font-weight:700; margin-top:4px;">Live Spectators</div>
+            </div>
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+              <div style="font-size:22px; font-weight:800; color:var(--color-win);">8</div>
+              <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; font-weight:700; margin-top:4px;">State-of-art Venues</div>
+            </div>
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+              <div style="font-size:22px; font-weight:800; color:var(--color-info);">55 km</div>
+              <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; font-weight:700; margin-top:4px;">Max Radius</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:19px; font-weight:700; color:var(--color-text); margin-bottom:16px;">
+            Unforgettable Stories & Milestones
+          </h3>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; display:flex; gap:14px; align-items:start;">
+              <span style="font-size:24px; line-height:1;">👑</span>
+              <div>
+                <strong style="color:var(--color-text); font-size:14px; display:block;">Argentina's 3rd World Cup Crown</strong>
+                <span style="color:var(--color-text-muted); font-size:13px; line-height:1.5; display:block; margin-top:2px;">
+                  Lionel Messi captained Argentina to glory in a legendary Final (3–3 AET, 4–2 pen vs France), earning his first World Cup trophy and 2nd Golden Ball.
+                </span>
+              </div>
+            </div>
+
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; display:flex; gap:14px; align-items:start;">
+              <span style="font-size:24px; line-height:1;">🇲🇦</span>
+              <div>
+                <strong style="color:var(--color-text); font-size:14px; display:block;">Morocco's Historic Semi-Final Run</strong>
+                <span style="color:var(--color-text-muted); font-size:13px; line-height:1.5; display:block; margin-top:2px;">
+                  The Atlas Lions became the first African and Arab country to reach the World Cup semi-finals, knocking out Spain and Portugal.
+                </span>
+              </div>
+            </div>
+
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; display:flex; gap:14px; align-items:start;">
+              <span style="font-size:24px; line-height:1;">👟</span>
+              <div>
+                <strong style="color:var(--color-text); font-size:14px; display:block;">Kylian Mbappé's Golden Boot</strong>
+                <span style="color:var(--color-text-muted); font-size:13px; line-height:1.5; display:block; margin-top:2px;">
+                  France's Mbappé scored 8 goals in the tournament, including a dramatic hat-trick in the Final, winning the Golden Boot.
+                </span>
+              </div>
+            </div>
+
+            <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; display:flex; gap:14px; align-items:start;">
+              <span style="font-size:24px; line-height:1;">⚡</span>
+              <div>
+                <strong style="color:var(--color-text); font-size:14px; display:block;">Cutting-Edge Innovations</strong>
+                <span style="color:var(--color-text-muted); font-size:13px; line-height:1.5; display:block; margin-top:2px;">
+                  Introduced Semi-Automated Offside Technology (SAOT) with connected match balls, solar pitch-cooling, and demountable modular stadiums (Stadium 974).
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stadium Showcase Pills -->
+      <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--color-border);">
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--color-gold); margin-bottom:12px;">
+          The 8 World Cup Stadiums
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🏟️ <strong>Lusail Stadium</strong> (88,966)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">⛺ <strong>Al Bayt Stadium</strong> (68,895)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🚢 <strong>Stadium 974</strong> (44,089)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🎓 <strong>Education City Stadium</strong> (44,667)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🦁 <strong>Ahmad Bin Ali Stadium</strong> (45,032)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🧢 <strong>Al Thumama Stadium</strong> (44,400)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">🏃 <strong>Khalifa International Stadium</strong> (45,857)</span>
+          <span style="background:var(--color-surface); border:1px solid var(--color-border); padding:6px 14px; border-radius:20px; font-size:13px; color:var(--color-text);">⛵ <strong>Al Janoub Stadium</strong> (44,325)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick Navigation -->
+  <h2 class="mq-section-title">🔗 Explore</h2>
+  <div class="mq-grid mq-grid--auto" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-bottom:40px;">
+    {% set nav_items = [
+      ('matches.matches', '🏟️', 'Matches', 'All 64 matches with filters, stage grouping, and details.'),
+      ('teams.teams', '🛡️', 'Teams', '32 teams with stats, group info, and tournament journeys.'),
+      ('players.players', '👤', 'Players', '832 players with goals, assists, and rankings.'),
+      ('standings.standings', '📋', 'Standings', 'All 8 group standings for the 2022 tournament.'),
+      ('analytics.analytics', '📈', 'Analytics', 'Interactive charts for goals, teams, venues, and players.'),
+      ('predict.predict_page', '🎯', 'Match Predictor', 'Simulate future fixtures with Poisson xG & player impact modeling.'),
+      ('compare.compare', '⚖️', 'Compare', 'Compare teams or players side by side.'),
+      ('records.records', '🏅', 'Records', 'Top scorers, highest matches, biggest wins.'),
+    ] %}
+    {% for endpoint, icon, title, desc in nav_items %}
+    <a href="{{ url_for(endpoint) }}" class="mq-card" style="display:block;text-decoration:none;transition:box-shadow .16s,border-color .16s;">
+      <div style="font-size:24px;margin-bottom:10px;">{{ icon }}</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--color-text);margin-bottom:6px;">{{ title }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">{{ desc }}</div>
+    </a>
+    {% endfor %}
+  </div>
+
+</div>
+
+<style>
+.mq-card:hover { box-shadow:var(--shadow-md); border-color:var(--color-primary); }
+</style>
+
 {% endblock %}
+

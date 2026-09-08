@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block content %}
+{% set d = detail %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <!-- Breadcrumb -->
+  <nav style="font-size:13px;color:var(--color-text-muted);margin-bottom:20px;">
+    <a href="{{ url_for('teams.teams') }}" class="text-primary">Teams</a>
+    <span style="margin:0 6px;">›</span>
+    <span>{{ d.team_name }}</span>
+  </nav>
+
+  <!-- Team Header -->
+  <div style="background:linear-gradient(135deg,var(--color-primary-dark),#1A0A14);border-radius:16px;padding:32px;margin-bottom:28px;color:#fff;">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;flex-shrink:0;font-family:'Space Grotesk',sans-serif;">
+        {{ d.team_name[:2].upper() }}
+      </div>
+      <div style="flex:1;">
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,4vw,36px);font-weight:800;color:#fff;margin:0;">{{ d.team_name }}</h1>
+        <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;">
+          {% if d.group and d.group != '—' %}
+          <span class="mq-badge mq-badge--gold">Group {{ d.group }}</span>
+          {% endif %}
+          <span style="font-size:13px;color:rgba(255,255,255,.6);">{{ d.played }} matches played</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:800;color:var(--color-gold);">{{ d.points }}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;">Points</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="mq-grid mq-grid--6" style="gap:12px;margin-bottom:28px;">
+    {% set stats = [
+      ('Played', d.played, ''),
+      ('Wins', d.wins, 'text-win'),
+      ('Draws', d.draws, 'text-draw'),
+      ('Losses', d.losses, 'text-loss'),
+      ('Goals For', d.goals_for, 'text-primary'),
+      ('Goals Against', d.goals_against, ''),
+    ] %}
+    {% for label, val, cls in stats %}
+    <div class="mq-card" style="text-align:center;padding:16px;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;" class="{{ cls }}">{{ val }}</div>
+      <div style="font-size:11px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.4px;">{{ label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- GD and Win Rate Row -->
+  <div class="mq-grid mq-grid--2" style="gap:16px;margin-bottom:28px;">
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">⚡</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Goal Difference</div>
+        <div class="mq-kpi__value {% if d.goal_difference > 0 %}text-win{% elif d.goal_difference < 0 %}text-loss{% endif %}">
+          {% if d.goal_difference > 0 %}+{% endif %}{{ d.goal_difference }}
+        </div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">📊</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Win Rate</div>
+        <div class="mq-kpi__value">{{ d.win_rate }}%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tournament Journey -->
+  {% if d.journey %}
+  <div class="mq-section">
+    <h2 class="mq-section-title">🗺️ Tournament Journey</h2>
+    <div class="mq-journey">
+      {% for stage in d.journey %}
+      <div class="mq-journey__step {% if loop.last %}mq-journey__step--champion{% else %}mq-journey__step--reached{% endif %}">
+        <div class="mq-journey__label">{{ stage }}</div>
+      </div>
+      {% if not loop.last %}
+      <div class="mq-journey__arrow">→</div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Match History -->
+  {% if d.matches %}
+  <div class="mq-section">
+    <h2 class="mq-section-title">📅 Match History</h2>
+    <div class="mq-table-wrap">
+      <table class="mq-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Stage</th>
+            <th>Opponent</th>
+            <th class="num">GF</th>
+            <th class="num">GA</th>
+            <th class="num">GD</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in d.matches %}
+          <tr>
+            <td style="color:var(--color-text-muted);font-size:13px;">{{ r.date }}</td>
+            <td><span class="mq-badge mq-badge--primary">{{ r.stage }}</span></td>
+            <td>
+              <a href="{{ url_for('teams.team_detail', team_name=r.opponent) }}" style="color:var(--color-primary);font-weight:600;text-decoration:none;">{{ r.opponent }}</a>
+              &nbsp;
+              <a href="{{ url_for('matches.match_detail', match_id=r.match_id) }}" style="color:var(--color-text-muted);font-size:12px;">({{ r.home_team }} {{ r.home_score }}-{{ r.away_score }} {{ r.away_team }})</a>
+            </td>
+            <td class="num {% if r.outcome == 'Win' %}text-win{% endif %}">{{ r.goals_for }}</td>
+            <td class="num {% if r.outcome == 'Loss' %}text-loss{% endif %}">{{ r.goals_against }}</td>
+            <td class="num {% if r.goal_diff > 0 %}text-win{% elif r.goal_diff < 0 %}text-loss{% endif %}">
+              {% if r.goal_diff > 0 %}+{% endif %}{{ r.goal_diff }}
+            </td>
+            <td>
+              <span class="mq-badge {% if r.outcome == 'Win' %}mq-badge--win{% elif r.outcome == 'Draw' %}mq-badge--draw{% else %}mq-badge--loss{% endif %}">
+                {{ r.outcome }}
+              </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Actions -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="{{ url_for('compare.compare') }}?mode=team&team_a={{ d.team_name | urlencode }}" class="mq-btn mq-btn--primary">Compare This Team</a>
+    <a href="{{ url_for('teams.teams') }}" class="mq-btn mq-btn--outline">← All Teams</a>
+  </div>
+
+</div>
+{% endblock %}

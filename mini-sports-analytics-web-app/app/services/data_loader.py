@@ -5,11 +5,16 @@ Data Layer — Data Engineer role.
 Responsible ONLY for reading raw data off disk and knowing where files
 live. Contains no cleaning or business logic (that belongs to
 preprocessing.py / eda.py / statistics.py).
+
+Caching: DataFrames are cached in module-level dict after first load
+so repeated calls within the same process do not re-read CSV files.
 """
 
 import os
 import pandas as pd
 from flask import current_app
+
+_CACHE: dict = {}
 
 
 def get_file_paths():
@@ -111,12 +116,21 @@ def load_processed_data(path=None):
     """
     Load cleaned dataset from data/processed/. Falls back to cleaning
     the raw data on the fly if a processed file does not yet exist.
+    Results are cached in memory for the lifetime of the process.
     """
     if path is None:
         path = current_app.config["PROCESSED_DATA_FILE"]
 
+    if path in _CACHE:
+        return _CACHE[path]
+
     if os.path.exists(path):
-        return pd.read_csv(path, parse_dates=["date"])
+        df = pd.read_csv(path, parse_dates=["date"])
+        # Add match_id if missing
+        if "match_id" not in df.columns:
+            df.insert(0, "match_id", range(1, len(df) + 1))
+        _CACHE[path] = df
+        return df
 
     # Lazy import to avoid a circular import between data_loader and
     # preprocessing at module load time.
@@ -125,4 +139,8 @@ def load_processed_data(path=None):
     raw_df = load_raw_data()
     clean_df = clean_data(raw_df)
     save_processed_data(clean_df)
+    if "match_id" not in clean_df.columns:
+        clean_df.insert(0, "match_id", range(1, len(clean_df) + 1))
+    _CACHE[path] = clean_df
     return clean_df
+

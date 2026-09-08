@@ -1,36 +1,92 @@
 {% extends "base.html" %}
-{% set active_tab = "teams" %}
-{% block title %}Team Standings · World Cup 2022{% endblock %}
-
 {% block content %}
-<section>
-  <h2 class="section-title">Full Team Standings</h2>
-  <div class="table-wrap">
-    <table>
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">🛡️ Teams</h1>
+    <p class="mq-page-header__sub">{{ total }} teams · FIFA World Cup 2022</p>
+  </div>
+
+  <!-- Filters -->
+  <form method="GET" action="{{ url_for('teams.teams') }}" class="mq-auto-submit">
+    <div class="mq-filter-bar">
+      <div class="mq-search-input-wrap" style="min-width:200px;flex:1;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="mq-input" name="q" value="{{ filters.q }}" placeholder="Search teams…" autocomplete="off" />
+      </div>
+      <select class="mq-select" name="group">
+        <option value="all">All Groups</option>
+        {% for g in groups %}
+        <option value="{{ g }}" {% if filters.group == g %}selected{% endif %}>Group {{ g }}</option>
+        {% endfor %}
+      </select>
+      <select class="mq-select" name="sort">
+        <option value="points_desc" {% if filters.sort == 'points_desc' %}selected{% endif %}>Points ↓</option>
+        <option value="goals_desc" {% if filters.sort == 'goals_desc' %}selected{% endif %}>Goals ↓</option>
+        <option value="gd_desc" {% if filters.sort == 'gd_desc' %}selected{% endif %}>Goal Diff ↓</option>
+        <option value="wins_desc" {% if filters.sort == 'wins_desc' %}selected{% endif %}>Wins ↓</option>
+        <option value="name_asc" {% if filters.sort == 'name_asc' %}selected{% endif %}>Name A-Z</option>
+      </select>
+      <button type="submit" class="mq-btn mq-btn--primary">Filter</button>
+      <a href="{{ url_for('teams.teams') }}" class="mq-btn mq-btn--outline">Reset</a>
+    </div>
+  </form>
+
+  <!-- Teams Table -->
+  {% if teams %}
+  <div class="mq-table-wrap">
+    <table class="mq-table">
       <thead>
         <tr>
-          <th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+          <th>#</th>
+          <th>Team</th>
+          <th>Group</th>
+          <th class="num">P</th>
+          <th class="num">W</th>
+          <th class="num">D</th>
+          <th class="num">L</th>
+          <th class="num">GF</th>
+          <th class="num">GA</th>
+          <th class="num">GD</th>
+          <th class="num">Pts</th>
         </tr>
       </thead>
       <tbody>
-        {% for row in team_stats %}
+        {% for t in teams %}
         <tr>
-          <td>{{ loop.index }}</td>
-          <td>{{ row.team }}</td>
-          <td>{{ row.played }}</td>
-          <td>{{ row.wins }}</td>
-          <td>{{ row.draws }}</td>
-          <td>{{ row.losses }}</td>
-          <td>{{ row.goals_for }}</td>
-          <td>{{ row.goals_against }}</td>
-          <td>{{ row.goal_difference }}</td>
-          <td>{{ row.points }}</td>
+          <td style="color:var(--color-text-muted);font-size:13px;">{{ loop.index }}</td>
+          <td>
+            <a href="{{ url_for('teams.team_detail', team_name=t.team) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">
+              {{ t.team }}
+            </a>
+          </td>
+          <td>
+            {% if t.group and t.group != '—' %}
+            <span class="mq-badge mq-badge--info">Group {{ t.group }}</span>
+            {% else %}—{% endif %}
+          </td>
+          <td class="num">{{ t.played }}</td>
+          <td class="num text-win">{{ t.wins }}</td>
+          <td class="num text-draw">{{ t.draws }}</td>
+          <td class="num text-loss">{{ t.losses }}</td>
+          <td class="num">{{ t.goals_for }}</td>
+          <td class="num">{{ t.goals_against }}</td>
+          <td class="num {% if t.goal_difference > 0 %}text-win{% elif t.goal_difference < 0 %}text-loss{% endif %}">
+            {% if t.goal_difference > 0 %}+{% endif %}{{ t.goal_difference }}
+          </td>
+          <td class="num highlight">{{ t.points }}</td>
         </tr>
-        {% else %}
-        <tr><td colspan="10">No team data available.</td></tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-</section>
+  {% else %}
+  <div class="mq-empty">
+    <span class="mq-empty__icon">🛡️</span>
+    <div class="mq-empty__title">No teams found</div>
+    <p><a href="{{ url_for('teams.teams') }}" class="text-primary">Reset filters</a></p>
+  </div>
+  {% endif %}
+
+</div>
 {% endblock %}

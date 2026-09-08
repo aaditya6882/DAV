@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% set active_tab = "visualizations" %} {% block title
 %}Visualizations · FIFA World Cup 2022{% endblock %} {% block extra_head %}
-<link rel="stylesheet" href="{{ url_for('main.template_css', filename='visualizations.css') }}" />
+<link rel="stylesheet" href="{{ url_for('datalab.template_css', filename='visualizations.css') }}" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %} {% block content %}
 <div class="viz-page">
@@ -18,7 +18,7 @@
       </p>
       <div class="viz-hero-actions">
         <a href="#section-matches" class="viz-btn viz-btn--primary">Browse Charts ↓</a>
-        <a href="{{ url_for('main.statistics_page') }}" class="viz-btn viz-btn--ghost">Team Statistics →</a>
+        <a href="{{ url_for('datalab.statistics_page') }}" class="viz-btn viz-btn--ghost">Team Statistics →</a>
       </div>
     </div>
     <!-- Dataset summary pills -->
@@ -283,8 +283,8 @@
       <p>Explore team statistics, EDA summaries, and group-stage tables.</p>
     </div>
     <div class="viz-cta-links">
-      <a href="{{ url_for('main.statistics_page') }}" class="viz-btn viz-btn--primary">Team Statistics</a>
-      <a href="{{ url_for('main.eda_page') }}" class="viz-btn viz-btn--ghost">EDA Report</a>
+      <a href="{{ url_for('datalab.statistics_page') }}" class="viz-btn viz-btn--primary">Team Statistics</a>
+      <a href="{{ url_for('datalab.eda_page') }}" class="viz-btn viz-btn--ghost">EDA Report</a>
     </div>
   </div>
 </div>

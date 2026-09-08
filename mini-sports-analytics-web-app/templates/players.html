@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">👤 Players</h1>
+    <p class="mq-page-header__sub">{{ total }} players · FIFA World Cup 2022</p>
+  </div>
+
+  <!-- Tabs -->
+  <div data-tabs>
+    <div class="mq-tabs">
+      <button class="mq-tab {% if filters.tab == 'all' or not filters.tab %}active{% endif %}" data-tab="all">All Players</button>
+      <button class="mq-tab {% if filters.tab == 'scorers' %}active{% endif %}" data-tab="scorers">⚽ Top Scorers</button>
+      <button class="mq-tab {% if filters.tab == 'assists' %}active{% endif %}" data-tab="assists">🎯 Top Assists</button>
+      <button class="mq-tab {% if filters.tab == 'appearances' %}active{% endif %}" data-tab="appearances">📋 Appearances</button>
+    </div>
+
+    <!-- ALL PLAYERS -->
+    <div data-tab-content="all" {% if filters.tab and filters.tab != 'all' %}class="hidden"{% endif %}>
+      <!-- Filters -->
+      <form method="GET" action="{{ url_for('players.players') }}" class="mq-auto-submit">
+        <input type="hidden" name="tab" value="all" />
+        <div class="mq-filter-bar">
+          <div class="mq-search-input-wrap" style="min-width:200px;flex:1;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="mq-input" name="q" value="{{ filters.q }}" placeholder="Search players…" autocomplete="off" />
+          </div>
+          <select class="mq-select" name="team">
+            <option value="all">All Teams</option>
+            {% for t in teams %}
+            <option value="{{ t }}" {% if filters.team == t %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+          </select>
+          {% if positions %}
+          <select class="mq-select" name="position">
+            <option value="all">All Positions</option>
+            {% for p in positions %}
+            <option value="{{ p }}" {% if filters.position == p %}selected{% endif %}>{{ p | title }}</option>
+            {% endfor %}
+          </select>
+          {% endif %}
+          <select class="mq-select" name="sort">
+            <option value="goals_desc" {% if filters.sort == 'goals_desc' %}selected{% endif %}>Goals ↓</option>
+            <option value="assists_desc" {% if filters.sort == 'assists_desc' %}selected{% endif %}>Assists ↓</option>
+            <option value="appearances_desc" {% if filters.sort == 'appearances_desc' %}selected{% endif %}>Appearances ↓</option>
+            <option value="involvement_desc" {% if filters.sort == 'involvement_desc' %}selected{% endif %}>Involvement ↓</option>
+            <option value="name_asc" {% if filters.sort == 'name_asc' %}selected{% endif %}>Name A-Z</option>
+          </select>
+          <button type="submit" class="mq-btn mq-btn--primary">Filter</button>
+          <a href="{{ url_for('players.players') }}" class="mq-btn mq-btn--outline">Reset</a>
+        </div>
+      </form>
+
+      <!-- Players Table -->
+      {% if players %}
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Team</th>
+              <th>Position</th>
+              <th class="num">Apps</th>
+              <th class="num">Starts</th>
+              <th class="num">Goals</th>
+              <th class="num">Assists</th>
+              <th class="num">G+A</th>
+              <th class="num">G/M</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in players[:100] %}
+            <tr>
+              <td style="color:var(--color-text-muted);font-size:13px;">{{ loop.index }}</td>
+              <td>
+                <a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a>
+              </td>
+              <td>
+                <a href="{{ url_for('teams.team_detail', team_name=p.team) }}" style="color:var(--color-text-muted);font-size:13px;text-decoration:none;">{{ p.team }}</a>
+              </td>
+              <td style="font-size:13px;">
+                {% if p.position %}<span class="mq-badge mq-badge--info">{{ p.position | title }}</span>{% else %}—{% endif %}
+              </td>
+              <td class="num">{{ p.matches_played }}</td>
+              <td class="num">{{ p.matches_started }}</td>
+              <td class="num {% if p.goals > 0 %}highlight{% endif %}"><strong>{{ p.goals }}</strong></td>
+              <td class="num">{{ p.assists }}</td>
+              <td class="num">{{ p.goal_involvement }}</td>
+              <td class="num" style="font-size:12px;color:var(--color-text-muted);">{{ p.goals_per_match }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% if players | length > 100 %}
+      <p style="margin-top:12px;font-size:13px;color:var(--color-text-muted);">Showing top 100 results. Use search or filters to narrow down.</p>
+      {% endif %}
+      {% else %}
+      <div class="mq-empty">
+        <span class="mq-empty__icon">👤</span>
+        <div class="mq-empty__title">No players found</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- TOP SCORERS TAB -->
+    <div data-tab-content="scorers" {% if filters.tab != 'scorers' %}class="hidden"{% endif %}>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin:16px 0;">⚽ Top Scorers</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Player</th><th>Team</th><th class="num">Goals</th><th class="num">Apps</th><th class="num">G/Match</th></tr></thead>
+          <tbody>
+            {% for p in rankings.top_scorers %}
+            <tr>
+              <td>
+                {% if loop.index == 1 %}<span style="font-size:18px;">🥇</span>
+                {% elif loop.index == 2 %}<span style="font-size:18px;">🥈</span>
+                {% elif loop.index == 3 %}<span style="font-size:18px;">🥉</span>
+                {% else %}<span style="color:var(--color-text-muted);">{{ loop.index }}</span>{% endif %}
+              </td>
+              <td><a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a></td>
+              <td style="color:var(--color-text-muted);font-size:13px;">{{ p.team }}</td>
+              <td class="num highlight"><strong>{{ p.goals }}</strong></td>
+              <td class="num">{{ p.matches_played }}</td>
+              <td class="num" style="font-size:12px;color:var(--color-text-muted);">{{ p.goals_per_match }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TOP ASSISTS TAB -->
+    <div data-tab-content="assists" {% if filters.tab != 'assists' %}class="hidden"{% endif %}>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin:16px 0;">🎯 Top Assists</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Player</th><th>Team</th><th class="num">Assists</th><th class="num">Goals</th><th class="num">G+A</th></tr></thead>
+          <tbody>
+            {% for p in rankings.top_assists %}
+            <tr>
+              <td>{% if loop.index <= 3 %}<span style="font-size:18px;">{{ ['🥇','🥈','🥉'][loop.index-1] }}</span>{% else %}<span style="color:var(--color-text-muted);">{{ loop.index }}</span>{% endif %}</td>
+              <td><a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a></td>
+              <td style="color:var(--color-text-muted);font-size:13px;">{{ p.team }}</td>
+              <td class="num highlight"><strong>{{ p.assists }}</strong></td>
+              <td class="num">{{ p.goals }}</td>
+              <td class="num">{{ p.goal_involvement }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- APPEARANCES TAB -->
+    <div data-tab-content="appearances" {% if filters.tab != 'appearances' %}class="hidden"{% endif %}>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin:16px 0;">📋 Most Appearances</h2>
+      <div class="mq-table-wrap">
+        <table class="mq-table">
+          <thead><tr><th>#</th><th>Player</th><th>Team</th><th class="num">Apps</th><th class="num">Starts</th><th class="num">Goals</th></tr></thead>
+          <tbody>
+            {% for p in rankings.most_appearances %}
+            <tr>
+              <td>{% if loop.index <= 3 %}<span style="font-size:18px;">{{ ['🥇','🥈','🥉'][loop.index-1] }}</span>{% else %}<span style="color:var(--color-text-muted);">{{ loop.index }}</span>{% endif %}</td>
+              <td><a href="{{ url_for('players.player_detail', player_id=p.player_id) }}" style="font-weight:600;color:var(--color-primary);text-decoration:none;">{{ p.player }}</a></td>
+              <td style="color:var(--color-text-muted);font-size:13px;">{{ p.team }}</td>
+              <td class="num highlight"><strong>{{ p.matches_played }}</strong></td>
+              <td class="num">{{ p.matches_started }}</td>
+              <td class="num">{{ p.goals }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+{% set p = player %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <nav style="font-size:13px;color:var(--color-text-muted);margin-bottom:20px;">
+    <a href="{{ url_for('players.players') }}" class="text-primary">Players</a>
+    <span style="margin:0 6px;">›</span>
+    <span>{{ p.player }}</span>
+  </nav>
+
+  <!-- Player Header -->
+  <div style="background:linear-gradient(135deg,var(--color-primary-dark),#1A0A14);border-radius:16px;padding:32px;margin-bottom:28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--color-primary),var(--color-gold));display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;font-family:'Space Grotesk',sans-serif;flex-shrink:0;">
+      {{ p.player.split()[0][:1] }}{{ p.player.split()[-1][:1] if p.player.split() | length > 1 else '' }}
+    </div>
+    <div style="flex:1;">
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,4vw,32px);font-weight:800;color:#fff;margin:0;">{{ p.player }}</h1>
+      <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="{{ url_for('teams.team_detail', team_name=p.team) }}" style="color:var(--color-gold);font-weight:600;font-size:14px;text-decoration:none;">{{ p.team }}</a>
+        {% if p.position %}<span class="mq-badge mq-badge--info">{{ p.position | title }}</span>{% endif %}
+        {% if p.squad_number %}<span style="color:rgba(255,255,255,.5);font-size:13px;">#{{ p.squad_number }}</span>{% endif %}
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div style="text-align:center;color:#fff;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;color:var(--color-gold);">{{ p.goals }}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;">Goals</div>
+      </div>
+      <div style="text-align:center;color:#fff;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;color:#fff;">{{ p.assists }}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;">Assists</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="mq-grid mq-grid--4" style="gap:16px;margin-bottom:28px;">
+    {% set stat_items = [
+      ('Appearances', p.matches_played, '📋', ''),
+      ('Starts', p.matches_started, '▶️', ''),
+      ('Goal Involvement', p.goal_involvement, '🎯', 'text-primary'),
+      ('Goals Per Match', p.goals_per_match, '📈', ''),
+    ] %}
+    {% for label, val, icon, cls in stat_items %}
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">{{ icon }}</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">{{ label }}</div>
+        <div class="mq-kpi__value {{ cls }}">{{ val }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Full Stats Table -->
+  <div class="mq-card" style="margin-bottom:28px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:16px;">Player Statistics</h2>
+    <div class="mq-table-wrap" style="border:none;box-shadow:none;">
+      <table class="mq-table">
+        <tbody>
+          <tr><td style="color:var(--color-text-muted);">Full Name</td><td><strong>{{ p.player }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">National Team</td><td><a href="{{ url_for('teams.team_detail', team_name=p.team) }}" style="color:var(--color-primary);font-weight:600;text-decoration:none;">{{ p.team }}</a></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Position</td><td>{{ p.position | title if p.position else '—' }}</td></tr>
+          <tr><td style="color:var(--color-text-muted);">Squad Number</td><td>{{ p.squad_number if p.squad_number else '—' }}</td></tr>
+          <tr><td style="color:var(--color-text-muted);">Appeared</td><td>{{ 'Yes' if p.appeared == 'yes' else 'No' }}</td></tr>
+          <tr><td style="color:var(--color-text-muted);">Matches Played</td><td><strong>{{ p.matches_played }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Matches Started</td><td><strong>{{ p.matches_started }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Goals</td><td><strong class="text-primary">{{ p.goals }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Own Goals</td><td>{{ p.own_goals if p.own_goals is defined else '—' }}</td></tr>
+          <tr><td style="color:var(--color-text-muted);">Assists</td><td><strong>{{ p.assists }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Goal Involvement (G+A)</td><td><strong>{{ p.goal_involvement }}</strong></td></tr>
+          <tr><td style="color:var(--color-text-muted);">Goals Per Match</td><td>{{ p.goals_per_match }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="{{ url_for('compare.compare') }}?mode=player&player_a={{ p.player_id }}" class="mq-btn mq-btn--primary">Compare This Player</a>
+    <a href="{{ url_for('teams.team_detail', team_name=p.team) }}" class="mq-btn mq-btn--outline">View {{ p.team }} →</a>
+    <a href="{{ url_for('players.players') }}" class="mq-btn mq-btn--outline">← All Players</a>
+  </div>
+
+</div>
+{% endblock %}

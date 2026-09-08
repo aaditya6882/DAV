@@ -1,213 +1,141 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}World Cup 2022 {% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap"
-      rel="stylesheet"
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{{ page_title | default('Home') }} | QFIFA — FIFA World Cup 2022{% endblock %}</title>
+  <meta name="description" content="{{ meta_description | default('QFIFA — FIFA World Cup 2022 Football Intelligence Platform. Turn football data into insights.') }}" />
+  <meta property="og:title" content="{% block og_title %}QFIFA — FIFA World Cup 2022{% endblock %}" />
+  <meta property="og:description" content="{{ meta_description | default('QFIFA — FIFA World Cup 2022 Football Intelligence Platform.') }}" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234C1024'/><circle cx='16' cy='8' r='5' fill='%23FFD700'/><path d='M10 28 L22 28 L20 22 L12 22 Z' fill='%23D4AF37'/><path d='M12 22 C12 15 14 13 14 11 C13 11 11 13 10 16 C9 13 12 9 14 8 L18 8 C20 9 23 13 22 16 C21 13 19 11 18 11 C18 13 20 15 20 22 Z' fill='%23C8A45D'/></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- QFIFA Design System -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/matchiq.css') }}" />
+
+  {% block extra_head %}{% endblock %}
+
+  <!-- Apply theme before render to avoid flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('qfifa-theme') || localStorage.getItem('matchiq-theme');
+      if(t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="mq-nav" aria-label="Main navigation">
+  <a class="mq-nav__brand" href="{{ url_for('dashboard.index') }}">
+    <span class="mq-nav__brand-logo" aria-hidden="true">
+      <svg class="mq-trophy-svg" viewBox="0 0 32 32" width="22" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="trophyGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF0A5" />
+            <stop offset="45%" stop-color="#E5B94E" />
+            <stop offset="85%" stop-color="#A67B1E" />
+            <stop offset="100%" stop-color="#734F0C" />
+          </linearGradient>
+          <linearGradient id="trophyGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0F5132" />
+            <stop offset="50%" stop-color="#198754" />
+            <stop offset="100%" stop-color="#0B3C24" />
+          </linearGradient>
+        </defs>
+        <!-- Trophy Base -->
+        <rect x="7" y="27" width="18" height="3" rx="1.5" fill="url(#trophyGold)" />
+        <rect x="8" y="25" width="16" height="1.8" rx="0.5" fill="url(#trophyGreen)" />
+        <rect x="9" y="23" width="14" height="1.8" fill="url(#trophyGold)" />
+        <rect x="9.5" y="21.4" width="13" height="1.4" rx="0.5" fill="url(#trophyGreen)" />
+        <!-- Spiraling Figures / Stem -->
+        <path d="M10 21.4 C10.5 17.5 12.5 14.5 12.8 11.2 C11.5 11.8 10 13.5 9.2 15 C8.6 13.2 9.8 10.4 12 9 C12.4 8.7 13.2 8.4 13.8 8.2 C12.8 9.6 13 11.8 14.2 13 C15.4 14.2 15.2 16.8 14 19.5 C13.2 20.4 12.2 21 11.2 21.4 Z" fill="url(#trophyGold)" />
+        <path d="M22 21.4 C21.5 17.5 19.5 14.5 19.2 11.2 C20.5 11.8 22 13.5 22.8 15 C23.4 13.2 22.2 10.4 20 9 C19.6 8.7 18.8 8.4 18.2 8.2 C19.2 9.6 19 11.8 17.8 13 C16.6 14.2 16.8 16.8 18 19.5 C18.8 20.4 19.8 21 20.8 21.4 Z" fill="url(#trophyGold)" />
+        <path d="M13.5 13.2 C14.5 14.8 17.5 14.8 18.5 13.2 C18 16 17.5 18.8 16 21.4 C14.5 18.8 14 16 13.5 13.2 Z" fill="url(#trophyGold)" opacity="0.9" />
+        <!-- Globe -->
+        <circle cx="16" cy="6.8" r="4.8" fill="url(#trophyGold)" />
+        <path d="M12.5 5 C14 4.3 18 4.3 19.5 5 C18.5 6.5 18.5 7.8 19.5 8.6 C18 9.3 14 9.3 12.5 8.6 C13.5 7.8 13.5 6.5 12.5 5 Z" fill="#734F0C" opacity="0.35" />
+      </svg>
+    </span>
+    <span class="mq-nav__brand-text">
+      QFIFA
+      <small class="mq-nav__brand-sub">World Cup 2022</small>
+    </span>
+  </a>
+
+  <ul class="mq-nav__links" id="mq-nav-links" role="menubar">
+    <li role="none"><a role="menuitem" href="{{ url_for('dashboard.index') }}" class="mq-nav__link {% if active_tab == 'home' %}active{% endif %}">Home</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('matches.matches') }}" class="mq-nav__link {% if active_tab == 'matches' %}active{% endif %}">Matches</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('teams.teams') }}" class="mq-nav__link {% if active_tab == 'teams' %}active{% endif %}">Teams</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('players.players') }}" class="mq-nav__link {% if active_tab == 'players' %}active{% endif %}">Players</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('standings.standings') }}" class="mq-nav__link {% if active_tab == 'standings' %}active{% endif %}">Standings</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('analytics.analytics') }}" class="mq-nav__link {% if active_tab == 'analytics' %}active{% endif %}">Analytics</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('predict.predict_page') }}" class="mq-nav__link {% if active_tab == 'predict' %}active{% endif %}">Predict</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('compare.compare') }}" class="mq-nav__link {% if active_tab == 'compare' %}active{% endif %}">Compare</a></li>
+    <li role="none"><a role="menuitem" href="{{ url_for('records.records') }}" class="mq-nav__link {% if active_tab == 'records' %}active{% endif %}">Records</a></li>
+  </ul>
+
+  <div class="mq-nav__spacer"></div>
+
+  <!-- Global Search -->
+  <div class="mq-search" role="search">
+    <svg class="mq-search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input
+      id="mq-global-search"
+      class="mq-search__input"
+      type="search"
+      placeholder="Search teams, players, matches…"
+      aria-label="Search"
+      autocomplete="off"
     />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='theme.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='site-overrides.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='typography.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='worldcup-theme.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='layout.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('main.template_css', filename='refinement.css') }}"
-    />
-    {% block extra_head %}{% endblock %}
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="{{ url_for('main.index') }}">
-        <span class="brand-logo" aria-hidden="true"
-          ><svg viewBox="0 0 48 48">
-            <path d="M16 8h16v8c0 7-3.2 12.4-8 15-4.8-2.6-8-8-8-15V8Z" />
-            <path
-              d="M16 12H9v3c0 5 3 8 8 8m15-11h7v3c0 5-3 8-8 8M24 31v8m-7 2h14"
-            /></svg
-        ></span>
-        <span>FIFA World Cup 2022 <small>Match Data Analysis</small></span>
-      </a>
-      <nav class="tabs" aria-label="Main navigation" id="mainNav">
-        <a
-          href="{{ url_for('main.index') }}"
-          class="{{ 'active' if active_tab == 'index' else '' }}"
-          >Dashboard</a
-        >
-        <a
-          href="{{ url_for('main.preprocessing_page') }}"
-          class="{{ 'active' if active_tab == 'preprocessing' else '' }}"
-          >Preprocessing</a
-        >
-        <a
-          href="{{ url_for('main.eda_page') }}"
-          class="{{ 'active' if active_tab == 'eda' else '' }}"
-          >EDA</a
-        >
-        <a
-          href="{{ url_for('main.statistics_page') }}"
-          class="{{ 'active' if active_tab == 'statistics' else '' }}"
-          >Statistics</a
-        >
-        <a
-          href="{{ url_for('main.awards') }}"
-          class="{{ 'active' if active_tab == 'awards' else '' }}"
-          >Awards</a
-        >
-        <a
-          href="{{ url_for('main.visualizations') }}"
-          class="{{ 'active' if active_tab == 'visualizations' else '' }}"
-          >Visualizations</a
-        >
-        <a
-          href="{{ url_for('main.about') }}"
-          class="{{ 'active' if active_tab == 'about' else '' }}"
-          >About</a
-        >
-      </nav>
-      <a class="header-button" href="{{ url_for('main.visualizations') }}"
-        >View<br />Charts</a
-      >
-      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
-    <main>{% block content %}{% endblock %}</main>
-    <footer class="site-footer">
-      <div>
-        <a class="footer-brand" href="{{ url_for('main.index') }}"
-          >World Cup 2022 <small>Match Data Dashboard</small></a
-        >
-        <p>
-          A practical guide to the data, patterns and stories behind the
-          beautiful game.
-        </p>
-        <p class="footer-attribution">
-          A student project by Student — Centre of AI, Herald College Kathmandu
-        </p>
+    <div id="mq-search-dropdown" class="mq-search__dropdown" role="listbox" aria-label="Search results"></div>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button id="mq-theme-btn" class="mq-theme-btn" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <!-- Mobile Hamburger -->
+  <button class="mq-nav__toggle" id="mq-nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mq-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="mq-main" id="main-content">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="mq-footer">
+  <div class="mq-footer__inner">
+    <div>
+      <div class="mq-footer__brand" style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:18px;">🏆</span> QFIFA
       </div>
-      <div>
-        <h2>Explore</h2>
-        <a href="{{ url_for('main.index') }}">Dashboard</a>
-        <a href="{{ url_for('main.preprocessing_page') }}">Preprocessing</a>
-        <a href="{{ url_for('main.eda_page') }}">EDA</a>
-        <a href="{{ url_for('main.statistics_page') }}">Statistics</a>
-        <a href="{{ url_for('main.awards') }}">Awards</a>
-        <a href="{{ url_for('main.visualizations') }}">Visualizations</a>
-        <a href="{{ url_for('main.about') }}">About</a>
-      </div>
-      <div>
-        <h2>Technology</h2>
-        <span>Flask + Python</span><span>Pandas</span><span>Matplotlib</span>
-      </div>
-      <div>
-        <h2>Dataset</h2>
-        <span>FIFA World Cup</span><span>Qatar 2022</span
-        ><span>64 matches</span>
-      </div>
-    </footer>
-    <script>
-      // Mobile Nav Toggle
-      const navToggle = document.getElementById('mobileNavToggle');
-      const mainNav = document.getElementById('mainNav');
-      if (navToggle && mainNav) {
-        navToggle.addEventListener('click', function() {
-          mainNav.classList.toggle('open');
-          this.classList.toggle('open');
-        });
-      }
+      <div style="margin-top:4px;font-size:12px;">FIFA World Cup 2022 · Football Intelligence Platform</div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);text-align:right;">
+      Built with Flask · Pandas · Chart.js<br>
+      Data: Official FIFA World Cup 2022 Dataset
+    </div>
+  </div>
+</footer>
 
-      // Dropdown toggle on click/hover for touch & desktop
-      const dropdowns = document.querySelectorAll('.nav-dropdown');
-      dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('.dropdown-trigger');
-        if (trigger) {
-          trigger.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isOpen = dropdown.classList.contains('open');
-            dropdowns.forEach(d => d.classList.remove('open'));
-            if (!isOpen) dropdown.classList.add('open');
-          });
-        }
-      });
-      document.addEventListener('click', () => {
-        dropdowns.forEach(d => d.classList.remove('open'));
-      });
+<!-- ===== SCRIPTS ===== -->
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- QFIFA Scripts -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
 
-      // Client-side Table Search Filter
-      function filterTable(inputId, tableId) {
-        const input = document.getElementById(inputId);
-        const filter = input.value.toLowerCase();
-        const table = document.getElementById(tableId);
-        const rows = table.getElementsByTagName('tr');
-
-        for (let i = 1; i < rows.length; i++) {
-          let textContent = rows[i].textContent || rows[i].innerText;
-          if (textContent.toLowerCase().indexOf(filter) > -1) {
-            rows[i].style.display = "";
-          } else {
-            rows[i].style.display = "none";
-          }
-        }
-      }
-
-      // Client-side Table Sorting
-      const sortDirections = {};
-      function sortTable(tableId, colIndex, type) {
-        const table = document.getElementById(tableId);
-        const tbody = table.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        
-        const key = tableId + '_' + colIndex;
-        const asc = sortDirections[key] !== true; // toggle ascending
-        sortDirections[key] = asc;
-
-        // Reset all sort icons in header
-        const headers = table.querySelectorAll('th');
-        headers.forEach(h => {
-          const icon = h.querySelector('.sort-icon');
-          if (icon) icon.textContent = '↕';
-        });
-        
-        const currentHeaderIcon = headers[colIndex].querySelector('.sort-icon');
-        if (currentHeaderIcon) {
-          currentHeaderIcon.textContent = asc ? '↑' : '↓';
-        }
-
-        rows.sort((a, b) => {
-          let cellA = a.children[colIndex].textContent.trim();
-          let cellB = b.children[colIndex].textContent.trim();
-
-          if (type === 'num') {
-            let numA = parseFloat(cellA.replace(/[^0-9.-]+/g,"")) || 0;
-            let numB = parseFloat(cellB.replace(/[^0-9.-]+/g,"")) || 0;
-            return asc ? numA - numB : numB - numA;
-          } else {
-            return asc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-          }
-        });
-
-        rows.forEach(row => tbody.appendChild(row));
-      }
-    </script>
-  </body>
+</body>
 </html>

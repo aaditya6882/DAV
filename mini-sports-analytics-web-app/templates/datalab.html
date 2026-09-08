@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mq-container" style="padding-top:28px;padding-bottom:48px;">
+
+  <div class="mq-page-header">
+    <h1 class="mq-page-header__title">🔬 Data Lab</h1>
+    <p class="mq-page-header__sub">Academic data science section — FIFA World Cup 2022 dataset analysis</p>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="mq-section">
+    <h2 class="mq-section-title">📦 Data Pipeline</h2>
+    <div class="mq-pipeline">
+      {% set pipeline_steps = ['Raw Data', 'Validation', 'Cleaning', 'Feature Engineering', 'Analysis', 'Visualization'] %}
+      {% for step in pipeline_steps %}
+      <div class="mq-pipeline__step">
+        <div class="mq-pipeline__node mq-pipeline__node--active">{{ step }}</div>
+      </div>
+      {% if not loop.last %}<div class="mq-pipeline__arrow">→</div>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Data Quality -->
+  <div class="mq-section">
+    <h2 class="mq-section-title">✅ Data Quality Audit</h2>
+    <div class="mq-grid mq-grid--4" style="gap:12px;margin-bottom:20px;">
+      {% if quality %}
+      <div class="mq-kpi">
+        <div class="mq-kpi__icon">📊</div>
+        <div class="mq-kpi__body">
+          <div class="mq-kpi__label">Raw Rows</div>
+          <div class="mq-kpi__value">{{ quality.raw_rows }}</div>
+        </div>
+      </div>
+      <div class="mq-kpi">
+        <div class="mq-kpi__icon">✨</div>
+        <div class="mq-kpi__body">
+          <div class="mq-kpi__label">Clean Rows</div>
+          <div class="mq-kpi__value">{{ quality.clean_rows }}</div>
+        </div>
+      </div>
+      <div class="mq-kpi">
+        <div class="mq-kpi__icon">🏟️</div>
+        <div class="mq-kpi__body">
+          <div class="mq-kpi__label">Teams</div>
+          <div class="mq-kpi__value">{{ quality.teams }}</div>
+        </div>
+      </div>
+      <div class="mq-kpi">
+        <div class="mq-kpi__icon">👤</div>
+        <div class="mq-kpi__body">
+          <div class="mq-kpi__label">Players</div>
+          <div class="mq-kpi__value">{{ quality.players }}</div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if quality and not quality.error %}
+    <div class="mq-card">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Quality Checks</h3>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="mq-status mq-status--ok"><span class="mq-status__dot"></span> <strong>{{ quality.clean_rows }} valid rows</strong> in cleaned dataset</div>
+        <div class="mq-status {% if quality.missing_values == 0 %}mq-status--ok{% else %}mq-status--warn{% endif %}">
+          <span class="mq-status__dot"></span>
+          Missing values: <strong>{{ quality.missing_values }}</strong>
+          {% if quality.missing_values == 0 %}✓ None{% else %}⚠ Present{% endif %}
+        </div>
+        <div class="mq-status {% if quality.duplicates == 0 %}mq-status--ok{% else %}mq-status--warn{% endif %}">
+          <span class="mq-status__dot"></span>
+          Duplicate rows: <strong>{{ quality.duplicates }}</strong>
+          {% if quality.duplicates == 0 %}✓ None{% else %}⚠ Present{% endif %}
+        </div>
+        <div class="mq-status mq-status--ok"><span class="mq-status__dot"></span> <strong>{{ quality.stadiums }}</strong> unique stadiums · <strong>{{ quality.cities }}</strong> cities</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Dataset Overview -->
+  <div class="mq-grid mq-grid--2" style="gap:20px;margin-bottom:32px;">
+    <div class="mq-card">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Raw Dataset Columns</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        {% for col in raw_columns %}
+        <span class="mq-badge mq-badge--info">{{ col }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="mq-card">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Cleaned Dataset Columns</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        {% for col in cleaned_columns %}
+        <span class="mq-badge mq-badge--win">{{ col }}</span>
+        {% endfor %}
+      </div>
+      <p style="margin-top:10px;font-size:12px;color:var(--color-text-muted);">
+        Derived columns: <code>total_goals</code>, <code>goal_difference</code>, <code>result</code>, <code>match_id</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- Academic Tools -->
+  <h2 class="mq-section-title">🧪 Academic Tools</h2>
+  <div class="mq-grid mq-grid--3" style="margin-bottom:32px;">
+    {% set tools = [
+      (url_for('datalab.preprocessing_page'), '🔧', 'Preprocessing', 'Data cleaning steps, type conversions, and missing value handling.'),
+      (url_for('datalab.eda_page'), '📊', 'EDA', 'Exploratory data analysis: descriptive statistics and outlier detection.'),
+      (url_for('datalab.statistics_page'), '📐', 'Statistics', 'Team and year-level statistical summaries.'),
+      (url_for('datalab.visualizations_page'), '📈', 'Visualizations', 'Matplotlib/Seaborn generated static visualizations.'),
+      (url_for('datalab.awards'), '🏅', 'Awards', 'Tournament awards and achievements.'),
+      (url_for('datalab.about'), 'ℹ️', 'About', 'Project description, methodology, and architecture.'),
+    ] %}
+    {% for url, icon, title, desc in tools %}
+    <a href="{{ url }}" class="mq-card" style="display:block;text-decoration:none;transition:box-shadow .16s,border-color .16s;">
+      <div style="font-size:22px;margin-bottom:8px;">{{ icon }}</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--color-text);margin-bottom:6px;">{{ title }}</div>
+      <div style="font-size:13px;color:var(--color-text-muted);">{{ desc }}</div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- Methodology -->
+  <div class="mq-card">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:14px;">📖 Methodology</h2>
+    <div style="font-size:14px;line-height:1.8;color:var(--color-text);">
+      <p><strong>Data Source:</strong> 4 CSV datasets — <code>matches.csv</code> (64 matches), <code>stats.csv</code> (832 players), <code>groups.csv</code> (32 group-stage rows), <code>achievements.csv</code> (tournament awards).</p>
+      <p style="margin-top:8px;"><strong>Feature Engineering:</strong> <code>total_goals = home_score + away_score</code>, <code>goal_difference = home_score - away_score</code>, <code>result</code> (home_win / away_win / draw), <code>goal_involvement = goals + assists</code>, <code>goals_per_match = goals / matches_played</code>.</p>
+      <p style="margin-top:8px;"><strong>Outlier Detection:</strong> IQR method on <code>total_goals</code> — values outside [Q1 − 1.5×IQR, Q3 + 1.5×IQR] are flagged.</p>
+      <p style="margin-top:8px;"><strong>No statistics are fabricated.</strong> All displayed values are derived from the actual datasets.</p>
+    </div>
+  </div>
+
+  <!-- API Reference -->
+  <div class="mq-card" style="margin-top:20px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:14px;">🔌 REST API Endpoints</h2>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      {% set endpoints = [
+        '/api/matches', '/api/matches/<id>', '/api/teams', '/api/teams/<name>',
+        '/api/players', '/api/players/<id>', '/api/standings',
+        '/api/analytics/goals', '/api/analytics/top-scorers', '/api/analytics/team-performance',
+        '/api/compare/teams?a=X&b=Y', '/api/compare/players?a=X&b=Y',
+        '/api/search?q=messi', '/api/records',
+      ] %}
+      {% for ep in endpoints %}
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;">
+        <span class="mq-badge mq-badge--info">GET</span>
+        <a href="{{ ep if ep.startswith('/api') else '#' }}" style="font-family:monospace;color:var(--color-primary);">{{ ep }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}
