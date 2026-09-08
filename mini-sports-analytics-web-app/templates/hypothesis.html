@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="mq-page-header">
+  <div class="mq-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <p class="mq-hero__eyebrow">Inferential Data Analysis</p>
+        <h1 class="mq-page-title" style="margin:0;">🧪 Hypothesis Testing Engine</h1>
+        <p class="mq-page-subtitle">Rigorous statistical significance testing on the FIFA World Cup 2022 dataset using scipy.stats</p>
+      </div>
+
+      <!-- Significance Level Selector -->
+      <form method="GET" action="{{ url_for('hypothesis.hypothesis_page') }}" class="mq-auto-submit" style="display:flex; align-items:center; gap:10px;">
+        <label for="alpha" style="font-weight:600; font-size:14px; color:var(--color-text-muted);">Significance Level (α):</label>
+        <select name="alpha" id="alpha" class="mq-select" style="min-width:110px; font-weight:700;">
+          <option value="0.01" {% if results.alpha == 0.01 %}selected{% endif %}>α = 0.01 (99%)</option>
+          <option value="0.05" {% if results.alpha == 0.05 %}selected{% endif %}>α = 0.05 (95%)</option>
+          <option value="0.10" {% if results.alpha == 0.10 %}selected{% endif %}>α = 0.10 (90%)</option>
+        </select>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="mq-container" style="padding-top:32px; padding-bottom:60px;">
+
+  <!-- Summary KPI Cards -->
+  <div class="mq-grid mq-grid--3" style="margin-bottom:32px;">
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">🔬</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Hypotheses Evaluated</div>
+        <div class="mq-kpi__value">{{ results.total_tests }}</div>
+        <div class="mq-kpi__sub">Formal inferential tests</div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">⚡</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Significant Discoveries</div>
+        <div class="mq-kpi__value" style="color:var(--color-win);">{{ results.significant_findings }}</div>
+        <div class="mq-kpi__sub">p-value &lt; α threshold</div>
+      </div>
+    </div>
+    <div class="mq-kpi">
+      <div class="mq-kpi__icon">⚖️</div>
+      <div class="mq-kpi__body">
+        <div class="mq-kpi__label">Alpha Significance Level</div>
+        <div class="mq-kpi__value" style="color:var(--color-gold);">{{ results.alpha }}</div>
+        <div class="mq-kpi__sub">Confidence: {{ ((1 - results.alpha) * 100) | int }}%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hypothesis Test Cards Grid -->
+  <div style="display:flex; flex-direction:column; gap:28px;">
+    {% for test in results.tests %}
+    <div class="mq-card" style="padding:28px; position:relative; overflow:hidden; border-left:6px solid {% if test.reject_h0 %}var(--color-win){% else %}var(--color-gold){% endif %};">
+      
+      <!-- Top Title & Badge -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:800; color:var(--color-text); margin:0;">
+          {{ test.title }}
+        </h2>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span style="background:var(--color-surface-2); border:1px solid var(--color-border); padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; color:var(--color-text-muted);">
+            {{ test.test_name }}
+          </span>
+          {% if test.reject_h0 %}
+          <span style="background:rgba(22, 163, 74, 0.15); color:var(--color-win); border:1px solid var(--color-win); padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700;">
+            ✓ Statistically Significant (Reject H₀)
+          </span>
+          {% else %}
+          <span style="background:rgba(217, 119, 6, 0.15); color:var(--color-draw); border:1px solid var(--color-draw); padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700;">
+            • Not Significant (Fail to Reject H₀)
+          </span>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Formulated Hypotheses -->
+      <div style="background:var(--color-surface-2); border-radius:var(--radius-md); padding:16px; margin-bottom:20px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+        <div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--color-text-muted);">Null Hypothesis (H₀)</div>
+          <div style="font-family:monospace; font-weight:600; font-size:14px; color:var(--color-text); margin-top:4px;">{{ test.null_hypothesis }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--color-gold);">Alternative Hypothesis (H₁)</div>
+          <div style="font-family:monospace; font-weight:600; font-size:14px; color:var(--color-text); margin-top:4px;">{{ test.alt_hypothesis }}</div>
+        </div>
+      </div>
+
+      <!-- Test Metrics & Numerical Results -->
+      <div class="mq-grid mq-grid--4" style="gap:16px; margin-bottom:20px;">
+        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--color-text-muted);">{{ test.statistic_name }}</div>
+          <div style="font-size:22px; font-weight:800; color:var(--color-primary); margin-top:2px;">{{ test.statistic_value }}</div>
+        </div>
+        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--color-text-muted);">p-Value</div>
+          <div style="font-size:22px; font-weight:800; color:{% if test.reject_h0 %}var(--color-win){% else %}var(--color-draw){% endif %}; margin-top:2px;">
+            {{ test.p_value }}
+          </div>
+        </div>
+        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--color-text-muted);">Alpha Threshold (α)</div>
+          <div style="font-size:22px; font-weight:800; color:var(--color-gold); margin-top:2px;">{{ test.alpha }}</div>
+        </div>
+        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; text-align:center;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--color-text-muted);">Decision</div>
+          <div style="font-size:14px; font-weight:700; margin-top:6px; color:{% if test.reject_h0 %}var(--color-win){% else %}var(--color-draw){% endif %};">
+            {% if test.reject_h0 %}Reject H₀{% else %}Fail to Reject H₀{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sample Details / Data Breakdown -->
+      {% if test.sample_metrics %}
+      <div style="font-size:13px; color:var(--color-text-muted); margin-bottom:16px; display:flex; gap:20px; flex-wrap:wrap; background:var(--color-bg); padding:10px 16px; border-radius:var(--radius-sm);">
+        <span>📊 Home Matches: <strong>n = {{ test.sample_metrics.n_home }}</strong> (Mean: {{ test.sample_metrics.mean_home }} goals, Std: {{ test.sample_metrics.std_home }})</span>
+        <span>📊 Away Matches: <strong>n = {{ test.sample_metrics.n_away }}</strong> (Mean: {{ test.sample_metrics.mean_away }} goals, Std: {{ test.sample_metrics.std_away }})</span>
+        {% if test.degrees_of_freedom %}<span>📐 Degrees of Freedom (df): <strong>{{ test.degrees_of_freedom }}</strong></span>{% endif %}
+      </div>
+      {% endif %}
+
+      {% if test.stage_breakdown %}
+      <div style="margin-bottom:16px;">
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--color-text-muted); margin-bottom:8px;">Stage Breakdown (Group & Knockout Goals):</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          {% for st, info in test.stage_breakdown.items() %}
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:var(--radius-sm); padding:6px 12px; font-size:12px;">
+            <strong>{{ st }}</strong>: Mean {{ info.mean }} goals (n={{ info.count }}, std={{ info.std }})
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if test.outcome_counts %}
+      <div style="font-size:13px; color:var(--color-text-muted); margin-bottom:16px; display:flex; gap:16px; flex-wrap:wrap; background:var(--color-bg); padding:10px 16px; border-radius:var(--radius-sm);">
+        <span>🏠 Home Wins: <strong>{{ test.outcome_counts.home_wins }}</strong></span>
+        <span>✈️ Away Wins: <strong>{{ test.outcome_counts.away_wins }}</strong></span>
+        <span>🤝 Draws: <strong>{{ test.outcome_counts.draws }}</strong></span>
+        <span>🎯 Expected per Category: <strong>{{ test.outcome_counts.expected_per_category }}</strong></span>
+      </div>
+      {% endif %}
+
+      {% if test.group_metrics %}
+      <div style="font-size:13px; color:var(--color-text-muted); margin-bottom:16px; display:flex; gap:16px; flex-wrap:wrap; background:var(--color-bg); padding:10px 16px; border-radius:var(--radius-sm);">
+        <span>🏆 Top 8 Quarter-Finalists Mean: <strong>{{ test.group_metrics.top_teams_mean_goals }} goals/match</strong> (n={{ test.group_metrics.top_teams_match_instances }})</span>
+        <span>🛡️ Other Teams Mean: <strong>{{ test.group_metrics.other_teams_mean_goals }} goals/match</strong> (n={{ test.group_metrics.other_teams_match_instances }})</span>
+      </div>
+      {% endif %}
+
+      <!-- Executive Statistical Interpretation -->
+      <div style="background:rgba(138, 21, 56, 0.06); border-left:4px solid var(--color-primary); padding:14px 18px; border-radius:var(--radius-sm); font-size:14px; line-height:1.6; color:var(--color-text);">
+        <strong>Executive Summary:</strong> {{ test.interpretation }}
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

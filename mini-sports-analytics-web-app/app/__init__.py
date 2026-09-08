@@ -47,6 +47,7 @@ def create_app():
     from app.routes.records import records_bp
     from app.routes.datalab import datalab_bp
     from app.routes.predict import predict_bp
+    from app.routes.hypothesis import hypothesis_bp
     from app.routes.api import api_bp
 
     app.register_blueprint(dashboard_bp)
@@ -58,6 +59,7 @@ def create_app():
     app.register_blueprint(compare_bp)
     app.register_blueprint(records_bp)
     app.register_blueprint(predict_bp)
+    app.register_blueprint(hypothesis_bp)
     app.register_blueprint(datalab_bp)
     app.register_blueprint(api_bp)
 
