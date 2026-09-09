@@ -248,3 +248,76 @@ def predict_match(team_a_name, team_b_name, stage="Group", selected_players_a=No
             for m in h2h_matches
         ],
     }
+
+
+def evaluate_model_accuracy():
+    """
+    Backtest the bivariate Poisson prediction model across all 64 tournament matches
+    and return accuracy metrics.
+    """
+    df = load_processed_data()
+    correct_outcome = 0
+    correct_exact_score = 0
+    correct_over_under = 0
+    total = len(df)
+
+    if total == 0:
+        return {
+            "total_matches": 0,
+            "outcome_accuracy": 0.0,
+            "over_under_accuracy": 0.0,
+            "exact_score_accuracy": 0.0,
+            "correct_outcomes": 0,
+            "correct_over_under": 0,
+            "correct_exact_score": 0,
+        }
+
+    for _, row in df.iterrows():
+        home_t = row["home_team"]
+        away_t = row["away_team"]
+        actual_h = int(row["home_score"])
+        actual_a = int(row["away_score"])
+        stage = row.get("stage", "Group")
+
+        if actual_h > actual_a:
+            actual_outcome = "win_a"
+        elif actual_h < actual_a:
+            actual_outcome = "win_b"
+        else:
+            actual_outcome = "draw"
+
+        res = predict_match(home_t, away_t, stage=stage)
+        pred_a_pct = res["win_a_pct"]
+        pred_draw_pct = res["draw_pct"]
+        pred_b_pct = res["win_b_pct"]
+
+        if pred_a_pct >= pred_draw_pct and pred_a_pct >= pred_b_pct:
+            pred_outcome = "win_a"
+        elif pred_b_pct >= pred_a_pct and pred_b_pct >= pred_draw_pct:
+            pred_outcome = "win_b"
+        else:
+            pred_outcome = "draw"
+
+        if pred_outcome == actual_outcome:
+            correct_outcome += 1
+
+        pred_h = res["predicted_home_goals"]
+        pred_a = res["predicted_away_goals"]
+        if pred_h == actual_h and pred_a == actual_a:
+            correct_exact_score += 1
+
+        actual_ou = (actual_h + actual_a) > 2.5
+        pred_ou = res["over_2_5_pct"] > 50.0
+        if actual_ou == pred_ou:
+            correct_over_under += 1
+
+    return {
+        "total_matches": total,
+        "outcome_accuracy": round((correct_outcome / total) * 100, 1),
+        "over_under_accuracy": round((correct_over_under / total) * 100, 1),
+        "exact_score_accuracy": round((correct_exact_score / total) * 100, 1),
+        "correct_outcomes": correct_outcome,
+        "correct_over_under": correct_over_under,
+        "correct_exact_score": correct_exact_score,
+    }
+
